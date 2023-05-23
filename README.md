@@ -11,4 +11,4 @@ How to use:
 5. Add a python virtual environment. Ctrl-Shift-P > Python: Create Environment
 6. Install the baseRobotLibrary (and pybricks as a dependency) pip install /path/to/wheelfile.whl (use a thumb drive)
 7. Create a new python file, named "teamMemberName-test-mission.py", add a comment or two, and save it.
-8. TODO: Instructions on logging VS code into github and pushing updates to the master program repo. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
+8. Commit the changes, and push. It will probably prompt for github registration/login and then sync all files. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
