@@ -1,0 +1,15 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.venv/" : true,
+        "**/.vscode/" : true,
+        "**/.gitignore" : true,
+        "**/README.md" : true
+    }, 
+    "terminal.intgrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+}
