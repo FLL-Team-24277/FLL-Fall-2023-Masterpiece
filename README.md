@@ -10,3 +10,5 @@ How to use:
 4. In VS Code clone this repository. https://github.com/FLL-Team-24277/Master-Program-Fall-2023.git Save it somewhere in their documents folder
 5. Add a python virtual environment. Ctrl-Shift-P > Python: Create Environment
 6. Install the baseRobotLibrary (and pybricks as a dependency) pip install /path/to/wheelfile.whl (use a thumb drive)
+7. Create a new python file, named "teamMemberName-test-mission.py", add a comment or two, and save it.
+8. TODO: Instructions on logging VS code into github and pushing updates to the master program repo.
