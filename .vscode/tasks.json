@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "label": "Run on JynErso",
+    "type" : "shell",
+    "command": "pybricksdev.exe",
+    "args": [
+        "run",
+        "ble",
+        "--name",
+        "JynErso",
+        "${file}"
+    ]
+}
