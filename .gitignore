@@ -2,6 +2,7 @@
 
 /.venv/
 /.git/
+/.vscode/tasks.json
 
 # will sync .gitiginore and vscode settings so all laptops and environments
 # are theh same for everyone
