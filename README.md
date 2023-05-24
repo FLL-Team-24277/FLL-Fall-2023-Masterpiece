@@ -13,5 +13,5 @@ How to use:
 7. Create a new python file, named "teamMemberName-test-mission.py", add a comment or two, and save it.
 8. Commit the changes, and push. It will probably prompt for github registration/login and then sync all files. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
 9. Add a VS Code Task to run pybricksdev.exe to upload programs to the Spike hub. https://github.com/pybricks/pybricksdev
-9.a. Step one
-9.b. Step two
+10. Step one
+11. Step two
