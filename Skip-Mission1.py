@@ -1,6 +1,4 @@
 import base_robot
-from pybricks.parameters import Port, Direction, Axis, Side, Stop, Color
-from pybricks.tools import wait
 
 br = base_robot.BaseRobot()
 

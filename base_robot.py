@@ -5,6 +5,17 @@ from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
 
 
+PI = 3.14159
+
+# Max speed for motors
+# https://le-www-live-s.legocdn.com/sc/media/files/support/spike-prime/techspecs_technicmediumangularmotor-19684ffc443792280359ef217512a1d1.pdf
+# https://education.lego.com/v3/assets/blt293eea581807678a/bltb9abb42596a7f1b3/5f8801b5f4c5ce0e93db1587/le_spike-prime_tech-fact-sheet_45602_1hy19.pdf
+MED_MOTOR_MAX_SPEED = 185 # RPM
+LG_MOTOR_MAX_SPEED = 175 # RPM
+
+TIRE_DIAMETER = 56 # mm
+
+ROBOT_MAX_SPEED = LG_MOTOR_MAX_SPEED * PI * TIRE_DIAMETER # mm per sec
 
 class BaseRobot():
     """
@@ -27,7 +38,6 @@ class BaseRobot():
     def __init__(self):
         self.hub = PrimeHub(Axis.Z, Axis.Y)
         self._version = "0.1 05/19/2023"
-        self._tireDiameter = 56
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
         self._colorSensor = ColorSensor(Port.F)
@@ -38,7 +48,7 @@ class BaseRobot():
         self._rightDriveMotor = Motor(Port.A)
         self.driveBase = GyroDriveBase(self._leftDriveMotor, 
                                        self._rightDriveMotor,
-                                       self._tireDiameter, 103)
+                                       TIRE_DIAMETER, 103)
         self.driveBase.settings(250, 200, 180, 360)
         
         self._debugMode = False
@@ -46,12 +56,9 @@ class BaseRobot():
         # Reset the yaw angle when the baseRobot is declared
         self.hub.imu.reset_heading(0)
 
-        # Max speed for motors
-        # https://le-www-live-s.legocdn.com/sc/media/files/support/spike-prime/techspecs_technicmediumangularmotor-19684ffc443792280359ef217512a1d1.pdf
-        # https://education.lego.com/v3/assets/blt293eea581807678a/bltb9abb42596a7f1b3/5f8801b5f4c5ce0e93db1587/le_spike-prime_tech-fact-sheet_45602_1hy19.pdf
-
-        mediumMotorMaxSpeed = 185 # rpm
-        largeMotorMaxSpeed = 175 # rpm
+        # self._mediumMotorMaxSpeed = 185 # rpm
+        # self._largeMotorMaxSpeed = 175 # rpm
+        # self._robotMaxSpeed = self._largeMotorMaxSpeed * 3.14159 * self._tireDiameter
 
     # TODO: Make all of these abortable
     
@@ -87,8 +94,8 @@ class BaseRobot():
         # Normalize the speed and value parameters. If a negative value is
         # provided, invert them all
         if (value < 0):
-            leftMotorSpeed = -1 * leftMotorSpeed
-            rightMotorSpeed = -1 * rightMotorSpeed
+            leftMotorSpeed = -1 * pct2DegPerSec(leftMotorSpeed, LG_MOTOR_MAX_SPEED) 
+            rightMotorSpeed = -1 * pct2DegPerSec(rightMotorSpeed, LG_MOTOR_MAX_SPEED)
             value = -1 * value
         
 
@@ -160,3 +167,25 @@ class BaseRobot():
     
     def GetVersion(self, number):
         return self._version
+    
+    def WaitForSeconds(self, seconds):
+        wait(seconds * 1000)
+
+# this is a static function not associated with the base_robot class
+def degPerSec2Pct(dpsValue, maxRpm):
+    # All of the pybricks motor commands take a speed argument in degrees
+    # per second. EV3 speeds were all 0 to 100 (or -100). This function
+    # converts a degPerSecond value to its equivalent EV3 speed, based on
+    # the reported max speed for the motor
+    return int(dpsValue / (maxRpm / 60 * 360))
+
+def pct2DegPerSec(pctValue, maxRpm):
+    # All of the pybricks motor commands take a speed argument in degrees
+    # per second. EV3 speeds were all 0 to 100 (or -100). This function
+    # converts a degPerSecond value to its equivalent EV3 speed, based on
+    # the reported max speed for the motor
+    return int((maxRpm / 60 * 360) * pctValue / 100)
+
+def pct2mmps(pctValue):
+    # Converts a 0 - 100 percent value to mm per sec speed value
+    return int (pctValue / 100 * ROBOT_MAX_SPEED)
