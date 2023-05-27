@@ -46,6 +46,13 @@ class BaseRobot():
         # Reset the yaw angle when the baseRobot is declared
         self.hub.imu.reset_heading(0)
 
+        # Max speed for motors
+        # https://le-www-live-s.legocdn.com/sc/media/files/support/spike-prime/techspecs_technicmediumangularmotor-19684ffc443792280359ef217512a1d1.pdf
+        # https://education.lego.com/v3/assets/blt293eea581807678a/bltb9abb42596a7f1b3/5f8801b5f4c5ce0e93db1587/le_spike-prime_tech-fact-sheet_45602_1hy19.pdf
+
+        mediumMotorMaxSpeed = 185 # rpm
+        largeMotorMaxSpeed = 175 # rpm
+
     # TODO: Make all of these abortable
     
     # Just a wrapper for drivebase.turn()
@@ -54,7 +61,8 @@ class BaseRobot():
 
     # Just a wrapper for drivebase.straight()
     def Drive(self, distance, then = Stop.HOLD, wait = True):
-        self.driveBase.straight(distance, then, wait)
+        # Multiply the distance by 100 to get mm
+        self.driveBase.straight(distance * 100, then, wait)
 
     # def Curve(self, radius, angle, then = Stop.HOLD, wait = True):
     #     self.driveBase.curve(radius, angle, then, wait)
@@ -76,6 +84,13 @@ class BaseRobot():
         :param units: One of mm, deg, degrees, sec, or seconds.
         :type units: String
         """
+        # Normalize the speed and value parameters. If a negative value is
+        # provided, invert them all
+        if (value < 0):
+            leftMotorSpeed = -1 * leftMotorSpeed
+            rightMotorSpeed = -1 * rightMotorSpeed
+            value = -1 * value
+        
 
         if (units=="mm"):
             # always use the motor with the higher speed to determine the 

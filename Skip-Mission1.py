@@ -13,4 +13,4 @@ br = base_robot.BaseRobot()
 # while not (br._leftDriveMotor.done() and br._rightDriveMotor.done()):
 #     wait(100)
 
-br.DriveTank(200, -200, 110, "mm")
+br.DriveTank(-200, -200, -110, "mm")
