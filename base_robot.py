@@ -52,7 +52,7 @@ class BaseRobot():
     
     def GyroTurn(self, angle):
         # Check for abort
-        if Button.RIGHT in self.hub.buttons():
+        if Button.RIGHT in self.hub.buttons.pressed():
             return
 
         self.driveBase.turn(angle)
@@ -89,7 +89,7 @@ class BaseRobot():
         """
 
         # Check for abort
-        if Button.RIGHT in self.hub.buttons():
+        if Button.RIGHT in self.hub.buttons.pressed():
             return
         
         # Normalize the speed and value parameters. If a negative value is
@@ -186,9 +186,11 @@ class BaseRobot():
     
     def WaitForSeconds(self, seconds):
         # Check for abort
-        if Button.RIGHT in self.hub.buttons():
+        if Button.RIGHT in self.hub.buttons.pressed():
             return
+
         wait(seconds * 1000)
+
 
 # this is a static function not associated with the base_robot class
 def degPerSec2Pct(dpsValue, maxRpm):
