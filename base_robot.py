@@ -28,7 +28,7 @@ class BaseRobot():
     """
 
     def __init__(self):
-        self.hub = PrimeHub(Axis.Z, Axis.Y)
+        self.hub = PrimeHub(top_side = Axis.Z, front_side = -Axis.Y)
         self._version = "0.1 05/19/2023"
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
