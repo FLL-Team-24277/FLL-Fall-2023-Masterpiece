@@ -51,13 +51,55 @@ class BaseRobot():
     # TODO: Make all of these abortable
     
     def GyroTurn(self, angle):
+        """
+Description
+-----------
+The robot will use the gyro to turn the number of degrees specified. \
+Enter positive values to turn to the right, and negative values to turn to \
+the left.
+
+Parameter
+---------
+angle: Number of degrees to turn. Positive values turn to the right \
+and negative values turn to the left.
+type: int
+values: Any
+        """
+
         # Check for abort
         if Button.RIGHT in self.hub.buttons.pressed():
             return
 
         self.driveBase.turn(angle)
 
+
     def Drive(self, distance, then = Stop.HOLD, wait = True):
+        """
+Description
+-----------
+The robot will use the gyro to drive in a very straight line
+
+Parameters
+----------
+distance: How far to drive in cm. Positive values drive forward and \
+negative values drive backwards
+type: float
+values: Any
+
+then: What to do after the drive is complete. Options are coasting, \
+holding, and just stopping \
+values: Stop.HOLD (default); Stop.COAST; Stop.COAST_SMART; \
+Stop.BRAKE; Stop.NONE. For most FLL maneuvers, the default Stop.HOLD will be \
+what is needed.
+See https://docs.pybricks.com/en/stable/parameters/stop.html for more details.
+
+wait: Whether to wait for the maneuver to complete before continuing \
+with the rest of the program. For most FLL maneuvers, the default \
+True will be what is needed.
+type: bool
+values: True (default, wait) or False (do not wait)
+        """
+
         # Check for abort
         if Button.RIGHT in self.hub.buttons.pressed():
             return
@@ -68,24 +110,34 @@ class BaseRobot():
     # def Curve(self, radius, angle, then = Stop.HOLD, wait = True):
     #     self.driveBase.curve(radius, angle, then, wait)
     
-    def DriveTank(self, leftMotorSpeed, rightMotorSpeed, value, units = "cm"):
+    def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, 
+                  units = "cm"):
         """
-        Moves the robot using tank-like commands. Provide a left motor speed,
-        right motor speed, and a distance, time, or degrees.
+Description
+-----------
+Moves the robot using tank-like commands. Provide a left motor speed, \
+right motor speed, and a distance, time, or degrees.
 
-        :param leftMotorSpeed: The speed for the left motor 0 - 100 (or -100)
-        :type leftMotorSpeed: int
-        
-        :param rightMotorSpeed: The speed for the right motor 0 - 100 (or \
-            -100)
-        :type rightMotorSpeed: int
+Parameters
+----------
+leftMotorSpeed: Speed for the left motor as a percent of the max speed
+type: int
+values: -100 to 100
 
-        :param value: Value associated with the units paramter. Determines \
-            how long/far the robot drives.
-        :type value: int
+rightMotorSpeed: Speed for the right motor as a percent of the max \
+speed
+type: int
+values: -100 to 100
 
-        :param units: One of cm, deg, degrees, sec, or seconds.
-        :type units: String
+measurement: Value associated with the units parameter. Determines \
+how long/far the robot drives.
+type: int
+values: Any. Avoid using negative numbers for time.
+
+units: Unit of measurement associated with the measurement parameter
+type: String
+values: One of cm, deg, degrees, sec, or seconds.
+default value: cm
         """
 
         # Check for abort
@@ -94,18 +146,18 @@ class BaseRobot():
         
         # Normalize the speed and value parameters. If a negative value is
         # provided, invert them all
-        if (value < 0):
+        if (measurement < 0):
             leftMotorSpeed = -1 * pct2DegPerSec(leftMotorSpeed, 
                                                 LG_MOTOR_MAX_SPEED) 
             rightMotorSpeed = -1 * pct2DegPerSec(rightMotorSpeed, 
                                                  LG_MOTOR_MAX_SPEED)
-            value = -10 * value
+            measurement = -10 * measurement
         else:
             leftMotorSpeed = pct2DegPerSec(leftMotorSpeed, 
                                            LG_MOTOR_MAX_SPEED) 
             rightMotorSpeed = pct2DegPerSec(rightMotorSpeed, 
                                             LG_MOTOR_MAX_SPEED)
-            value = 10 * value
+            measurement = 10 * measurement
         
 
         if (units=="cm"):
@@ -117,13 +169,13 @@ class BaseRobot():
             # the lower speed motor will have a speed of zero (0)
             if (abs(leftMotorSpeed) > abs(rightMotorSpeed)):
                 # Don't have to check if leftMotorSpeed == 0
-                rightMotorValue = abs(int(value / leftMotorSpeed * 
+                rightMotorValue = abs(int(measurement / leftMotorSpeed * 
                                           rightMotorSpeed))
-                leftMotorValue = value
+                leftMotorValue = measurement
             elif rightMotorSpeed != 0:
-                leftMotorValue = abs(int(value / rightMotorSpeed * 
+                leftMotorValue = abs(int(measurement / rightMotorSpeed * 
                                          leftMotorSpeed))
-                rightMotorValue = value
+                rightMotorValue = measurement
             else: # only way to get here is if both speeds are zerro (0)
                 pass
 
@@ -155,13 +207,13 @@ class BaseRobot():
             # I chose the higher speed motor because it is possible that
             # the lower speed motor will have a speed of zero (0)
             if (abs(leftMotorSpeed) > abs(rightMotorSpeed)):
-                rightMotorValue = int(value / leftMotorSpeed * 
+                rightMotorValue = int(measurement / leftMotorSpeed * 
                                       rightMotorSpeed)
-                leftMotorValue = value
+                leftMotorValue = measurement
             else:
-                leftMotorValue = int(value / rightMotorSpeed * 
+                leftMotorValue = int(measurement / rightMotorSpeed * 
                                      leftMotorSpeed)
-                rightMotorValue = value
+                rightMotorValue = measurement
 
             # Get the motors moving. Both motors should stop at the same time
             self._leftDriveMotor.run_angle(leftMotorSpeed, leftMotorValue, 
@@ -172,9 +224,10 @@ class BaseRobot():
         if (units=="sec" or units == "seconds"):
             # motor.run_time uses milliseconds as a parameter, but kids
             # think in seconds.
-            self._leftDriveMotor.run_time(leftMotorSpeed, value * 1000, 
+            self._leftDriveMotor.run_time(leftMotorSpeed, measurement * 1000, 
                                           Stop.HOLD, False)
-            self._rightDriveMotor.run_time(rightMotorSpeed, value * 1000, 
+            self._rightDriveMotor.run_time(rightMotorSpeed, 
+                                           measurement * 1000, 
                                            Stop.HOLD, False)
 
     def GetAttachmentColor(self):
