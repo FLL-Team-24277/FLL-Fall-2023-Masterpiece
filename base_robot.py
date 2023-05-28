@@ -49,7 +49,7 @@ class BaseRobot():
         self.driveBase = GyroDriveBase(self._leftDriveMotor, 
                                        self._rightDriveMotor,
                                        TIRE_DIAMETER, 103)
-        self.driveBase.settings(250, 200, 180, 360)
+        self.driveBase.settings(400, 600, 150, 360)
         
         self._debugMode = False
 
@@ -69,26 +69,26 @@ class BaseRobot():
     # Just a wrapper for drivebase.straight()
     def Drive(self, distance, then = Stop.HOLD, wait = True):
         # Multiply the distance by 100 to get mm
-        self.driveBase.straight(distance * 100, then, wait)
+        self.driveBase.straight(distance * 10, then, wait)
 
     # def Curve(self, radius, angle, then = Stop.HOLD, wait = True):
     #     self.driveBase.curve(radius, angle, then, wait)
     
-    def DriveTank(self, leftMotorSpeed, rightMotorSpeed, value, units = "mm"):
+    def DriveTank(self, leftMotorSpeed, rightMotorSpeed, value, units = "cm"):
         """
         Moves the robot using tank-like commands. Provide a left motor speed,
         right motor speed, and a distance, time, or degrees.
 
-        :param leftMotorSpeed: The speed for the left motor
+        :param leftMotorSpeed: The speed for the left motor 0 - 100 (or -100)
         :type leftMotorSpeed: int
         
-        :param rightMotorSpeed: The speed for the right motor
+        :param rightMotorSpeed: The speed for the right motor 0 - 100 (or -100)
         :type rightMotorSpeed: int
 
-        :param value: Value associated with the units paramter
+        :param value: Value associated with the units paramter. Determines how long/far the robot drives.
         :type value: int
 
-        :param units: One of mm, deg, degrees, sec, or seconds.
+        :param units: One of cm, deg, degrees, sec, or seconds.
         :type units: String
         """
         # Normalize the speed and value parameters. If a negative value is
@@ -96,10 +96,14 @@ class BaseRobot():
         if (value < 0):
             leftMotorSpeed = -1 * pct2DegPerSec(leftMotorSpeed, LG_MOTOR_MAX_SPEED) 
             rightMotorSpeed = -1 * pct2DegPerSec(rightMotorSpeed, LG_MOTOR_MAX_SPEED)
-            value = -1 * value
+            value = -10 * value
+        else:
+            leftMotorSpeed = pct2DegPerSec(leftMotorSpeed, LG_MOTOR_MAX_SPEED) 
+            rightMotorSpeed = pct2DegPerSec(rightMotorSpeed, LG_MOTOR_MAX_SPEED)
+            value = 10 * value
         
 
-        if (units=="mm"):
+        if (units=="cm"):
             # always use the motor with the higher speed to determine the 
             # time driven. Calculate the time that the that the higher
             # speed motor will take to go the distance provided. Use that
@@ -117,8 +121,8 @@ class BaseRobot():
                 pass
 
             # Convert the distance to degrees
-            rightRotations = rightMotorValue / (self._tireDiameter * 3.14159)
-            leftRotations = leftMotorValue / (self._tireDiameter * 3.14159)
+            rightRotations = rightMotorValue / (TIRE_DIAMETER * PI)
+            leftRotations = leftMotorValue / (TIRE_DIAMETER * PI)
             rightDegrees = rightRotations * 360
             leftDegrees = leftRotations * 360
             print("left Deg: " + str(leftDegrees) + "; right deg: " + str(rightDegrees))
