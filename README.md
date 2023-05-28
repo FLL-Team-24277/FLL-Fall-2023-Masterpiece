@@ -22,8 +22,8 @@ How to use:
 Example code for test program
 
 ~~~
-from baserobotlib import base_robot
+import base_robot
 
 br = base_robot.BaseRobot()
-br.Drive(100) # 100mm = 10cm
+br.Drive(10) # 10cm
 ~~~
