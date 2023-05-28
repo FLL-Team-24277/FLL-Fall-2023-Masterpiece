@@ -59,7 +59,7 @@ class BaseRobot():
 
     def Drive(self, distance, then = Stop.HOLD, wait = True):
         # Check for abort
-        if Button.RIGHT in self.hub.buttons():
+        if Button.RIGHT in self.hub.buttons.pressed():
             return
 
         # Multiply the distance by 100 to get mm
