@@ -1,5 +1,5 @@
 from pybricks.pupdevices import Motor, ColorSensor
-from pybricks.parameters import Port, Direction, Axis, Side, Stop, Color
+from pybricks.parameters import Port, Direction, Axis, Side, Stop, Color, Button
 from pybricks.robotics import GyroDriveBase
 from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
@@ -7,9 +7,6 @@ from pybricks.tools import wait
 
 PI = 3.14159
 
-# Max speed for motors
-# https://le-www-live-s.legocdn.com/sc/media/files/support/spike-prime/techspecs_technicmediumangularmotor-19684ffc443792280359ef217512a1d1.pdf
-# https://education.lego.com/v3/assets/blt293eea581807678a/bltb9abb42596a7f1b3/5f8801b5f4c5ce0e93db1587/le_spike-prime_tech-fact-sheet_45602_1hy19.pdf
 MED_MOTOR_MAX_SPEED = 185 # RPM
 LG_MOTOR_MAX_SPEED = 175 # RPM
 
@@ -20,18 +17,13 @@ ROBOT_MAX_SPEED = LG_MOTOR_MAX_SPEED * PI * TIRE_DIAMETER # mm per sec
 class BaseRobot():
     """
     A collection of methods and Spike Prime objects for FLL Team 24277. \
-    The BaseRobot class has two drive motors as a MotorPair, two medium \
-    motors for moving attachments, and all of the base methods available \
-    for Spike Prime sensors and motors. It also includes some custom \
-    methods for moving the robot. Enjoy!
-
+    Uses pybricks for most functionality.
 
     Example:
 
     >>> import base_robot
-    >>> import sys
     >>> br = base_robot.BaseRobot()
-    >>> br.AccelGyroDriveForward(40)
+    >>> br.Drive(40)
     >>> br.GyroTurn(90)
     """
 
@@ -56,18 +48,20 @@ class BaseRobot():
         # Reset the yaw angle when the baseRobot is declared
         self.hub.imu.reset_heading(0)
 
-        # self._mediumMotorMaxSpeed = 185 # rpm
-        # self._largeMotorMaxSpeed = 175 # rpm
-        # self._robotMaxSpeed = self._largeMotorMaxSpeed * 3.14159 * self._tireDiameter
-
     # TODO: Make all of these abortable
     
-    # Just a wrapper for drivebase.turn()
     def GyroTurn(self, angle):
+        # Check for abort
+        if Button.RIGHT in self.hub.buttons():
+            return
+
         self.driveBase.turn(angle)
 
-    # Just a wrapper for drivebase.straight()
     def Drive(self, distance, then = Stop.HOLD, wait = True):
+        # Check for abort
+        if Button.RIGHT in self.hub.buttons():
+            return
+
         # Multiply the distance by 100 to get mm
         self.driveBase.straight(distance * 10, then, wait)
 
@@ -82,24 +76,35 @@ class BaseRobot():
         :param leftMotorSpeed: The speed for the left motor 0 - 100 (or -100)
         :type leftMotorSpeed: int
         
-        :param rightMotorSpeed: The speed for the right motor 0 - 100 (or -100)
+        :param rightMotorSpeed: The speed for the right motor 0 - 100 (or \
+            -100)
         :type rightMotorSpeed: int
 
-        :param value: Value associated with the units paramter. Determines how long/far the robot drives.
+        :param value: Value associated with the units paramter. Determines \
+            how long/far the robot drives.
         :type value: int
 
         :param units: One of cm, deg, degrees, sec, or seconds.
         :type units: String
         """
+
+        # Check for abort
+        if Button.RIGHT in self.hub.buttons():
+            return
+        
         # Normalize the speed and value parameters. If a negative value is
         # provided, invert them all
         if (value < 0):
-            leftMotorSpeed = -1 * pct2DegPerSec(leftMotorSpeed, LG_MOTOR_MAX_SPEED) 
-            rightMotorSpeed = -1 * pct2DegPerSec(rightMotorSpeed, LG_MOTOR_MAX_SPEED)
+            leftMotorSpeed = -1 * pct2DegPerSec(leftMotorSpeed, 
+                                                LG_MOTOR_MAX_SPEED) 
+            rightMotorSpeed = -1 * pct2DegPerSec(rightMotorSpeed, 
+                                                 LG_MOTOR_MAX_SPEED)
             value = -10 * value
         else:
-            leftMotorSpeed = pct2DegPerSec(leftMotorSpeed, LG_MOTOR_MAX_SPEED) 
-            rightMotorSpeed = pct2DegPerSec(rightMotorSpeed, LG_MOTOR_MAX_SPEED)
+            leftMotorSpeed = pct2DegPerSec(leftMotorSpeed, 
+                                           LG_MOTOR_MAX_SPEED) 
+            rightMotorSpeed = pct2DegPerSec(rightMotorSpeed, 
+                                            LG_MOTOR_MAX_SPEED)
             value = 10 * value
         
 
@@ -112,10 +117,12 @@ class BaseRobot():
             # the lower speed motor will have a speed of zero (0)
             if (abs(leftMotorSpeed) > abs(rightMotorSpeed)):
                 # Don't have to check if leftMotorSpeed == 0
-                rightMotorValue = abs(int(value / leftMotorSpeed * rightMotorSpeed))
+                rightMotorValue = abs(int(value / leftMotorSpeed * 
+                                          rightMotorSpeed))
                 leftMotorValue = value
             elif rightMotorSpeed != 0:
-                leftMotorValue = abs(int(value / rightMotorSpeed * leftMotorSpeed))
+                leftMotorValue = abs(int(value / rightMotorSpeed * 
+                                         leftMotorSpeed))
                 rightMotorValue = value
             else: # only way to get here is if both speeds are zerro (0)
                 pass
@@ -125,8 +132,10 @@ class BaseRobot():
             leftRotations = leftMotorValue / (TIRE_DIAMETER * PI)
             rightDegrees = rightRotations * 360
             leftDegrees = leftRotations * 360
-            print("left Deg: " + str(leftDegrees) + "; right deg: " + str(rightDegrees))
-            print("left MotSpd: " + str(leftMotorSpeed) + "; right MotSpd: " + str(rightMotorSpeed))
+            print("left Deg: " + str(leftDegrees) + "; right deg: "
+                  + str(rightDegrees))
+            print("left MotSpd: " + str(leftMotorSpeed) + "; right MotSpd: " 
+                  + str(rightMotorSpeed))
 
             # Get the motors moving. Both motors should stop at the same time
             self._leftDriveMotor.run_angle(leftMotorSpeed, leftDegrees, 
@@ -134,7 +143,8 @@ class BaseRobot():
             self._rightDriveMotor.run_angle(rightMotorSpeed, rightDegrees, 
                                             Stop.HOLD, False)
             
-            while not (self._leftDriveMotor.done() and self._rightDriveMotor.done()):
+            while not (self._leftDriveMotor.done() 
+                       and self._rightDriveMotor.done()):
                 wait(100)
 
         if (units=="deg" or units == "degrees"):
@@ -145,10 +155,12 @@ class BaseRobot():
             # I chose the higher speed motor because it is possible that
             # the lower speed motor will have a speed of zero (0)
             if (abs(leftMotorSpeed) > abs(rightMotorSpeed)):
-                rightMotorValue = int(value / leftMotorSpeed * rightMotorSpeed)
+                rightMotorValue = int(value / leftMotorSpeed * 
+                                      rightMotorSpeed)
                 leftMotorValue = value
             else:
-                leftMotorValue = int(value / rightMotorSpeed * leftMotorSpeed)
+                leftMotorValue = int(value / rightMotorSpeed * 
+                                     leftMotorSpeed)
                 rightMotorValue = value
 
             # Get the motors moving. Both motors should stop at the same time
@@ -173,6 +185,9 @@ class BaseRobot():
         return self._version
     
     def WaitForSeconds(self, seconds):
+        # Check for abort
+        if Button.RIGHT in self.hub.buttons():
+            return
         wait(seconds * 1000)
 
 # this is a static function not associated with the base_robot class
