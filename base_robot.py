@@ -24,7 +24,7 @@ class BaseRobot():
 
     >>> import base_robot
     >>> br = base_robot.BaseRobot()
-    >>> br.Drive(40)
+    >>> br.Drive(400)
     >>> br.GyroTurn(90)
     """
 
@@ -39,6 +39,7 @@ class BaseRobot():
         #         Color.VIOLET)
         self._leftDriveMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
         self._rightDriveMotor = Motor(Port.A)
+
         self.driveBase = GyroDriveBase(self._leftDriveMotor, 
                                        self._rightDriveMotor,
                                        TIRE_DIAMETER, 103)
@@ -82,7 +83,7 @@ The robot will use the gyro to drive in a very straight line
 
 Parameters
 ----------
-distance: How far to drive in cm. Positive values drive forward and \
+distance: How far to drive in mm. Positive values drive forward and \
 negative values drive backwards
 type: float
 values: Any
@@ -105,14 +106,11 @@ values: True (default, wait) or False (do not wait)
         if Button.RIGHT in self.hub.buttons.pressed():
             return
 
-        # Multiply the distance by 100 to get mm
-        self.driveBase.straight(distance * 10, then, wait)
+        self.driveBase.straight(distance, then, wait)
 
-    # def Curve(self, radius, angle, then = Stop.HOLD, wait = True):
-    #     self.driveBase.curve(radius, angle, then, wait)
-    
+
     def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, 
-                  units = "cm"):
+                  units = "mm"):
         """
 Description
 -----------
@@ -121,14 +119,13 @@ right motor speed, and a distance, time, or degrees.
 
 Parameters
 ----------
-leftMotorSpeed: Speed for the left motor as a percent of the max speed
+leftMotorSpeed: Speed for the left motor in degrees per second
 type: int
-values: -100 to 100
+values: Any, although numbers above 1110 and below -1110 don't matter
 
-rightMotorSpeed: Speed for the right motor as a percent of the max \
-speed
+rightMotorSpeed: Speed for the right motor in degree per second
 type: int
-values: -100 to 100
+values: Any, although numbers above 1100 and below -1100 don't matter
 
 measurement: Value associated with the units parameter. Determines \
 how long/far the robot drives.
@@ -137,8 +134,8 @@ values: Any. Avoid using negative numbers for time.
 
 units: Unit of measurement associated with the measurement parameter
 type: String
-values: One of cm, deg, degrees, sec, or seconds.
-default value: cm
+values: One of mm, deg, degrees, sec, or seconds.
+default value: mm
         """
 
         # Check for abort
@@ -148,20 +145,11 @@ default value: cm
         # Normalize the speed and value parameters. If a negative value is
         # provided, invert them all
         if (measurement < 0):
-            leftMotorSpeed = -1 * pct2DegPerSec(leftMotorSpeed, 
-                                                LG_MOTOR_MAX_SPEED) 
-            rightMotorSpeed = -1 * pct2DegPerSec(rightMotorSpeed, 
-                                                 LG_MOTOR_MAX_SPEED)
-            measurement = -10 * measurement
-        else:
-            leftMotorSpeed = pct2DegPerSec(leftMotorSpeed, 
-                                           LG_MOTOR_MAX_SPEED) 
-            rightMotorSpeed = pct2DegPerSec(rightMotorSpeed, 
-                                            LG_MOTOR_MAX_SPEED)
-            measurement = 10 * measurement
-        
+            leftMotorSpeed = -1 * leftMotorSpeed
+            rightMotorSpeed = -1 * rightMotorSpeed
+            measurement = -1 * measurement
 
-        if (units=="cm"):
+        if (units=="mm"):
             # always use the motor with the higher speed to determine the 
             # time driven. Calculate the time that the that the higher
             # speed motor will take to go the distance provided. Use that
@@ -185,10 +173,6 @@ default value: cm
             leftRotations = leftMotorValue / (TIRE_DIAMETER * PI)
             rightDegrees = rightRotations * 360
             leftDegrees = leftRotations * 360
-            print("left Deg: " + str(leftDegrees) + "; right deg: "
-                  + str(rightDegrees))
-            print("left MotSpd: " + str(leftMotorSpeed) + "; right MotSpd: " 
-                  + str(rightMotorSpeed))
 
             # Get the motors moving. Both motors should stop at the same time
             self._leftDriveMotor.run_angle(leftMotorSpeed, leftDegrees, 
@@ -198,7 +182,7 @@ default value: cm
             
             while not (self._leftDriveMotor.done() 
                        and self._rightDriveMotor.done()):
-                wait(100)
+                wait(10)
 
         if (units=="deg" or units == "degrees"):
             # always use the motor with the higher speed to determine the 
@@ -223,7 +207,7 @@ default value: cm
                                             Stop.HOLD, False)
             while not (self._leftDriveMotor.done() 
                        and self._rightDriveMotor.done()):
-                wait(100)
+                wait(10)
 
         if (units=="sec" or units == "seconds"):
             # motor.run_time uses milliseconds as a parameter, but kids
@@ -237,7 +221,7 @@ default value: cm
                                            Stop.HOLD, False)
             while not (self._leftDriveMotor.done() 
                        and self._rightDriveMotor.done()):
-                wait(100)
+                wait(10)
 
     def GetAttachmentColor(self):
         # return attachment color
@@ -253,22 +237,32 @@ default value: cm
 
         wait(seconds * 1000)
 
+    def WaitForLeftButtonPress(self):
+        # Check for abort
+        if Button.RIGHT in self.hub.buttons.pressed():
+            return
+        
+        while not Button.LEFT in self.hub.buttons.pressed():
+            wait(10)
+        return
 
-# this is a static function not associated with the base_robot class
-def degPerSec2Pct(dpsValue, maxRpm):
-    # All of the pybricks motor commands take a speed argument in degrees
-    # per second. EV3 speeds were all 0 to 100 (or -100). This function
-    # converts a degPerSecond value to its equivalent EV3 speed, based on
-    # the reported max speed for the motor
-    return int(dpsValue / (maxRpm / 60 * 360))
 
-def pct2DegPerSec(pctValue, maxRpm):
-    # All of the pybricks motor commands take a speed argument in degrees
-    # per second. EV3 speeds were all 0 to 100 (or -100). This function
-    # converts a degPerSecond value to its equivalent EV3 speed, based on
-    # the reported max speed for the motor
-    return int((maxRpm / 60 * 360) * pctValue / 100)
 
-def pct2mmps(pctValue):
-    # Converts a 0 - 100 percent value to mm per sec speed value
-    return int (pctValue / 100 * ROBOT_MAX_SPEED)
+# # this is a static function not associated with the base_robot class
+# def degPerSec2Pct(dpsValue, maxRpm):
+#     # All of the pybricks motor commands take a speed argument in degrees
+#     # per second. EV3 speeds were all 0 to 100 (or -100). This function
+#     # converts a degPerSecond value to its equivalent EV3 speed, based on
+#     # the reported max speed for the motor
+#     return int(dpsValue / (maxRpm / 60 * 360))
+
+# def pct2DegPerSec(pctValue, maxRpm):
+#     # All of the pybricks motor commands take a speed argument in degrees
+#     # per second. EV3 speeds were all 0 to 100 (or -100). This function
+#     # converts a degPerSecond value to its equivalent EV3 speed, based on
+#     # the reported max speed for the motor
+#     return int((maxRpm / 60 * 360) * pctValue / 100)
+
+# def pct2mmps(pctValue):
+#     # Converts a 0 - 100 percent value to mm per sec speed value
+#     return int (pctValue / 100 * ROBOT_MAX_SPEED)
