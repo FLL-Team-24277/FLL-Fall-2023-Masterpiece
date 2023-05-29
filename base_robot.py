@@ -1,5 +1,6 @@
 from pybricks.pupdevices import Motor, ColorSensor
-from pybricks.parameters import Port, Direction, Axis, Side, Stop, Color, Button
+from pybricks.parameters import Port, Direction, Axis, Side, Stop, \
+    Color, Button, Icon
 from pybricks.robotics import GyroDriveBase
 from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
