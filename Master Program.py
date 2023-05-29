@@ -1,5 +1,5 @@
 import base_robot
-import Skip_Mission1
+import Skip_Mission1_ready_for_master
 
 
 br = base_robot.BaseRobot()
@@ -46,5 +46,5 @@ while True:
     # color of the attachment. When the mission is done executing,
     # loop back into the inner loop and do it all again
     if (br.GetAttachmentColor() == base_robot.Color.GREEN):
-        Skip_Mission1.Run(br)
+        Skip_Mission1_ready_for_master.Run(br)
 
