@@ -1,5 +1,7 @@
 import base_robot
-import subprocess
+import Skip_Mission1
+# import subprocess
+
 
 br = base_robot.BaseRobot()
 
@@ -18,8 +20,7 @@ validColorList = [base_robot.Color.BLUE,
                   base_robot.Color.ORANGE,
                   base_robot.Color.RED,
                   base_robot.Color.VIOLET,
-                  base_robot.Color.WHITE,
-                  base_robot.Color.NONE]
+                  base_robot.Color.WHITE]
 while True:
     while True:
         # Inner loop checks to see what color attachment is installed
@@ -46,6 +47,6 @@ while True:
     # color of the attachment. When the mission is done executing,
     # loop back into the inner loop and do it all again
     if (br.GetAttachmentColor() == base_robot.Color.GREEN):
-        subprocess.run(["python", "Skip-Mission1.py"]) 
+        Skip_Mission1.Run(br)
         br.WaitForSeconds(.5)
 
