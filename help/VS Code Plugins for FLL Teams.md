@@ -10,3 +10,8 @@ Middle School kids love to configure things like colors and fonts (ok, and so do
 
 Font Switcher: https://marketplace.visualstudio.com/items?itemName=evan-buss.font-switcher
 vscode-icons: https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
+
+For the team members that are working on the more advanced coding, such as writing the base_robot class, they may need a few other plugins.
+Auto docstring: https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring
+GitLens: https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
+Live Share: https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare

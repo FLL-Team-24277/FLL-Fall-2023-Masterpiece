@@ -53,20 +53,10 @@ class BaseRobot():
     # TODO: Make all of these abortable
     
     def GyroTurn(self, angle):
-        """
-Description
------------
-The robot will use the gyro to turn the number of degrees specified. \
-Enter positive values to turn to the right, and negative values to turn to \
-the left.
+        """The robot will use the gyro to turn the number of degrees specified.
 
-Parameter
----------
-angle: Number of degrees to turn. Positive values turn to the right \
-and negative values turn to the left.
-type: int
-values: Any
-        """
+        Args:
+            angle (int): Enter positive values to turn to the right, and negative values to turn to the left."""
 
         # Check for abort
         if Button.RIGHT in self.hub.buttons.pressed():
@@ -76,31 +66,12 @@ values: Any
 
 
     def Drive(self, distance, then = Stop.HOLD, wait = True):
-        """
-Description
------------
-The robot will use the gyro to drive in a very straight line
+        """The robot will use the gyro to drive in a very straight line
 
-Parameters
-----------
-distance: How far to drive in mm. Positive values drive forward and \
-negative values drive backwards
-type: float
-values: Any
-
-then: What to do after the drive is complete. Options are coasting, \
-holding, and just stopping \
-values: Stop.HOLD (default); Stop.COAST; Stop.COAST_SMART; \
-Stop.BRAKE; Stop.NONE. For most FLL maneuvers, the default Stop.HOLD will be \
-what is needed.
-See https://docs.pybricks.com/en/stable/parameters/stop.html for more details.
-
-wait: Whether to wait for the maneuver to complete before continuing \
-with the rest of the program. For most FLL maneuvers, the default \
-True will be what is needed.
-type: bool
-values: True (default, wait) or False (do not wait)
-        """
+        Args:
+            distance (int): How far to drive in mm. Positive values drive forward and negative values drive backwards
+            then (Stop.*, optional): What to do after the drive is complete. Options are coasting, holding, and just stopping.
+            wait (bool, optional): Whether to wait for the maneuver to complete before continuing with the rest of the program. For most FLL maneuvers, the default True will be what is needed. Defaults to True."""
 
         # Check for abort
         if Button.RIGHT in self.hub.buttons.pressed():
@@ -111,32 +82,13 @@ values: True (default, wait) or False (do not wait)
 
     def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, 
                   units = "mm"):
-        """
-Description
------------
-Moves the robot using tank-like commands. Provide a left motor speed, \
-right motor speed, and a distance, time, or degrees.
+        """Moves the robot using tank-like commands
 
-Parameters
-----------
-leftMotorSpeed: Speed for the left motor in degrees per second
-type: int
-values: Any, although numbers above 1110 and below -1110 don't matter
-
-rightMotorSpeed: Speed for the right motor in degree per second
-type: int
-values: Any, although numbers above 1100 and below -1100 don't matter
-
-measurement: Value associated with the units parameter. Determines \
-how long/far the robot drives.
-type: int
-values: Any. Avoid using negative numbers for time.
-
-units: Unit of measurement associated with the measurement parameter
-type: String
-values: One of mm, deg, degrees, sec, or seconds.
-default value: mm
-        """
+        Args:
+            leftMotorSpeed (int): Speed for the left motor in degrees per second
+            rightMotorSpeed (int): Speed for the right motor in degrees per second
+            measurement (float): Value associated with the units parameter. Determines how long/far the robot drives.
+            units (str, optional): Unit of measurement associated with the measurement parameter. Defaults to "mm"."""
 
         # Check for abort
         if Button.RIGHT in self.hub.buttons.pressed():
