@@ -220,15 +220,21 @@ default value: cm
                                            Stop.HOLD, False)
             self._rightDriveMotor.run_angle(rightMotorSpeed, rightMotorValue, 
                                             Stop.HOLD, False)
+            while not (self._leftDriveMotor.done() 
+                       and self._rightDriveMotor.done()):
+                wait(100)
 
         if (units=="sec" or units == "seconds"):
             # motor.run_time uses milliseconds as a parameter, but kids
             # think in seconds.
-            self._leftDriveMotor.run_time(leftMotorSpeed, measurement * 1000, 
+            self._leftDriveMotor.run_time(leftMotorSpeed, measurement * 100, 
                                           Stop.HOLD, False)
             self._rightDriveMotor.run_time(rightMotorSpeed, 
-                                           measurement * 1000, 
+                                           measurement * 100, 
                                            Stop.HOLD, False)
+            while not (self._leftDriveMotor.done() 
+                       and self._rightDriveMotor.done()):
+                wait(100)
 
     def GetAttachmentColor(self):
         # return attachment color
