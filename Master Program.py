@@ -1,6 +1,5 @@
 import base_robot
 import Skip_Mission1
-# import subprocess
 
 
 br = base_robot.BaseRobot()
@@ -48,5 +47,4 @@ while True:
     # loop back into the inner loop and do it all again
     if (br.GetAttachmentColor() == base_robot.Color.GREEN):
         Skip_Mission1.Run(br)
-        br.WaitForSeconds(.5)
 
