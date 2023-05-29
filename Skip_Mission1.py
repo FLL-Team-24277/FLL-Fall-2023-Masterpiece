@@ -1,8 +1,8 @@
 import base_robot
+br = base_robot.BaseRobot()
 
-def Run(br = base_robot.BaseRobot()):
-    br.DriveTank(30, 30, -2, "sec")
-    br.leftAttachmentMotor.angle(90)
+br.DriveTank(30, 30, -2, "sec")
+br.leftAttachmentMotor.run_angle(1100, 900)
 
     # br.DriveTank(200, -200, 110, "mm")
     # br.DriveTank(70, 70, 30, "cm")
@@ -11,4 +11,4 @@ def Run(br = base_robot.BaseRobot()):
     # br.WaitForSeconds(.2)
     # br.GyroTurn(-65)
 
-Run(base_robot.BaseRobot())
+# Run(base_robot.BaseRobot())
