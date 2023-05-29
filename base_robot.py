@@ -163,13 +163,12 @@ class BaseRobot():
 
         if (units=="sec" or units == "seconds"):
             # motor.run_time uses milliseconds as a parameter, but kids
-            # think in seconds. I have already multiplied the supplied
-            # value by ten, so I need to multiply by another 100 to get
-            # from seconds to milliseconds
-            self._leftDriveMotor.run_time(leftMotorSpeed, measurement * 100, 
+            # think in seconds. Multiply by 1000 to get from seconds to
+            # milliseconds
+            self._leftDriveMotor.run_time(leftMotorSpeed, measurement * 1000, 
                                           Stop.HOLD, False)
             self._rightDriveMotor.run_time(rightMotorSpeed, 
-                                           measurement * 100, 
+                                           measurement * 1000, 
                                            Stop.HOLD, False)
             while not (self._leftDriveMotor.done() 
                        and self._rightDriveMotor.done()):
