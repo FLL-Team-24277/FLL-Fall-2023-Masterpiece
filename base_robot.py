@@ -24,8 +24,8 @@ class BaseRobot():
 
     >>> import base_robot
     >>> br = base_robot.BaseRobot()
-    >>> br.Drive(400)
-    >>> br.GyroTurn(90)
+    >>> br.Drive(400) #400mm
+    >>> br.GyroTurn(90) #90 deg to the right
     """
 
     def __init__(self):
