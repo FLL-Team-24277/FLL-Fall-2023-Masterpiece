@@ -1,6 +1,8 @@
 # Master-Program-Fall-2023
 
-This is where all of the team code and master program will live for the Fall 2023 Masterpiece FLL Season.
+This is where all of the team code and master program will live for the Fall 2023 Masterpiece FLL Season. We will use [pybricks libraries](https://github.com/pybricks) and VS code, and git/github for version control.
+
+Very helpful page here: https://pybricks.com/projects/tutorials/dev/tools/vscode/
 
 How to use:
 
@@ -14,8 +16,9 @@ How to use:
 8. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it.
 9. Commit the changes, and push. It will probably prompt for github registration/login and then sync all files. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
 10. Install pybricks on each robot at https://beta.pybricks.com/. Name the robot at this time. Avoid spaces and special characters in the robot name. Put a label sticker on the top of the robot with the robot name.
-11. Edit `.vscode\tasks.json` to run `pybricksdev.exe`, which uploads programs to the Spike hub. https://github.com/pybricks/pybricksdev The ony changes needed should be to change the label and command argument to match the robot's name.
+11. Edit `.vscode\tasks.json` to run `pybricksdev.exe`, which uploads programs to the Spike hub. https://github.com/pybricks/pybricksdev The only changes needed should be to change the label and command argument to match the robot's name.
 12. Turn the robot on and ensure the keyboard shortcut `ctrl-h` runs the command, which should also run their program. Also, `Ctrl-Shift-P` > `Tasks: Run task` should pop up a menu with the correct entry.
+13. To use a master program to organize and run individual missions, take a look at the [master_program.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Master%20Program.py) and the [Skip_mission1_ready_for_master.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Skip_Mission1_ready_for_master.py). As you can see, the mission file is very slightly more complicated, and the kids may prefer the simplicity of the "non-master" mission programs. It isn't hard to convert one format to the other, so it isn't a big deal either way.
 
 
 
