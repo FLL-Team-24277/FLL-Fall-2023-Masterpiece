@@ -2,6 +2,8 @@
 
 This is where all of the team code and master program will live for the Fall 2023 Masterpiece FLL Season. We will use [pybricks libraries](https://github.com/pybricks) and VS code, and git/github for version control.
 
+Very helpful page here: https://pybricks.com/projects/tutorials/dev/tools/vscode/
+
 How to use:
 
 1. Each team member creates their own github account. REMINDER: Be sure to use an email account that they can check at school (github emails may be blocked).
