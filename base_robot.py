@@ -12,8 +12,13 @@ MED_MOTOR_MAX_SPEED = 185 # RPM
 LG_MOTOR_MAX_SPEED = 175 # RPM
 
 TIRE_DIAMETER = 56 # mm
+AXLE_TRACK = 103 # distance between the wheels, mm
 
-ROBOT_MAX_SPEED = LG_MOTOR_MAX_SPEED * PI * TIRE_DIAMETER # mm per sec
+STRAIGHT_SPEED = 400 # normal straight speed for driving, mm/sec
+STRAIGHT_ACCEL = 600 # normal acceleration, mm/sec^2
+TURN_RATE = 150 # normal turning rate, deg/sec
+TURN_ACCEL = 360 # normal turning acceleration, deg/sec^2
+# ROBOT_MAX_SPEED = LG_MOTOR_MAX_SPEED * PI * TIRE_DIAMETER # mm per sec
 
 class BaseRobot():
     """
@@ -42,8 +47,13 @@ class BaseRobot():
 
         self.driveBase = GyroDriveBase(self._leftDriveMotor, 
                                        self._rightDriveMotor,
-                                       TIRE_DIAMETER, 103)
-        self.driveBase.settings(400, 600, 150, 360)
+                                       TIRE_DIAMETER, 
+                                       AXLE_TRACK)
+
+        self.driveBase.settings(STRAIGHT_SPEED,
+                                STRAIGHT_ACCEL,
+                                TURN_RATE,
+                                TURN_ACCEL)
         
         self._debugMode = False
 
