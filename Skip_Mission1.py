@@ -4,7 +4,7 @@ br = base_robot.BaseRobot()
 
 # br.DriveTank(550, 550, 100, "mm")
 # br.WaitForLeftButtonPress()
-# br.leftAttachmentMotor.run_angle(1110, 720)
+br.leftAttachmentMotor.run_angle(1110, 720, wait=False)
 # br.rightAttachmentMotor.run_angle(1110, 720)
 # br.WaitForSeconds(1)
 br.GyroTurn(-65)
