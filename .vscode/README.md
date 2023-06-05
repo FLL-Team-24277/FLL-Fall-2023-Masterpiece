@@ -1,5 +1,5 @@
 There are two settings files in this ".vscode" directory.
-settings.json is to hold teh workspace settings. The most important lines in it hide certain files from the project explorer. This simplifies the view for the team members so they will only see the files they need.
+settings.json is to hold the workspace settings. The most important lines in it hide certain files from the project explorer. This simplifies the view for the team members so they will only see the files they need.
         "**/.venv/" : true,
         "**/.vscode/" : true,
         "**/.gitignore" : true,
