@@ -17,7 +17,6 @@ STRAIGHT_SPEED = 400  # normal straight speed for driving, mm/sec
 STRAIGHT_ACCEL = 600  # normal acceleration, mm/sec^2
 TURN_RATE = 150  # normal turning rate, deg/sec
 TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
-# ROBOT_MAX_SPEED = LG_MOTOR_MAX_SPEED * PI * TIRE_DIAMETER # mm per sec
 
 
 class BaseRobot:
