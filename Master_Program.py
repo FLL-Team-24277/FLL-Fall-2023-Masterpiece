@@ -52,5 +52,7 @@ while True:
     # and broke out of the inner loop. Now execute the mission for the
     # color of the attachment. When the mission is done executing,
     # loop back into the inner loop and do it all again
+    #
+    # Note the imports above must inclcude the python module
     if br.GetAttachmentColor() == base_robot.Color.GREEN:
         Skip_Mission1_ready_for_master.Run(br)
