@@ -38,9 +38,9 @@ class BaseRobot:
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
         self._colorSensor = ColorSensor(Port.F)
-        # self._colorSensor.detectable_colors(Color.BLUE, Color.CYAN,
-        #         Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.RED,
-        #         Color.VIOLET)
+        self._colorSensor.detectable_colors(Color.BLUE, Color.CYAN,
+                Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.RED,
+                Color.VIOLET, Color.WHITE)
         self._leftDriveMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
         self._rightDriveMotor = Motor(Port.A)
 
