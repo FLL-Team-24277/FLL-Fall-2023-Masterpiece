@@ -11,7 +11,7 @@ How to use:
 1. Each team member creates their own github account. REMINDER: Be sure to use an email account that they can check at school (github emails may be blocked). Recommend taking a few extra minutes to set up two-factor authentication. Github will be moving to mandatory 2FA in early 2024, so may as well do it now.
 2. Add each account as a collaborator for this project here: https://github.com/FLL-Team-24277/Master-Program-Fall-2023/settings/access (instructions here: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
 3. The team member will need to confirm and accept the invitation. At that point they can push updates to the project.
-4. In VS Code clone this repository. https://github.com/FLL-Team-24277/Master-Program-Fall-2023.git Save it somewhere in their documents folder
+4. In VS Code clone this repository. https://github.com/FLL-Team-24277/Master-Program-Fall-2023.git Save it somewhere in their documents folder. Be aware though that if the folder is "watched" under OneDrive, the folder will be cloned to other computers with the same OneDrive account. This creates probles for the python virtual environment because really each physical computer needs their own python environment. It might be a good idea to put the folder somewhere OUTSIDE of the OneDrive watch folder structure. You might think you would want to have the security and file replication of OneDrive, but we'll be doing all of that with Github, so it's not a big deal.
 5. Add a python virtual environment. `Ctrl-Shift-P` > `Python: Create Environment`
 6. `pip install pybricks==3.3.0a5`
 7. `pip install pybricksdev`
