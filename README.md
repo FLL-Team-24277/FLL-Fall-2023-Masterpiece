@@ -15,7 +15,7 @@ How to use:
 5. Add a python virtual environment. `Ctrl-Shift-P` > `Python: Create Environment`
 6. `pip install pybricks==3.3.0a5`
 7. `pip install pybricksdev`
-8. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it.
+8. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it, but don't try to run it just yet. Wait for step 12 below.
 9. Commit the changes, and push. It will probably prompt for github registration/login and then sync all files. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
 10. Install pybricks on each robot at https://beta.pybricks.com/. Name the robot at this time. Avoid spaces and special characters in the robot name. Put a label sticker on the top of the robot with the robot name.
 11. Edit `.vscode\tasks.json` to run `pybricksdev.exe`, which uploads programs to the Spike hub. https://github.com/pybricks/pybricksdev The only changes needed should be to change the label and command argument to match the robot's name.
