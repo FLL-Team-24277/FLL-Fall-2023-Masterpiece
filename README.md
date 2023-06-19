@@ -13,7 +13,7 @@ How to use:
 3. The team member will need to confirm and accept the invitation. At that point they can push updates to the project.
 4. Install necessary software https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/Software.md
 5. In VS Code clone this repository. https://github.com/FLL-Team-24277/Master-Program-Fall-2023.git Save it somewhere on their computer. See note (1) below about choosing a location.
-6. Add a python virtual environment. `Ctrl-Shift-P` > `Python: Create Environment`. Just use the defaults. Open a new terminal `ctrl-shift-\`` and make sure it is in the python virtual environment. It will start with a green "(.venv)".
+6. Add a python virtual environment. `Ctrl-Shift-P` > `Python: Create Environment`. Just use the defaults. Open a new terminal ctrl-shift-` and make sure it is in the python virtual environment. It will start with a green "(.venv)".
 7. `pip install pybricks==3.3.0a5`
 8. `pip install pybricksdev`
 9. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it, but don't try to run it just yet. Wait for step 12 below.
