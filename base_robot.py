@@ -33,8 +33,6 @@ class BaseRobot:
         self.hub = PrimeHub(top_side=Axis.Z, front_side=-Axis.Y)
         self._version = "0.1 05/19/2023"
 
-    # TODO: Make all of these abortable
-
     def GyroTurn(self, angle):
         pass
 
