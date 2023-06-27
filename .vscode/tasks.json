@@ -24,13 +24,13 @@
                 }
             },
             "presentation": {
-            "echo": true,
-            "reveal": "silent",
-            "focus": false,
-            "panel": "shared",
-            "showReuseMessage": false,
-            "clear": true,
-            "revealProblems": "onProblem"
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "revealProblems": "onProblem"
             }
         }
     ]
