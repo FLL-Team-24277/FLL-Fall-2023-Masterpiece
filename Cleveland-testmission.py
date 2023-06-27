@@ -1,4 +1,11 @@
-import base_robot
+from pybricks.pupdevices import Motor
+from pybricks.parameters import Port, Direction
+from pybricks.robotics import GyroDriveBase
 
-br = base_robot.BaseRobot()
-br.Drive(10) # 10cm
+
+leftmotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
+rightmotor = Motor(Port.A)
+    
+robot = GyroDriveBase(leftmotor, rightmotor, 56, 103)
+
+robot.straight(100)
