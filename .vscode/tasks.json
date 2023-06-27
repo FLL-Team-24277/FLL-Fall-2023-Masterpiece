@@ -29,7 +29,7 @@
             "focus": false,
             "panel": "shared",
             "showReuseMessage": false,
-            "clear": false,
+            "clear": true,
             "revealProblems": "onProblem"
             }
         }
