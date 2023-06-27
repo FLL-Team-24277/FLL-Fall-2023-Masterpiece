@@ -14,16 +14,16 @@ How to use:
 4. Install necessary software https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/Software.md
 5. In VS Code clone this repository. https://github.com/FLL-Team-24277/Master-Program-Fall-2023.git Save it somewhere on their computer.
 6. Add a python virtual environment. `Ctrl-Shift-P` > `Python: Create Environment`. Just use the defaults. Open a new terminal with ``ctrl-shift-` `` or `Ctrl-Shift-P` > `Create Terminal` and make sure it is in the python virtual environment. It will start with a green "(.venv)". If there are executionPolicy errors, you will need to elevate the permissions for Powershell. Instructions here: https://tecadmin.net/powershell-running-scripts-is-disabled-system/
-7. `pip install -r .\requirements.txt`, which should do the same thing as `pip install pybricks==3.3.0a5` and `pip install pybricksdev`.
-8. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it, but don't try to run it just yet. Wait for step 12 below.
+7. `pip install -r .\requirements.txt` (should do the same thing as `pip install pybricks==3.3.0a5` and `pip install pybricksdev`).
+8. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it, but don't try to run it just yet. Wait for step 13 below.
 9. Commit the changes, and push. It will probably prompt for github registration/login and then sync all files. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
 10. Install pybricks on each robot at https://beta.pybricks.com/. Name the robot at this time. Avoid spaces and special characters in the robot name. Put a label sticker on the top of the robot with the robot name.
 11. Edit `.vscode\tasks.json` to run `pybricksdev.exe`, which uploads programs to the Spike hub. https://github.com/pybricks/pybricksdev The only changes needed should be to change the label and command argument to match the robot's name.
-12. **RUN OUR PROGRAM!** Turn the robot on and ensure the keyboard shortcut `ctrl-h` runs the command, which should also run their program. Also, `Ctrl-Shift-P` > `Tasks: Run task` should pop up a menu with the correct entry.
-13. Finally, to use a master program to organize and run individual missions, take a look at the [master_program.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Master%20Program.py) and the [Skip_mission1_ready_for_master.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Skip_Mission1_ready_for_master.py). As you can see, the mission file is ever-so-slightly more complicated, but the kids may prefer the simplicity of the "non-master" mission programs. It isn't hard to convert one format to the other, so it isn't a big deal either way.
+12. Last step, I promise! Add a keyboard shortcut to run the programs that we write. `Ctrl-Shift-P` > `Preferences: Open Keyboard Shortcuts (JSON)`. Edit the JSON to add the keyboard shortcut to run the task. Paste in the code below at the bottom of keybindings.json. Change the args line to match the label from tasks.json above.
+13. **RUN OUR PROGRAM!** Turn the robot on and ensure the keyboard shortcut `ctrl-shift-l` (that's the small letter 'L') runs the command, which should also run their program. Also, `Ctrl-Shift-P` > `Tasks: Run task` should pop up a menu with the correct entry.
+14. Finally, to use a master program to organize and run individual missions, take a look at the [master_program.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Master%20Program.py) and the [Skip_mission1_ready_for_master.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Skip_Mission1_ready_for_master.py). As you can see, the mission file is ever-so-slightly more complicated, but the kids may prefer the simplicity of the "non-master" mission programs. It isn't hard to convert one format to the other, so it isn't a big deal either way.
 
 Example code for test program
-
 ~~~
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction
@@ -36,4 +36,16 @@ rightmotor = Motor(Port.A)
 robot = GyroDriveBase(leftmotor, rightmotor, 56, 103)
 
 robot.straight(100)
+~~~
+
+
+keybindings.json
+~~~
+[
+    {
+        "key" : "ctrl+shift+l",
+        "command" : "workbench.action.tasks.runTask",
+        "args": "Run on Tim"
+    }
+]
 ~~~
