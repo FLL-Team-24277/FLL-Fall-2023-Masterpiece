@@ -41,7 +41,7 @@ class BaseRobot:
         pass
 
     def Drive(self, distance, then=Stop.HOLD, wait=True):
-        self.robot.straight(distance * 10)
+        self.robot.straight(distance)
 
     def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, units="mm"):
         pass
