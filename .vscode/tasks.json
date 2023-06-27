@@ -11,7 +11,18 @@
             "--name",
             "JynErso",
             "${file}"
-            ]
+            ],
+        "problemMatcher": ["$eslint-stylish"],
+        "presentation": {
+            "echo": true,
+            "reveal": "silent",
+            "focus": false,
+            "panel": "shared",
+            "showReuseMessage": false,
+            "clear": false,
+            "revealProblems": "onProblem",
+            "close": true
+            }
         }
     ]
 }
