@@ -10,7 +10,8 @@
         "**/.vscode/" : true,
         "**/.gitignore" : true,
         "**/README.md" : true,
-        "base_robot.py" : true
+        "base_robot.py" : true,
+        "requirements.txt" : true
     }, 
     "terminal.intgrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 }

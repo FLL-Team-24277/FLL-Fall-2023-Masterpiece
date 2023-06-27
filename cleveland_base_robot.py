@@ -32,12 +32,16 @@ class BaseRobot:
     def __init__(self):
         self.hub = PrimeHub(top_side=Axis.Z, front_side=-Axis.Y)
         self._version = "0.1 05/19/2023"
+        self.leftMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
+        self.rightmotor = Motor(Port.A)
+        self.robot = GyroDriveBase(self.leftMotor, self.rightmotor, TIRE_DIAMETER, AXLE_TRACK )
 
+    # TODO: Make all of these abortable
     def GyroTurn(self, angle):
         pass
 
     def Drive(self, distance, then=Stop.HOLD, wait=True):
-        pass
+        self.robot.straight(distance * 10)
 
     def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, units="mm"):
         pass
