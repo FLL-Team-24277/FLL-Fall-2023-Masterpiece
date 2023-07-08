@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-        "label": "Run on Tim",
+        "label": "JynErso",
         "type": "shell",
         "command": "pybricksdev.exe",
         "args": [
@@ -11,7 +11,27 @@
             "--name",
             "Tim",
             "${file}"
-            ]
+            ],
+            "problemMatcher": {
+                "owner": "python",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": {
+                    "regexp": "^(.*)File(.*)(C:(.*)\\.py)(.*)(line(\\s*))([0-9]+),",
+                    "file": 3,
+                    "line": 8
+                }
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true,
+                "revealProblems": "onProblem"
+            }
         }
     ]
 }
