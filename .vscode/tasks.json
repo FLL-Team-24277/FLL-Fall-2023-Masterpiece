@@ -2,14 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-        "label": "Run on Tim",
+        "label": "Run on Neptune",
         "type": "shell",
         "command": "pybricksdev.exe",
         "args": [
             "run",
             "ble",
             "--name",
-            "Tim",
+            "Neptune",
             "${file}"
             ],
             "problemMatcher": {
