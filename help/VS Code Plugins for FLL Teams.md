@@ -11,7 +11,7 @@ Middle School kids love to configure things like colors and fonts (ok, and so do
 * Font Switcher: https://marketplace.visualstudio.com/items?itemName=evan-buss.font-switcher
 * vscode-icons: https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons
 
-PDF Viewer: Sometimes it seems viewing PDFs in VSCode just works, and no extensions are required. Other times it does. Maybe test to see if you can open the build instructions under the help/ subdirectory. If not, install one of the several pdf viewer plugins such as
+PDF Viewer: Sometimes it seems viewing PDFs in VSCode just works, and no extensions are required. Other times it does require an extension. Maybe test to see if you can open the build instructions under the help/ subdirectory. If not, install one of the several pdf viewer plugins such as
 https://marketplace.visualstudio.com/items?itemName=tomoki1207.pdf
 
 For the team members that are working on the more advanced coding, such as writing the base_robot class, they may need a few other plugins.
