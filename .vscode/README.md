@@ -1,6 +1,6 @@
 There are two settings files in this ".vscode" directory, but only one is tracked in the repository.
 settings.json holds the workspace settings. The most important lines in it hide certain files from the project explorer. This simplifies the view for the team members so they will only see the files they need.
-~~~
+~~~json
         "**/.venv/" : true,
         "**/.vscode/" : true,
         "**/.gitignore" : true,
@@ -12,7 +12,7 @@ To do that, we hide the files and folders above. Most team members will not need
 
 tasks.json holds the settings for vscode tasks, which is how vscode can run shell programs. The only task configured here is to upload and run the current file. This file will need to be edited for each team member so that it will run for their robot. Simply replace the XXX with the name of their robot. Once you save this file, you should be able to press ctrl-shift-l to launch the task.
 
-~~~
+~~~json
 {
     "version": "2.0.0",
     "tasks": [
