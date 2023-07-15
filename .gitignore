@@ -3,6 +3,7 @@
 /.venv/
 /.git/
 tasks.json
+__pycache__/
 
 # will sync .gitiginore and vscode settings so all laptops and environments
 # are the same for everyone
