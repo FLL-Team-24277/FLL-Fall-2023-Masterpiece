@@ -8,6 +8,7 @@
         "**/Thumbs.db": true,
         "**/.venv/" : true,
         "**/.vscode/" : true,
+        "**/__pycache__/": true,
         "**/.gitignore" : true,
         "**/README.md" : true,
         "base_robot.py" : true,
