@@ -18,7 +18,8 @@ settings.json holds the workspace settings. The most important lines in it hide 
         "requirements.txt" : true
     }, 
     "terminal.intgrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
-}~~~
+}
+~~~
 
 To do that, we hide the files and folders above. Most team members will not need to make any changes to the settings.json file.
 
