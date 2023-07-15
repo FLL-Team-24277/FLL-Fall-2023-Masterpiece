@@ -24,7 +24,7 @@ How to use:
 14. Finally, to use a master program to organize and run individual missions, take a look at the [master_program.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Master%20Program.py) and the [Skip_mission1_ready_for_master.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Skip_Mission1_ready_for_master.py). As you can see, the mission file is ever-so-slightly more complicated, but the kids may prefer the simplicity of the "non-master" mission programs. It isn't hard to convert one format to the other, so it isn't a big deal either way.
 
 Example code for test program
-~~~
+~~~python
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction
 from pybricks.robotics import GyroDriveBase
@@ -40,7 +40,7 @@ robot.straight(100)
 
 
 keybindings.json
-~~~
+~~~json
 [
     {
         "key" : "ctrl+shift+l",
