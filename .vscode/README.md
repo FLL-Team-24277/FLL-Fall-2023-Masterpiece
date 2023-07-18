@@ -30,14 +30,14 @@ tasks.json holds the settings for vscode tasks, which is how vscode can run shel
     "version": "2.0.0",
     "tasks": [
         {
-        "label": "Run on XXX",
+        "label": "Run on robot",
         "type": "shell",
         "command": "pybricksdev.exe",
         "args": [
             "run",
             "ble",
             "--name",
-            "XXX",
+            "${env:robotName}",
             "${file}"
             ],
             "problemMatcher": {
@@ -63,5 +63,4 @@ tasks.json holds the settings for vscode tasks, which is how vscode can run shel
         }
     ]
 }
-
 ~~~
