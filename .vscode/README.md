@@ -25,7 +25,7 @@ To do that, we hide the files and folders above. Most team members will not need
 
 tasks.json holds the settings for vscode tasks, which is how vscode can run shell programs. The only task configured here is to upload and run the current file. For this to work, a user environment variable will need to be set to define the robot name. The variable name will be `robotName` and the value should be the robot name.
 
-~~~json=
+~~~json
 {
     "version": "2.0.0",
     "tasks": [
