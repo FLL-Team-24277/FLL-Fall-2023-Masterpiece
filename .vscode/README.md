@@ -64,3 +64,4 @@ tasks.json holds the settings for vscode tasks, which is how vscode can run shel
     ]
 }
 ~~~
+![](../help/images/EnvironmentVariables.png)
