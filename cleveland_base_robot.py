@@ -50,5 +50,5 @@ class BaseRobot:
     def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, units="mm"):
         pass
 
-    def MoveRightAttachmentMotor(self, speed, angle, then=Stop.HOLD, wait=True):
-        self.rightAttachmentMotor.run_angle(speed, angle, then, wait)
+    def WaitForMillis(self, millis):
+        wait(millis)
