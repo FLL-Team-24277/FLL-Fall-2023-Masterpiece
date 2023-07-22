@@ -1,7 +1,7 @@
 # Windows software that FLL teams using pybricks might need:
 
 VS Code https://code.visualstudio.com/  
-Editing python programs
+Editing python programs. Use the "System Installer".
 
 Python 3 https://www.python.org/  
 It's python
