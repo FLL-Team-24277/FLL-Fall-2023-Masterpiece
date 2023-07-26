@@ -2,14 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-        "label": "Run on Neptune",
+        "label": "Run on robot",
         "type": "shell",
         "command": "pybricksdev.exe",
         "args": [
             "run",
             "ble",
             "--name",
-            "Neptune",
+            "${env:robotName}",
             "${file}"
             ],
             "problemMatcher": {
