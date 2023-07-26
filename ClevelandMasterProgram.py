@@ -3,39 +3,29 @@ import clev_test
 
 br = BaseRobot()
 
-detectableColors=(
-    Color.BLUE, # Mission 1
-    Color.GREEN,
-    Color.NONE,
-    Color.RED,
-    Color.YELLOW,
-    Color.WHITE,
-    Color.GRAY
-    )
-br.colorSensor.detectable_colors(detectableColors)
 pressed=[]
 col=br.colorSensor.color()
 
 while True:
     while True: 
         col=br.colorSensor.color()
-        # print(color)
+        print(col)
         if (col==Color.NONE):
             br.hub.display.icon(Icon.SAD)
-            br.hub.light.blink(Color.RED, [1000, 1000])
         else:
             br.hub.display.icon(Icon.HAPPY)
-            br.hub.light.on(col)
+            br.hub.light.on(br.myColor2DefaultColorDict[col])
+            print(col)
         
         wait(100)
         pressed=br.hub.buttons.pressed()
         if (Button.LEFT in pressed):
             break
     
-    if(col==Color.RED):
+    if(col==br.myCustomColors[0]): #Green
         clev_test.Run(br)
 
-    if(col==Color.BLUE):
-        print("Launching the blue mission")
+    if(col==br.myCustomColors[1]): # Red
+        print("Launching the Red mission")
     
 

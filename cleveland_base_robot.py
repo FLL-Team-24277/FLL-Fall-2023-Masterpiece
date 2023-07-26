@@ -38,7 +38,33 @@ class BaseRobot:
         self.robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
+
         self.colorSensor = ColorSensor(Port.F)
+
+        self.myCustomColors = [
+            Color(h=154, s=69, v=55), # 0, Green
+            Color(h=350, s=78, v=84), # 1, Red
+            Color(h=44, s=63, v=100), # 2, Yellow
+            Color(h=216, s=84, v=79), # 3, Blue
+            Color(h=336, s=77, v=72), # 4, Magenta
+            Color(h=0, s=0, v=100), # 5, White
+            Color(h=8, s=77, v=100), # 6, Orange
+            Color(h=197, s=26, v=53), # 7, Gray
+            Color(h=180, s=32, v=9), # 8, None
+        ]
+
+        self.myColor2DefaultColorDict = {
+            self.myCustomColors[0] : Color.GREEN,
+            self.myCustomColors[1] : Color.RED,
+            self.myCustomColors[2] : Color.YELLOW,
+            self.myCustomColors[3] : Color.BLUE,
+            self.myCustomColors[4] : Color.MAGENTA,
+            self.myCustomColors[5] : Color.WHITE,
+            self.myCustomColors[6] : Color.ORANGE,
+            self.myCustomColors[7] : Color.GRAY,
+            self.myCustomColors[8] : Color.NONE
+        }
+        self.colorSensor.detectable_colors(self.myCustomColors)
     
     def GyroTurn(self, angle, then=Stop.HOLD, wait=True):
         self.robot.turn(angle, then, wait)
