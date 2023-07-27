@@ -4,7 +4,7 @@ VS Code https://code.visualstudio.com/
 Editing python programs. Use the "System Installer".
 
 Python 3 https://www.python.org/  
-It's python
+It's python. Install in c:\python\ (use the "custom installation" option)
 
 git for Windows https://git-scm.com/downloads  
 Be sure to select VS code as your default editor.
