@@ -9,15 +9,17 @@ col=br.colorSensor.color()
 while True:
     while True: 
         col=br.colorSensor.color()
-        print(col)
-        if (col==Color.NONE):
+        # print(col)
+        if (col==Color(h=180, s=32, v=9)): # no color detected
             br.hub.display.icon(Icon.SAD)
+            # br.hub.light.on(Color.RED)
+            br.hub.light.blink(Color.RED, [100, 100])
         else:
             br.hub.display.icon(Icon.HAPPY)
             br.hub.light.on(br.myColor2DefaultColorDict[col])
-            print(col)
+            # print(col)
         
-        wait(100)
+        wait(250)
         pressed=br.hub.buttons.pressed()
         if (Button.LEFT in pressed):
             break
