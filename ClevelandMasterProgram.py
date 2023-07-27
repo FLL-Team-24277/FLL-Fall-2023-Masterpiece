@@ -12,8 +12,8 @@ while True:
         # print(col)
         if (col==Color(h=180, s=32, v=9)): # no color detected
             br.hub.display.icon(Icon.SAD)
-            # br.hub.light.on(Color.RED)
-            br.hub.light.blink(Color.RED, [100, 100])
+            br.hub.light.on(Color.RED)
+            # br.hub.light.blink(Color.RED, [100, 100])
         else:
             br.hub.display.icon(Icon.HAPPY)
             br.hub.light.on(br.myColor2DefaultColorDict[col])
