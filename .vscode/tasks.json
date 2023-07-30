@@ -32,6 +32,19 @@
                 "clear": true,
                 "revealProblems": "onProblem"
             }
-        }
+        },
+        {
+            "label": "git pull on startup",
+            "type": "shell",
+            "command": "git pull",
+            "windows": {
+              "command": "git pull"
+            },
+            "presentation": {
+              "reveal": "always",
+              "panel": "new"
+            },
+            "runOptions": { "runOn": "folderOpen" }
+          }
     ]
 }
