@@ -30,15 +30,15 @@ tasks.json holds the settings for vscode tasks, which is how vscode can run shel
     "version": "2.0.0",
     "tasks": [
         {
-        "label": "Run on robot",
-        "type": "shell",
-        "command": "pybricksdev.exe",
-        "args": [
-            "run",
-            "ble",
-            "--name",
-            "${env:robotName}",
-            "${file}"
+            "label": "Run on robot",
+            "type": "shell",
+            "command": "pybricksdev.exe",
+            "args": [
+                "run",
+                "ble",
+                "--name",
+                "${env:robotName}",
+                "${file}"
             ],
             "problemMatcher": {
                 "owner": "python",
@@ -60,6 +60,22 @@ tasks.json holds the settings for vscode tasks, which is how vscode can run shel
                 "clear": true,
                 "revealProblems": "onProblem"
             }
+        },
+        {
+            "label": "git pull on startup",
+            "type": "shell",
+            "command": "git pull",
+            "windows": {
+                "command": "git pull"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "problemMatcher": []
         }
     ]
 }
