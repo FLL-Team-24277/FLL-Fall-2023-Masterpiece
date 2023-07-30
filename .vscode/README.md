@@ -17,7 +17,8 @@ settings.json holds the workspace settings. The most important lines in it hide 
         "base_robot.py" : true,
         "requirements.txt" : true
     }, 
-    "terminal.intgrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+    "task.allowAutomaticTasks": "on",
+    "git.postCommitCommand": "sync"
 }
 ~~~
 
