@@ -17,13 +17,14 @@ settings.json holds the workspace settings. The most important lines in it hide 
         "base_robot.py" : true,
         "requirements.txt" : true
     }, 
-    "terminal.intgrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
+    "task.allowAutomaticTasks": "on",
+    "git.postCommitCommand": "sync"
 }
 ~~~
 
 To do that, we hide the files and folders above. Most team members will not need to make any changes to the settings.json file.
 
-tasks.json holds the settings for vscode tasks, which is how vscode can run shell programs. The only task configured here is to upload and run the current file. For this to work, a user environment variable will need to be set to define the robot name. The variable name will be `robotName` and the value should be the robot name.
+tasks.json holds the settings for vscode tasks, which is how vscode can run shell programs. There are two tasks configured here. The first one is to upload and run the current file. For this to work, a user environment variable will need to be set to define the robot name. The variable name will be `robotName` and the value should be the robot name. The second task auto-runs a `git pull` each time the local folder is opened in VS Code.
 
 ~~~json
 {
