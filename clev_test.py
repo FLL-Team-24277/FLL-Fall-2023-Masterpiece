@@ -10,13 +10,15 @@ def Run(br: BaseRobot):
     # br.leftDriveMotor(50,180)
     # br.MoveRightAttachmentMotorSec(500, 1)
     # print("done")
-    # br.rightAttachmentMotor.run_angle(500, 180)
-    br.leftAttachmentMotor.run_angle(500, 1000)
+    br.GyroDrive(500, 100)
     br.WaitForMillis(1000)
-    br.leftAttachmentMotor.run_time(500, 1000)
+    br.GyroDrive(500, then=Stop.BRAKE)
+    # br.WaitForMillis()
+    # br.leftAttachmentMotor.run_time(500, 1000)
+    # br.GyroDrive(1000000,5000)
 
-
-
+    
+    
 
 if __name__ == '__main__':
     br = BaseRobot()
