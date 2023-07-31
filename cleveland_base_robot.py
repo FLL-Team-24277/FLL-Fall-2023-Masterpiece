@@ -4,13 +4,13 @@ from pybricks.robotics import GyroDriveBase
 from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
 
-
+# All constents will be defined here
 PI = 3.14159
 
 TIRE_DIAMETER = 56  # mm
 AXLE_TRACK = 103  # distance between the wheels, mm
 
-STRAIGHT_SPEED = 600  # normal straight speed for driving, mm/sec
+STRAIGHT_SPEED = 400  # normal straight speed for driving, mm/sec
 STRAIGHT_ACCEL = 600  # normal acceleration, mm/sec^2
 TURN_RATE = 150  # normal turning rate, deg/sec
 TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
@@ -18,14 +18,14 @@ TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
 
 class BaseRobot:
     """
-    A collection of methods and Spike Prime objects for FLL Team 24277. \
+    A collection of methods and Spike Prime for FLL Team 24277. \
     Uses pybricks for most functionality.
 
     Example:
 
-    >>> import base_robot
-    >>> br = base_robot.BaseRobot()
-    >>> br.Drive(400) #400mm
+    >>> from base_robot import *
+    >>> br = BaseRobot()
+    >>> br.GyroDrive(400) #400mm
     >>> br.GyroTurn(90) #90 deg to the right
     """
 
@@ -35,12 +35,14 @@ class BaseRobot:
         self.leftDriveMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
         self.rightDriveMotor = Motor(Port.A)
         self.robot = GyroDriveBase(self.leftDriveMotor, self.rightDriveMotor, TIRE_DIAMETER, AXLE_TRACK )
+        # default speeds were determined by testing
         self.robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
 
         self.colorSensor = ColorSensor(Port.F)
 
+        # HSV values were found by testing
         self.myCustomColors = [
             Color(h=154, s=69, v=55), # 0, Green
             Color(h=350, s=78, v=84), # 1, Red
@@ -52,7 +54,8 @@ class BaseRobot:
             Color(h=197, s=26, v=53), # 7, Gray
             Color(h=180, s=32, v=9), # 8, None
         ]
-
+        
+        # Translates our costom color HSV values into words
         self.myColor2DefaultColorDict = {
             self.myCustomColors[0] : Color.GREEN,
             self.myCustomColors[1] : Color.RED,
@@ -66,15 +69,19 @@ class BaseRobot:
         }
         self.colorSensor.detectable_colors(self.myCustomColors)
     
-    def GyroTurn(self, angle, then=Stop.HOLD, wait=True):
+    
+    # Angle is required. Positive angles make the robot turn right and negitive angles make it turn left
+    def GyroTurn(self, angle, then=Stop.BRAKE, wait=True):
         self.robot.turn(angle, then, wait)
 
-    def GyroDrive(self, distance, speed = STRAIGHT_SPEED, then=Stop.HOLD, wait=True):
+    # Requires distance but speed is optional because of default. Positikve goes forward and negative goes backward
+    def GyroDrive(self, distance, speed = STRAIGHT_SPEED, then=Stop.BRAKE, wait=True):
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
-        self.robot.straight(distance, then, wait)
+        self.robot.straight(distance, then, wait) 
 
-    def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, units="mm"):
-        pass
-
+    # def DriveTank(self, leftMotorSpeed, rightMotorSpeed, measurement, units="mm"):
+    #     pass
+    
+    # wait for miliseconds. 1000 is one second and 500 is half a second
     def WaitForMillis(self, millis):
         wait(millis)
