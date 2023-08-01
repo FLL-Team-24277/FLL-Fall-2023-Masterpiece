@@ -3,8 +3,9 @@ from cleveland_base_robot import *
 br = BaseRobot()
 
 while True: 
-    curCol = br.colorSensor.hsv(True)
-    print(str(br.colorSensor.color()) + ": " + str(curCol))
+    curHsv = br.colorSensor.hsv(True)
+    curCol = br.colorSensor.color()
+    print(str(curHsv) + ": " + str(br.myColor2DefaultColorDict[curCol]))
     # curColor = br.colorSensor.color()
     # print(curColor)
     # br.hub.light.on(br.myColor2DefaultColorDict[curColor])
