@@ -9,7 +9,7 @@ col=br.colorSensor.color()
 while True:
     while True: 
         col=br.colorSensor.color()
-        # print(col)
+        print(br.myColor2DefaultColorDict[col])
         if (col==Color(h=180, s=32, v=9)): # no color detected
             br.hub.display.icon(Icon.SAD)
             br.hub.light.on(Color.RED)
