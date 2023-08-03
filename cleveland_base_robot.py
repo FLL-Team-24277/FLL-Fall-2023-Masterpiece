@@ -56,18 +56,23 @@ class BaseRobot:
         # Put the custom colors in a list
         self.sensorColors = [
             Color.SENSOR_GREEN,
-            Color.SENSOR_RED,
-            Color.SENSOR_YELLOW,
+            # Color.SENSOR_RED,
+            # Color.SENSOR_YELLOW,
             Color.SENSOR_BLUE,
             Color.SENSOR_MAGENTA,
             Color.SENSOR_WHITE,
             Color.SENSOR_ORANGE,
-            Color.SENSOR_DARKGRAY,
-            Color.SENSOR_NONE
+            # Color.SENSOR_DARKGRAY,
+            Color.SENSOR_NONE # must have SENSOR_NONE. Do not comment this out
         ]
+
+        # Set the detectable colors usisng our list
+        self.colorSensor.detectable_colors(self.sensorColors)
+
         
         # Translates our costom colors into the default pybricks colors
-        # Used to set the hub light to the correct color
+        # Used to set the hub light to the correct color. It dodesn't
+        # matter if there are extra colors in here that won't be detected
         self.myColor2DefaultColorDict = {
             Color.SENSOR_GREEN : Color.GREEN,
             Color.SENSOR_RED : Color.RED,
@@ -79,7 +84,6 @@ class BaseRobot:
             Color.SENSOR_DARKGRAY : Color.GRAY,
             Color.SENSOR_NONE : Color.NONE
         }
-        self.colorSensor.detectable_colors(self.sensorColors)
     
     
     # Angle is required. Positive angles make the robot turn right and negitive angles make it turn left
