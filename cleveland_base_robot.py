@@ -43,31 +43,43 @@ class BaseRobot:
         self.colorSensor = ColorSensor(Port.F)
 
         # HSV values were found by testing
-        self.myCustomColors = [
-            Color(h=154, s=69, v=55), # 0, Green
-            Color(h=350, s=78, v=84), # 1, Red
-            Color(h=44, s=63, v=100), # 2, Yellow
-            Color(h=216, s=84, v=79), # 3, Blue
-            Color(h=336, s=77, v=72), # 4, Magenta
-            Color(h=0, s=0, v=100), # 5, White
-            Color(h=8, s=77, v=100), # 6, Orange
-            Color(h=197, s=26, v=53), # 7, Gray
-            Color(h=180, s=32, v=9), # 8, None
+        Color.SENSOR_GREEN = Color(h=156, s=66, v=66)
+        Color.SENSOR_RED = Color(h=353, s=82, v=92)
+        Color.SENSOR_YELLOW = Color(h=60, s=50, v=100)
+        Color.SENSOR_BLUE = Color(h=216, s=84, v=83)
+        Color.SENSOR_MAGENTA = Color(h=339, s=71, v=81)
+        Color.SENSOR_WHITE = Color(h=0, s=0, v=100)
+        Color.SENSOR_ORANGE = Color(h=13, s=73, v=100)
+        Color.SENSOR_DARKGRAY = Color(h=192, s=21, v=64)
+        Color.SENSOR_NONE = Color(h=170, s=26, v=15)
+
+        # Put the custom colors in a list
+        self.sensorColors = [
+            Color.SENSOR_GREEN,
+            Color.SENSOR_RED,
+            Color.SENSOR_YELLOW,
+            Color.SENSOR_BLUE,
+            Color.SENSOR_MAGENTA,
+            Color.SENSOR_WHITE,
+            Color.SENSOR_ORANGE,
+            Color.SENSOR_DARKGRAY,
+            Color.SENSOR_NONE
         ]
         
-        # Translates our costom color HSV values into words
+        # Translates our costom colors into the default pybricks colors
+        # Used to set the hub light to the correct color
         self.myColor2DefaultColorDict = {
-            self.myCustomColors[0] : Color.GREEN,
-            self.myCustomColors[1] : Color.RED,
-            self.myCustomColors[2] : Color.YELLOW,
-            self.myCustomColors[3] : Color.BLUE,
-            self.myCustomColors[4] : Color.MAGENTA,
-            self.myCustomColors[5] : Color.WHITE,
-            self.myCustomColors[6] : Color.ORANGE,
-            self.myCustomColors[7] : Color.GRAY,
-            self.myCustomColors[8] : Color.NONE
+            Color.SENSOR_GREEN : Color.GREEN,
+            Color.SENSOR_RED : Color.RED,
+            Color.SENSOR_YELLOW : Color.YELLOW,
+            Color.SENSOR_BLUE : Color.BLUE,
+            Color.SENSOR_MAGENTA : Color.MAGENTA,
+            Color.SENSOR_WHITE : Color.WHITE,
+            Color.SENSOR_ORANGE : Color.ORANGE,
+            Color.SENSOR_DARKGRAY : Color.GRAY,
+            Color.SENSOR_NONE : Color.NONE
         }
-        self.colorSensor.detectable_colors(self.myCustomColors)
+        self.colorSensor.detectable_colors(self.sensorColors)
     
     
     # Angle is required. Positive angles make the robot turn right and negitive angles make it turn left

@@ -5,5 +5,5 @@ br = BaseRobot()
 while True: 
     curHsv = br.colorSensor.hsv(True)
     curCol = br.colorSensor.color()
-    print(str(curHsv) + ": " + str(br.myColor2DefaultColorDict[curCol]))
+    print(str(curHsv) + "; Matches " + str(curCol))
     wait(500)
