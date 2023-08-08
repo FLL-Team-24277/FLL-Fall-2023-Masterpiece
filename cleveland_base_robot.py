@@ -14,8 +14,6 @@ from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
 
 # All constents will be defined here
-PI = 3.14159
-
 TIRE_DIAMETER = 56  # mm
 AXLE_TRACK = 103  # distance between the wheels, mm
 
