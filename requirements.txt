@@ -1,2 +1,3 @@
 pybricks==3.3.0a5
 pybricksdev
+black
