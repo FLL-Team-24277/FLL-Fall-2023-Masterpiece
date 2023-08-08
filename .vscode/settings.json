@@ -12,7 +12,8 @@
         "**/.gitignore" : true,
         "**/README.md" : true,
         "base_robot.py" : true,
-        "requirements.txt" : true
+        "requirements.txt" : true,
+        "pyproject.toml" : true
     }, 
     "task.allowAutomaticTasks": "on",
     "git.postCommitCommand": "sync"
