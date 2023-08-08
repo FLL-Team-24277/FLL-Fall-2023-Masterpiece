@@ -45,12 +45,12 @@ class BaseRobot:
         # HSV values were found by testing. Default h-values are provided
         # in comments. Theoretically, the farther apart the h-values are, the 
         # less likely two colors can get "confused"
-        Color.SENSOR_GREEN = Color(h=156, s=66, v=66) # h=120
+        Color.SENSOR_WHITE = Color(h=0, s=0, v=100)
         Color.SENSOR_RED = Color(h=353, s=82, v=92) # h=0
         Color.SENSOR_YELLOW = Color(h=60, s=50, v=100) # h=60
+        Color.SENSOR_GREEN = Color(h=156, s=66, v=66) # h=120
         Color.SENSOR_BLUE = Color(h=216, s=84, v=83) # h=240
         Color.SENSOR_MAGENTA = Color(h=339, s=71, v=81) # h=300
-        Color.SENSOR_WHITE = Color(h=0, s=0, v=100)
         Color.SENSOR_ORANGE = Color(h=13, s=73, v=100) # h=30
         Color.SENSOR_DARKGRAY = Color(h=192, s=21, v=64)
         Color.SENSOR_NONE = Color(h=170, s=26, v=15)
@@ -58,13 +58,13 @@ class BaseRobot:
         # Put the custom colors in a list. Best practice is to only use
         # colors that we are using for actual missions.
         self.sensorColors = [
-            Color.SENSOR_GREEN,
-            # Color.SENSOR_RED,
-            # Color.SENSOR_YELLOW,
-            Color.SENSOR_BLUE,
-            Color.SENSOR_MAGENTA,
             Color.SENSOR_WHITE,
-            Color.SENSOR_ORANGE,
+            Color.SENSOR_RED,
+            Color.SENSOR_YELLOW,
+            Color.SENSOR_GREEN,
+            Color.SENSOR_BLUE,
+            # Color.SENSOR_MAGENTA,
+            # Color.SENSOR_ORANGE,
             # Color.SENSOR_DARKGRAY,
             Color.SENSOR_NONE # must have SENSOR_NONE. Do not comment this out
         ]
