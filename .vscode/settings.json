@@ -6,15 +6,18 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**/.venv/" : true,
-        "**/.vscode/" : true,
+        "**/.venv/": true,
+        "**/.vscode/": true,
         "**/__pycache__/": true,
-        "**/.gitignore" : true,
-        "**/README.md" : true,
-        "base_robot.py" : true,
-        "requirements.txt" : true,
-        "pyproject.toml" : true
-    }, 
+        "**/.gitignore": true,
+        "**/README.md": true,
+        "base_robot.py": true,
+        "requirements.txt": true,
+        "pyproject.toml": true
+    },
     "task.allowAutomaticTasks": "on",
-    "git.postCommitCommand": "sync"
+    "git.postCommitCommand": "sync",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
 }

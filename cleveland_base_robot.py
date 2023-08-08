@@ -12,7 +12,7 @@ AXLE_TRACK = 103  # distance between the wheels, mm
 
 STRAIGHT_SPEED = 400  # normal straight speed for driving, mm/sec
 STRAIGHT_ACCEL = 600  # normal acceleration, mm/sec^2
-TURN_RATE = 150  # normal turning rate, deg/sec
+TURN_RATE =150  # normal turning rate, deg/sec
 TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
 
 
@@ -25,7 +25,7 @@ class BaseRobot:
 
     >>> from base_robot import *
     >>> br = BaseRobot()
-    >>> br.GyroDrive(400) #400mm
+    >>> br.GyroDrive(400) #400mm at default speed
     >>> br.GyroTurn(90) #90 deg to the right
     """
 
