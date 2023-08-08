@@ -14,7 +14,7 @@ How to use:
 4. Install [necessary software](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/config/Software.md). Once VS Code is installed, install the [necessary extensions](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/config/VS%20Code%20Plugins%20for%20FLL%20Teams.md)
 5. In VS Code add the python extension and restart VS Code. When you restart, you should have the option to Clone a Repository. Clone this repository: https://github.com/FLL-Team-24277/Master-Program-Fall-2023.git Save it somewhere on their computer.
 6. Add a python virtual environment. `Ctrl-Shift-P` > `Python: Create Environment`. Just use the defaults. Open a new terminal with ``ctrl-shift-` `` or `Ctrl-Shift-P` > `Create Terminal` and make sure it is in the python virtual environment. It will start with a green "(.venv)". If there are executionPolicy errors, you will need to elevate the permissions for Powershell. Instructions [here](https://tecadmin.net/powershell-running-scripts-is-disabled-system/) (copied [here](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/config/executionPolicyError.md).)
-7. `pip install -r .\requirements.txt` (should do the same thing as `pip install pybricks==3.3.0a5` and `pip install pybricksdev`).
+7. `pip install -r .\requirements.txt` (should do the same thing as `pip install pybricks==3.3.0a5`, `pip install pybricksdev` and `pip install black`).
 8. Create a new python file, named `teamMemberName-test-mission.py`, copy and paste the code below, and save it, but don't try to run it just yet. Wait for step 13 below.
 9. Commit the changes, and push. It will probably prompt for github registration/login and then sync all files. This link may help: https://pages.nist.gov/git-novice-MSE/08-collab/
 10. Install pybricks on each robot at https://beta.pybricks.com/. If the computer has never connected to a pybricks hub, you will probably need to manually install the USB drivers. Name the robot at this time. Avoid spaces and special characters in the robot name. Put a label sticker on the top of the robot with the robot name.
@@ -29,11 +29,11 @@ from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction
 from pybricks.robotics import GyroDriveBase
 
-
-leftmotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
+# Weird spacing is intentional. Should be auto-corrected by Black formatter after saving
+leftmotor   =Motor(Port.E,   Direction.COUNTERCLOCKWISE)
 rightmotor = Motor(Port.A)
 
-robot = GyroDriveBase(leftmotor, rightmotor, 56, 103)
+robot=GyroDriveBase(leftmotor,rightmotor, 56, 103)
 
 robot.straight(100)
 ~~~
