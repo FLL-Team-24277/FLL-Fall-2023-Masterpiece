@@ -1,8 +1,8 @@
-from cleveland_base_robot import BaseRobot
+from base_robot import *
 
-# This is the coolest comment EVER!
-
-
+# Add good comments, such as what the mission is supposed to do,
+# how to align the robot in home, any initial starting instructions,
+# such as how it should be loaded with anything, arm positions, etc.
 br = BaseRobot()
 
 # br.DriveTank(550, 550, 100, "mm")
