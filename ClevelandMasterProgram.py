@@ -1,4 +1,4 @@
-from cleveland_base_robot import *
+from base_robot import *
 import clev_test
 
 br = BaseRobot()
