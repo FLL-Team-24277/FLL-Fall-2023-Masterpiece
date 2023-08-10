@@ -9,6 +9,7 @@ br = BaseRobot()
 br.GyroDrive(150)
 br.WaitForMillis(500)
 br.GyroTurn(-93)
+br.leftAttachmentMotor.run_angle(200,300)
 
 
 # Run(base_robot.BaseRobot())
