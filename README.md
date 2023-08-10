@@ -1,10 +1,8 @@
 # Master-Program-Fall-2023
 
-11 June 2023: As of right now, a lot of the code on this repo is missing while the team is working on new code this summer. Keep on watching and by fall there should be working code up here.
+We are not "giving away solutions" here. [Read our statement on discovery here.](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/discovery.md)
 
 This is where all of the team code and master program will live for the Fall 2023 Masterpiece FLL Season. We will use [pybricks libraries](https://github.com/pybricks) and VS code, and git/github for version control.
-
-We are not "giving away solutions" here. [Read our statement on discovery here.](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/discovery.md)
 
 Very helpful page here: https://pybricks.com/projects/tutorials/dev/tools/vscode/
 
