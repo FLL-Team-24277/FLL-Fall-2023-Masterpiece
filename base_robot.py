@@ -106,7 +106,7 @@ class BaseRobot:
     def GyroTurn(self, angle, then=Stop.BRAKE, wait=True):
         self.robot.turn(angle, then, wait)
 
-    # Requires distance but speed is optional because of default. Positikve
+    # Requires distance but speed is optional because of default. Positive
     # goes forward and negative goes backward
     def GyroDrive(
         self, distance, speed=STRAIGHT_SPEED, then=Stop.BRAKE, wait=True
@@ -117,3 +117,7 @@ class BaseRobot:
     # wait for miliseconds. 1000 is one second and 500 is half a second
     def WaitForMillis(self, millis):
         wait(millis)
+
+    # Wait for Button Press. Requires which button.
+    def WaitForButton(self, button):
+        wait(button)

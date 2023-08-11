@@ -5,11 +5,11 @@ from base_robot import *
 # such as how it should be loaded with anything, arm positions, etc.
 br = BaseRobot()
 
-
+br.leftAttachmentMotor.run_angle(200, 300)
+br.WaitForButton(Button.LEFT)
 br.GyroDrive(150)
 br.WaitForMillis(500)
 br.GyroTurn(-93)
-br.leftAttachmentMotor.run_angle(200,300)
 
 
-# Run(base_robot.BaseRobot())
+# Run(base_robot.BaseRobot()
