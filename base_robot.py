@@ -119,11 +119,9 @@ class BaseRobot:
         wait(millis)
 
     # Wait for Button Press. Requires which button is goin to be pressed.
-
     def WaitForButton(self, button):
-        wait(250)
-        pressed = self.hub.buttons.pressed()
-        if Button.LEFT in pressed:
-            break
-
-        wait(button)
+        while True:
+            pressed = self.hub.buttons.pressed()
+            if button in pressed:
+                break
+            wait(250)
