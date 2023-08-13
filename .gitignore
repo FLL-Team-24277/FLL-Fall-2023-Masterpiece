@@ -4,7 +4,5 @@
 /.git/
 __pycache__/
 
-# will sync .gitiginore and vscode settings so all laptops and environments
-# are the same for everyone
+# will sync .gitiginore 
 !/.gitignore
-!/.vscode/settings.json
