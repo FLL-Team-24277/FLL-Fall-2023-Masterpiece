@@ -4,7 +4,7 @@
         {
             "label": "Run on robot",
             "type": "shell",
-            "command": "pybricksdev.exe",
+            "command": "${workspaceFolder}/.venv/Scripts/pybricksdev.exe",
             "args": [
                 "run",
                 "ble",
@@ -29,7 +29,7 @@
                 "focus": false,
                 "panel": "shared",
                 "showReuseMessage": false,
-                "clear": true,
+                "clear": false,
                 "revealProblems": "onProblem"
             }
         },
