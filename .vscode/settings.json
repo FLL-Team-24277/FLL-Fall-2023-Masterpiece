@@ -22,5 +22,8 @@
         "editor.formatOnSave": true
     },
     "python.formatting.provider": "none",
-    "codetogether.virtualCursorJoin": "sharedVirtualCursor"
+    "codetogether.virtualCursorJoin": "sharedVirtualCursor",
+    "editor.rulers": [
+        80
+    ]
 }
