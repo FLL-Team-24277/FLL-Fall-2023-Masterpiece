@@ -125,3 +125,12 @@ class BaseRobot:
             if button in pressed:
                 break
             wait(250)
+
+    # Coach Morrow: Do we need a "DriveForTime()" method??
+    def DriveForTime(self, something1, something2):
+        pass
+
+    # Coach Morrow:
+    # There is an undocumented feature that can turn the gyro off.
+    # Would we ever want to do that?
+    # self.robot.use_gyro(false)
