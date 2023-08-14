@@ -6,7 +6,7 @@ This is where all of the team code and master program will live for the Fall 202
 
 Very helpful page here: https://pybricks.com/projects/tutorials/dev/tools/vscode/
 
-The instructions below will get team members up and running for FLL in a team collaboration environment. The instructions are not perfect, and you will probably have some troubleshooting and adjustments along the way.
+The instructions below will get team members up and running for FLL in a team collaboration environment using pybricks and writing programs with VS Code. The instructions are not perfect, and you will probably have some troubleshooting and adjustments along the way.
 
 How to use:
 
