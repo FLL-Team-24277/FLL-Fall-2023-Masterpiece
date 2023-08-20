@@ -59,7 +59,8 @@ class BaseRobot:
         # HSV values were found by testing. Default hsv-values are provided
         # in comments. Theoretically, the farther apart the hsv-values are,
         # the less likely two colors can get "confused"
-        Color.SENSOR_WHITE = Color(h=0, s=0, v=100)  # h=0,s=0,v=0
+        # Use the colorTest.py program to get the color sensor values
+        Color.SENSOR_WHITE = Color(h=0, s=0, v=100)  # h=0,s=0,v=100
         Color.SENSOR_RED = Color(h=353, s=82, v=92)  # h=0,s=100,v=100
         Color.SENSOR_YELLOW = Color(h=60, s=50, v=100)  # h=60,s=100,v=100
         Color.SENSOR_GREEN = Color(h=156, s=66, v=66)  # h=120,s=100,v=100
