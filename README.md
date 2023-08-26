@@ -1,5 +1,5 @@
 # FLL Team 24277  
-##Master Program Fall 2023##
+##  Master Program Fall 2023
 
 We are not "giving away solutions" here. If you are looking for mission solutions, you'll just have to figure them out yourself :) [Read our statement on the FLL "Discovery" core value here.](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/discovery.md)
 
