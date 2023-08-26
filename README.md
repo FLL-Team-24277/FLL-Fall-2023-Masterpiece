@@ -1,15 +1,15 @@
 # FLL Team 24277  
-##  Master Program Fall 2023
+##  Introduction
 
 We are not "giving away solutions" here. If you are looking for mission solutions, you'll just have to figure them out yourself :) [Read our statement on the FLL "Discovery" core value here.](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/discovery.md)
 
-This is where all of the team code and master program will live for the Fall 2023 Masterpiece FLL Season. We will use [pybricks libraries](https://github.com/pybricks) and VS code, and git/github for version control.
+The instructions below will get team members up and running for FLL in a team collaboration environment using [pybricks libraries](https://github.com/pybricks), writing programs with Visual Studio Code, and using git/github for version control. The instructions are not perfect, and you will probably have some troubleshooting and adjustments along the way.
 
-Very helpful page here: https://pybricks.com/projects/tutorials/dev/tools/vscode/
+Additionally, this is where all of the team code and master program will live for the Fall 2023 Masterpiece FLL Season.
 
-The instructions below will get team members up and running for FLL in a team collaboration environment using pybricks and writing programs with VS Code. The instructions are not perfect, and you will probably have some troubleshooting and adjustments along the way.
+Very helpful page here about how to use pybricks with VS Code: https://pybricks.com/projects/tutorials/dev/tools/vscode/
 
-How to use:
+## Instructions
 
 1. Each team member creates their own github account. REMINDER: Be sure to use an email account that they can check at school (github emails may be blocked). Recommend taking a few extra minutes to set up two-factor authentication. Github will be moving to mandatory 2FA in early 2024, so may as well do it now. Also recommend that the team member keep that github page open and logged in because you will need it for authentication in step 9 below. Remind them to not forget their password!
 2. Add each account as a collaborator for this project [here](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/settings/access). Instructions [here](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository).
@@ -27,7 +27,8 @@ Open a terminal and run these two commands: Set your username= `git config --glo
 13. **RUN OUR PROGRAM!** Turn the robot on and ensure the keyboard shortcut `ctrl-shift-L` runs the command, which should also run their program. Also, `Ctrl-Shift-P` > `Tasks: Run task` should pop up a menu with the correct entry. Watch the terminal and make sure the robot name is correct. If not, recheck that you completed step 11 correctly.
 14. Finally, to use a master program to organize and run individual missions, take a look at the [master_program.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Master%20Program.py) and the [Skip_mission1_ready_for_master.py](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/Skip_Mission1_ready_for_master.py). As you can see, the mission file is ever-so-slightly more complicated, but the kids may prefer the simplicity of the "non-master" mission programs. It isn't hard to convert one format to the other, so it isn't a big deal either way.
 
-Example code for test program
+## Example code for test program
+
 ~~~python
 from pybricks.pupdevices import Motor
 from pybricks.parameters import Port, Direction
