@@ -1,7 +1,7 @@
-from cleveland_base_robot import *
+from base_robot import *
+
 
 def Run(br: BaseRobot):
-
     # br.GyroTurn(-60)
     # br.GyroDrive(-150,50)
     # br.GyroTurn(180)
@@ -17,9 +17,7 @@ def Run(br: BaseRobot):
     # br.leftAttachmentMotor.run_time(500, 1000)
     # br.GyroDrive(1000000,5000)
 
-    
-    
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     br = BaseRobot()
     Run(br)
