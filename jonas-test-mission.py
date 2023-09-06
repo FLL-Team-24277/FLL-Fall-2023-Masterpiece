@@ -1,11 +1,23 @@
-from pybricks.pupdevices import Motor
-from pybricks.parameters import Port, Direction
-from pybricks.robotics import GyroDriveBase
+from base_robot import *
 
 
-leftmotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
-rightmotor = Motor(Port.A)
+def Run(br: BaseRobot):
+    # br.GyroTurn(-60)
+    # br.GyroDrive(-150,50)
+    # br.GyroTurn(180)
+    # br.GyroDrive(150,50)
+    # br.rightAttachmentMotor(500,180)
+    # br.leftDriveMotor(50,180)
+    # br.MoveRightAttachmentMotorSec(500, 1)
+    # print("done")
+    br.GyroDrive(500, 100)
+    br.WaitForMillis(1000)
+    br.GyroDrive(500, then=Stop.BRAKE)
+    # br.WaitForMillis()
+    # br.leftAttachmentMotor.run_time(500, 1000)
+    # br.GyroDrive(1000000,5000)
 
-robot = GyroDriveBase(leftmotor, rightmotor, 56, 103)
 
-robot.straight(100)
+if __name__ == "__main__":
+    br = BaseRobot()
+    Run(br)
