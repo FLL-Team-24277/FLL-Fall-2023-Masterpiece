@@ -2,8 +2,6 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
-    # br.GyroTurn(180)
-    # br.GyroDrive(150,50)
     # br.rightAttachmentMotor(500,180)
     # br.leftDriveMotor(50,180)
     # br.MoveRightAttachmentMotorSec(500, 1)
