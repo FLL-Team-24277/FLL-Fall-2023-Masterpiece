@@ -6,12 +6,23 @@ def Run(br: BaseRobot):
     # br.leftDriveMotor(50,180)
     # br.MoveRightAttachmentMotorSec(500, 1)
     # print("done")
-    br.GyroDrive(500, 100)
-    br.WaitForMillis(1000)
-    br.GyroDrive(500, then=Stop.BRAKE)
-    # br.WaitForMillis()
-    # br.leftAttachmentMotor.run_time(500, 1000)
-    # br.GyroDrive(1000000,5000)
+    # pressed = br.hub.buttons.pressed()
+    # while len(pressed) == 0:
+    #     pressed = br.hub.buttons.pressed()
+    # br.GyroDrive(850, then=Stop.BRAKE)
+    # br.GyroDrive(-850, then=Stop.BRAKE)
+    # pressed = br.hub.buttons.pressed()
+    # while len(pressed) == 0:
+    #     pressed = br.hub.buttons.pressed()
+    br.GyroDrive(750, then=Stop.BRAKE)
+    br.GyroTurn(90, then=Stop.BRAKE)
+    br.GyroDrive(250, then=Stop.BRAKE)
+    br.leftAttachmentMotor.run_time(500, 500)
+    br.rightAttachmentMotor.run_time(1000, 1500)
+    wait(250)
+    br.GyroDrive(-200, then=Stop.BRAKE)
+    br.GyroTurn(-90, then=Stop.BRAKE)
+    br.robot.straight(-750, Stop.BRAKE, True)
 
 
 if __name__ == "__main__":
