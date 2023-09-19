@@ -24,6 +24,13 @@ while True:
         #  When the left button is pressed, it will break out of the loop
         if Button.LEFT in pressed:
             break
+        if Button.BLUETOOTH in pressed:
+            if br.leftDriveMotor.speed() == 0:
+                br.leftDriveMotor.run(5000)
+                br.rightDriveMotor.run(5000)
+            else:
+                br.leftDriveMotor.run(0)
+                br.rightDriveMotor.run(0)
 
     # It will now launch the mission coresponding to the color
     if col == Color.SENSOR_GREEN:
