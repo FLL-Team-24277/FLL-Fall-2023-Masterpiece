@@ -17,6 +17,7 @@ def Run(br: BaseRobot):
     br.leftAttachmentMotor.run_angle(200, 180)  # speed 200, 180 degrees
     br.WaitForButton(Button.RIGHT)
     br.rightAttachmentMotor.run_angle(200, 180)  # speed 200, 180 degrees
+    br.GyroDrive(220, 600)
 
 
 # If running this program directly (not from the master program), this is
