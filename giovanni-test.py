@@ -16,7 +16,7 @@ def Run(br: BaseRobot):
     br.GyroTurn(55)
     br.GyroDrive(90)
     br.leftAttachmentMotor.run_angle(400, 320)
-    br.GyroDrive(-200, 500)
+    br.GyroDrive(-190, 500)
 
 
 # If running this program directly (not from the master program), this is
