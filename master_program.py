@@ -10,7 +10,7 @@ while True:
     while True:
         col = br.colorSensor.color()
         # The first thing this program does is it detects what color is
-        # being help up to the robot
+        # being help up to the robot color sensor.
         # If no color is detected, then it will display a sad face
         if col == Color.SENSOR_NONE:
             br.hub.display.icon(Icon.SAD)
