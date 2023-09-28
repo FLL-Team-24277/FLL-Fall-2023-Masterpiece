@@ -8,14 +8,12 @@ from base_robot import *
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
-    # Your mission code goes here, step-by-step
-    # It MUST be indented just like the lines below
-    br.GyroDrive(130)  # 130 mm
-    # br.GyroTurn(85)  # turn to the right 85 degrees
-    # br.GyroTurn(85)  # turn to the left 85 degrees
-    # br.GyroDrive(150)  # 150 mm
-    # br.WaitForButton(Button.RIGHT)
-    # br.GyroDrive(50) # 50 mm
+    br.GyroDrive(380)  # drive 380 mm
+    br.GyroTurn(-40)  # turn -40 degrees
+    br.GyroDrive(200)  # drive 200 mm
+    br.GyroTurn(80)  # turn 80 degrees
+    br.GyroDrive(50)  # drive 50 mm
+    br.GyroDrive(-50)  # drive -50 mm
 
 
 # If running this program directly (not from the master program), this is
