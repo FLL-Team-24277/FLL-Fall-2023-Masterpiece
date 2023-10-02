@@ -105,6 +105,35 @@ class BaseRobot:
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
     def GyroTurn(self, angle, then=Stop.BRAKE, wait=True):
+        """
+        Turns the robot to the specified `angle`. \
+        Positive numbers turn to the right, negative numbers turn the \
+        robot to the left. Note that when the robot makes the turn, it \
+        will always overshoot by about seven degrees. In other words if \
+        you need a +90 degree turn, you will probably end up commanding \
+        something around +83 degrees. Just to make sure the robot has \
+        stopped moving before continuing with more instructions. \
+        Parameters:
+        -------------
+        angle: Where the robot should stop turning at. \
+            Positive values turn the robot to the right, negative values \
+            turn to the left.
+        type: float
+        values: Any. Best to keep the numbers less than 180, just so the \
+            robot doesn't turn more than necessary.
+        default: No default value
+        -------------
+        then: What should happen after robot turning. \
+        type: Stop
+        values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
+        default: No default value
+        -------------
+        wait: If the robot should wait for this action to \
+            stop before doing the next action.
+        type: boolean
+        values: true, false.
+        default: true
+        """
         self.robot.turn(angle, then, wait)
 
     # Requires distance but speed is optional because of default. Positive
@@ -112,6 +141,39 @@ class BaseRobot:
     def GyroDrive(
         self, distance, speed=STRAIGHT_SPEED, then=Stop.BRAKE, wait=True
     ):
+        """
+        Makes the robot drive for a certain distance. \
+        Positive numbers make the robot go forward, and negative \
+        numbers make the robot go backwards. The speed has to be \
+        more than -978, but less than 978. If you change the \
+        value of the wait parameter, it will run 2 actions at once. \
+        Just to make sure the robot has stopped moving before \
+        continuing with more instructions. \
+        Parameters:
+        -------------
+        distance: How far the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: Any.
+        default: No default value
+        -------------
+        speed: How fast the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: More than -978, but less than 978.
+        default: No default value
+        -------------
+        then: What should happen after robot turning. \
+        type: Stop
+        values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
+        default: No default value
+        -------------
+        wait: If the robot should wait for this action to \
+            stop before doing the next action.
+        type: boolean
+        values: true, false.
+        default: true
+        """
         if speed > 977:
             speed = 977
         if speed < -977:
@@ -121,19 +183,64 @@ class BaseRobot:
 
     # wait for miliseconds. 1000 is one second and 500 is half a second
     def WaitForMillis(self, millis):
+        """
+        Waits for a button to be pressed\
+        Parameters:
+        -------------
+        millis: How long it should wait. \
+        type: float
+        values: Any.
+        default: No default value
+        """
         wait(millis)
 
     # Wait for Button Press. Requires which button is goin to be pressed.
     def WaitForButton(self, button):
+        """
+        Waits for a button to be pressed\
+        Parameters:
+        -------------
+        button: Which button that needs to be pressed. \
+        type: Button
+        values: Button.LEFT, Button.RIGHT, Button.BLUETOOTH.
+        default: No default value
+        """
         while True:
             pressed = self.hub.buttons.pressed()
             if button in pressed:
                 break
             wait(250)
 
-    # Coach Morrow: Do we need a "DriveForTime()" method??
-    def DriveForTime(self, something1, something2):
-        pass
+    def Curve(self, radius, angle, then=Stop.HOLD, wait=True):
+        """
+        EXPERIMENTAL
+        Drives the robot in a curve\
+        Parameters:
+        -------------
+        radius: How far the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: Any.
+        default: No default value
+        -------------
+        Angle: How far the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: Any.
+        default: No default value
+        -------------
+        then: What should happen after robot turning. \
+        type: Stop
+        values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
+        default: No default value
+        -------------
+        wait: If the robot should wait for this action to \
+            stop before doing the next action.
+        type: boolean
+        values: true, false.
+        default: true
+        """
+        self.robot.curve(radius, angle, then, wait)
 
     # Coach Morrow:
     # There is an undocumented feature that can turn the gyro off.
