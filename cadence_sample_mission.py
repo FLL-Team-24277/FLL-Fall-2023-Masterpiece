@@ -19,7 +19,7 @@ def Run(br: BaseRobot):
     br.GyroTurn(-70)  # turn -70 degrees
     br.GyroDrive(10)  # drive 10 mm
     br.GyroTurn(-345)  # turn -345 degrees
-    br.GyroTurn(50)  # turn 50 degrees
+    br.GyroTurn(100)  # turn 100 degrees
     # br.GyroDrive
 
 
