@@ -242,6 +242,35 @@ class BaseRobot:
         """
         self.robot.curve(radius, angle, then, wait)
 
+    def DriveAndSteer(self, speed, turnrate):
+        """
+        Makes the robot drive at a certain turnrate. \
+        Positive numbers make the robot go forward, and negative \
+        numbers make the robot go backwards. The speed has to be \
+        more than -978, but less than 978. If you change the \
+        value of the wait parameter, it will run 2 actions at once. \
+        Just to make sure the robot has stopped moving before \
+        continuing with more instructions. \
+        Parameters:
+        -------------
+        speed: How fast the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: More than -978, but less than 978.
+        default: No default value
+        -------------
+        turnrate: How much the robot should turn at a time. \
+        type: float
+        values: Any.
+        default: No default value
+        +
+        """
+        if speed > 977:
+            speed = 977
+        if speed < -977:
+            speed = -977
+        self.robot.drive(speed, turnrate)
+
     # Coach Morrow:
     # There is an undocumented feature that can turn the gyro off.
     # Would we ever want to do that?
