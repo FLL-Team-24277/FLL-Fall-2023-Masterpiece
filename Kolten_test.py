@@ -16,7 +16,15 @@ def Run(br: BaseRobot):
     # br.WaitForMillis(500)  # half second
     # br.GyroTurn(85)  # turn to the right 85 degrees
     # br.leftAttachmentMotor.run_angle(200, 180)  # speed 200, 180 degrees
-    br.GyroTurn(90)
+      br.GyroDrive(400 , 900)
+      br.GyroTurn(20)
+      br.GyroDrive(400, 900)
+      br.GyroTurn(-50)
+      br.GyroDrive(-100, 900)
+      br.leftAttachmentMotor.run_angle(100, -90)
+
+
+
 
 
 # If running this program directly (not from the master program), this is

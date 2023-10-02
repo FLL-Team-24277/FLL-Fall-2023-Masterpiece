@@ -112,6 +112,10 @@ class BaseRobot:
     def GyroDrive(
         self, distance, speed=STRAIGHT_SPEED, then=Stop.BRAKE, wait=True
     ):
+        if speed > 977:
+            speed = 977
+        if speed < -977:
+            speed = -977
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.robot.straight(distance, then, wait)
 
