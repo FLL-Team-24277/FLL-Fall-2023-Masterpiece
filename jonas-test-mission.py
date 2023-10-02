@@ -9,6 +9,7 @@ def Run(br: BaseRobot):
     # pressed = br.hub.buttons.pressed()
     # while len(pressed) == 0:
     #     pressed = br.hub.buttons.pressed()
+    br.GyroTurn()
     br.GyroDrive(850, then=Stop.BRAKE)
     br.GyroDrive(-850, then=Stop.BRAKE)
     br.WaitForButton(Button.RIGHT)
