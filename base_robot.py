@@ -126,7 +126,7 @@ class BaseRobot:
         then: What should happen after robot turning. \
         type: Stop
         values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
-        default: No default value
+        default: Stop.BRAKE
         -------------
         wait: If the robot should wait for this action to \
             stop before doing the next action.
@@ -166,7 +166,7 @@ class BaseRobot:
         then: What should happen after robot turning. \
         type: Stop
         values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
-        default: No default value
+        default: Stop.BRAKE
         -------------
         wait: If the robot should wait for this action to \
             stop before doing the next action.
@@ -232,7 +232,7 @@ class BaseRobot:
         then: What should happen after robot turning. \
         type: Stop
         values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
-        default: No default value
+        default: Stop.BRAKE
         -------------
         wait: If the robot should wait for this action to \
             stop before doing the next action.
@@ -242,7 +242,7 @@ class BaseRobot:
         """
         self.robot.curve(radius, angle, then, wait)
 
-    def DriveAndSteer(self, speed, turnrate):
+    def DriveAndSteer(self, speed, turnrate, time):
         """
         Makes the robot drive at a certain turnrate. \
         Positive numbers make the robot go forward, and negative \
@@ -263,13 +263,21 @@ class BaseRobot:
         type: float
         values: Any.
         default: No default value
-        +
+        -------------
+        turnrate: How long the robot should drive for in miliseconds. \
+        type: float
+        values: Any.
+        default: No default value
         """
         if speed > 977:
             speed = 977
         if speed < -977:
             speed = -977
+        self.robot.use_gyro(False)
         self.robot.drive(speed, turnrate)
+        self.WaitForMillis(time)
+        self.robot.stop()
+        self.robot.use_gyro(True)
 
     # Coach Morrow:
     # There is an undocumented feature that can turn the gyro off.

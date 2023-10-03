@@ -2,7 +2,7 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
-    br.Curve(2000, 15)
+    br.DriveAndSteer(500, 20, 5000)
 
 
 if __name__ == "__main__":
