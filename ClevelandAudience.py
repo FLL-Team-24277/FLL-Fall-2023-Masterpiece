@@ -4,12 +4,16 @@ from base_robot import *
 def Run(br: BaseRobot):
     #   Your mission code goes here, step-by-step
     # It MUST be indented just like the lines below
-    br.GyroDrive(260)  # 130 mm
-    br.GyroDrive(-130)
-    br.GyroTurn(90)
-    br.GyroDrive(50)
-    br.GyroDrive(-150)
-    
+
+    br.GyroDrive(750)
+    br.GyroTurn(35)
+    br.GyroDrive(100)
+    br.GyroDrive(-100)
+    br.GyroTurn(-90)
+    br.GyroDrive(25)
+    br.GyroDrive(-55)
+    br.GyroTurn(-45)
+    br.GyroDrive(150)
 
 
 # If running this program directly (not from the master program), this is
