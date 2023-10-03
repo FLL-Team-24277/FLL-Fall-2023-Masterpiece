@@ -16,10 +16,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(320, 800)
     br.WaitForMillis(100)
     br.leftAttachmentMotor.run_angle(500, 408, wait=False)
-    br.rightAttachmentMotor.run_angle(
-        1000,
-        -120,
-    )
+    br.rightAttachmentMotor.run_angle(1000, -120,)
     br.WaitForMillis(200)
     br.GyroDrive(-320, 800)
     br.leftAttachmentMotor.run_angle(800, -408, wait=True)
