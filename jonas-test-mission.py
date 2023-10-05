@@ -2,13 +2,6 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
-    # br.rightAttachmentMotor(500,180)
-    # br.leftDriveMotor(50,180)
-    # br.MoveRightAttachmentMotorSec(500, 1)
-    # print("done")
-    # pressed = br.hub.buttons.pressed()
-    # while len(pressed) == 0:
-    # pressed = br.hub.buttons.pressed()
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(350, 600)
     br.GyroTurn(180)
@@ -27,8 +20,8 @@ def Run(br: BaseRobot):
     br.GyroTurn(-90, then=Stop.BRAKE)
     br.robot.straight(-750, Stop.BRAKE, True)
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(500)  # 500 mm
-    br.GyroDrive(-500)  # 500 mm
+    br.GyroDrive(500)
+    br.GyroDrive(-500)
 
 
 if __name__ == "__main__":
