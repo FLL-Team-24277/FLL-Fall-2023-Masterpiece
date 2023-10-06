@@ -9,11 +9,10 @@ from base_robot import *
 # "Run(br)" method.
 def Run(br: BaseRobot):
     br.GyroDrive(450)  # drive 450 mm
-    br.GyroTurn(-35)  # turn -35 degrees
+    br.GyroTurn(-30)  # turn -30 degrees
     br.GyroDrive(600)  # drive 600 mm
-    # br.GyroTurn(40)  # turn 40 degrees
-    # br.GyroDrive()
-    # br.GyroDrive()
+    br.GyroDrive(-150)  # drive -150 mm
+    br.GyroTurn(-40)  # turn -40 degrees
     # br.GyroTurn(-90)  # turn -90 degrees
     # br.GyroDrive(200)  # drive 200 mm
     # br.GyroTurn(-70)  # turn -70 degrees
