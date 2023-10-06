@@ -126,7 +126,7 @@ class BaseRobot:
         then: What should happen after robot turning. \
         type: Stop
         values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
-        default: No default value
+        default: Stop.BRAKE
         -------------
         wait: If the robot should wait for this action to \
             stop before doing the next action.
@@ -166,7 +166,7 @@ class BaseRobot:
         then: What should happen after robot turning. \
         type: Stop
         values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
-        default: No default value
+        default: Stop.BRAKE
         -------------
         wait: If the robot should wait for this action to \
             stop before doing the next action.
@@ -232,7 +232,7 @@ class BaseRobot:
         then: What should happen after robot turning. \
         type: Stop
         values: Stop.HOLD, Stop.BRAKE, Stop.COAST, Stop.COAST_SMART.
-        default: No default value
+        default: Stop.BRAKE
         -------------
         wait: If the robot should wait for this action to \
             stop before doing the next action.
@@ -241,6 +241,43 @@ class BaseRobot:
         default: true
         """
         self.robot.curve(radius, angle, then, wait)
+
+    def DriveAndSteer(self, speed, turnrate, time):
+        """
+        Makes the robot drive at a certain turnrate. \
+        Positive numbers make the robot go forward, and negative \
+        numbers make the robot go backwards. The speed has to be \
+        more than -978, but less than 978. If you change the \
+        value of the wait parameter, it will run 2 actions at once. \
+        Just to make sure the robot has stopped moving before \
+        continuing with more instructions. \
+        Parameters:
+        -------------
+        speed: How fast the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: More than -978, but less than 978.
+        default: No default value
+        -------------
+        turnrate: How much the robot should turn at a time. \
+        type: float
+        values: Any.
+        default: No default value
+        -------------
+        turnrate: How long the robot should drive for in miliseconds. \
+        type: float
+        values: Any.
+        default: No default value
+        """
+        if speed > 977:
+            speed = 977
+        if speed < -977:
+            speed = -977
+        self.robot.use_gyro(False)
+        self.robot.drive(speed, turnrate)
+        self.WaitForMillis(time)
+        self.robot.stop()
+        self.robot.use_gyro(True)
 
     # Coach Morrow:
     # There is an undocumented feature that can turn the gyro off.
