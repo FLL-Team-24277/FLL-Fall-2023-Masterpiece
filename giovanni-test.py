@@ -14,14 +14,15 @@ def Run(br: BaseRobot):
     # It MUST be indented just like the lines below
     # jimmy is off to a good start
     br.GyroDrive(260, 550)
-    br.leftAttachmentMotor.run_angle(500, 310)
+    br.leftAttachmentMotor.run_angle(500, 305, wait=False)
     br.rightAttachmentMotor.run_angle(500, -350)
-    br.GyroDrive(-230, 500)
-    br.GyroTurn(-20)
-    br.GyroDrive(110, 500)
+    br.GyroDrive(-245, 500)
+    br.rightAttachmentMotor.run_angle(500, 350, wait=False)
+    br.GyroTurn(-12)
+    br.GyroDrive(205, 500)
     br.leftAttachmentMotor.run_angle(500, -305)
-    br.GyroDrive(-350, 977)
-    br.rightAttachmentMotor.run_angle(500, 350)
+    br.GyroDrive(-360, 977)
+
 
 # If running this program directly (not from the master program), this is
 # how we know it is running directly. In which case, this method will
