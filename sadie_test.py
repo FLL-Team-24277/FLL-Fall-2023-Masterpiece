@@ -13,12 +13,13 @@ def Run(br: BaseRobot):
     #   Your mission code goes here, step-by-step
     # It MUST be indented just like the lines belowL
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(320, 800)
+    br.GyroDrive(325, 800)
     br.WaitForMillis(100)
-    br.leftAttachmentMotor.run_angle(500, 50, wait=False)
-    br.rightAttachmentMotor.run_angle(1000, -120,)
-    br.WaitForMillis(400)
-    br.GyroDrive(-320, 800)
+    br.leftAttachmentMotor.run_angle(500, 40, wait=False)
+    br.rightAttachmentMotor.run_angle(1000, -120, )
+    br.WaitForMillis(200)
+    br.GyroDrive(-325, 800)
+    br.leftAttachmentMotor(700,-40)
     br.GyroDrive(-200, 800)
 
 
