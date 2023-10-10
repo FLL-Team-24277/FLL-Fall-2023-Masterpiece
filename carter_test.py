@@ -10,16 +10,20 @@ from base_robot import *
 def Run(br: BaseRobot):
     br.GyroDrive(435)  # drive 450 mm
     br.GyroTurn(-50)  # turn -30 degrees
-    br.GyroDrive(500)  # drive 600 mm
-    # br.GyroDrive(-150)  # drive -150 mm
-    # br.GyroTurn(-40)  # turn -40 degrees
-    # br.GyroTurn(-90)  # turn -90 degrees
-    # br.GyroDrive(200)  # drive 200 mm
-    # br.GyroTurn(-70)  # turn -70 degrees
-    # br.GyroDrive(30)  # drive 30 mm
-    # # br.GyroTurn(-345)  # turn -345 degrees
-    # br.GyroTurn(100)  # turn 100 degrees
-    # br.
+    br.GyroDrive(700)  # drive 700 mm
+    br.GyroTurn(20)
+    br.GyroDrive(90)
+    br.GyroDrive(-200)
+
+
+# br.GyroDrive(300)  # drive 100 mm
+# br.GyroTurn(-90)  # turn -90 degrees
+# br.GyroDrive(200)  # drive 200 mm
+# br.GyroTurn(-70)  # turn -70 degrees
+# br.GyroDrive(30)  # drive 30 mm
+# # br.GyroTurn(-345)  # turn -345 degrees
+# br.GyroTurn(100)  # turn 100 degrees
+# br.
 
 
 # If running this program directly (not from the master program), this is
