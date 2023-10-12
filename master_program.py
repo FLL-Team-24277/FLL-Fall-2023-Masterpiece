@@ -12,9 +12,6 @@ br = BaseRobot()
 
 pressed = []
 col = br.colorSensor.color()
-# Definition of custom Colors
-Color.MAGENTA = Color(h=348, s=96, v=40)
-Color.BROWN = Color(h=17, s=78, v=15)
 
 while True:
     while True:
@@ -48,10 +45,10 @@ while True:
     if col == Color.SENSOR_RED:
         # If detected color is Red, then run RJ's mission
         ClevelandAudience.Run(br)
-    if col == Color.BROWN:
+    if col == Color.SENSOR_BLUE:
         # If detected color is Brown, then run Jonas' mission
         jonas_test.Run(br)
-    if col == Color.SENSOR_BLUE:
+    if col == Color.SENSOR_WHITE:
         # If detected color is Blue, then run Zack's mission
         sadie_test.Run(br)
     if col == Color.SENSOR_MAGENTA:
