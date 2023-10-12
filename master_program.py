@@ -1,8 +1,9 @@
 from base_robot import *
+
 # Import missions
 import jonas_test
 import sadie_test
-import giovanni-test
+import giovanni_test
 import rj_test
 import cadence_sample_mission
 import zack_missions
@@ -34,8 +35,8 @@ while True:
         if Button.LEFT in pressed:
             break
         if Button.BLUETOOTH in pressed:
-        # If the Bluetooth button is pressed, it will run the motors fast for
-        # cleaning
+            # If the Bluetooth button is pressed, it will run the motors fast for
+            # cleaning
             if br.leftDriveMotor.speed() == 0:
                 br.leftDriveMotor.run(5000)
                 br.rightDriveMotor.run(5000)
@@ -52,13 +53,13 @@ while True:
         jonas_test.Run(br)
     if col == Color.SENSOR_BLUE:
         # If detected color is Blue, then run Zack's mission
-        zack_missions.Run(br)
+        sadie_test.Run(br)
     if col == Color.SENSOR_MAGENTA:
         # If detected color is Magenta, then run Sadie's mission
-        sadie_test.Run(br)
+        zack_missions.Run(br)
     if col == Color.SENSOR_GREEN:
         # If detected color is Green, then run Cadence's mission
         cadence_sample_mission.Run(br)
     if col == Color.SENSOR_YELLOW:
         # If detected color is Yellow, then run Giovanni's mission
-        giovanni-test.Run(br)
+        giovanni_test.Run(br)
