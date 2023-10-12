@@ -7,7 +7,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(315,950)
     br.leftAttachmentMotor.run_until_stalled(700)
     br.GyroDrive(-300,700)
-    # Sound Mixer
+    # # Sound Mixer
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(370,950)
     br.GyroDrive(50,75)
@@ -20,9 +20,9 @@ def Run(br: BaseRobot):
     br.GyroDrive(485,700)
     br.GyroTurn(-40)
     br.GyroDrive(-125,500)
-    br.GyroDrive(75,500)
-    br.leftAttachmentMotor.run_angle(950,375,wait=False)
-    br.GyroDrive(15,300)
+    br.GyroDrive(250,700)
+    br.GyroDrive(-175,700)
+    
 
 
 if __name__ == "__main__":

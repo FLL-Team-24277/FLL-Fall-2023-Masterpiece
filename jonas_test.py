@@ -3,18 +3,26 @@ from base_robot import *
 
 def Run(br: BaseRobot):
     br.WaitForButton(Button.LEFT)
+    # Drive to Chicken
     br.GyroDrive(350, 600)
-    br.GyroDrive(90, 50)
-    wait(5)
+    # Release Mechanism
+    br.GyroDrive(75, 50)
+    # Wait 10 Seconds
+    br.WaitForMillis(10000)
+    # Drive Back
     br.GyroDrive(-450, 600)
-
+    # PICK UP PERSON NOT IN USE
+    # br.WaitForButton(Button.LEFT)
+    # br.GyroDrive(350, 600)
+    # br.GyroTurn(180)
+    # br.GyroDrive(400, -600)
+    # Deliver People
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(350, 600)
-    br.GyroTurn(180)
-    br.GyroDrive(400, -600)
-    br.WaitForButton(Button.LEFT)
+    # Drive up
     br.GyroDrive(850, speed=977, then=Stop.BRAKE)
+    # Drive back
     br.GyroDrive(-850, speed=977, then=Stop.BRAKE)
+    # Missions 5+6
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(750, then=Stop.BRAKE)
     br.GyroTurn(90, then=Stop.BRAKE)
@@ -25,9 +33,9 @@ def Run(br: BaseRobot):
     br.GyroDrive(-200, then=Stop.BRAKE)
     br.GyroTurn(-90, then=Stop.BRAKE)
     br.robot.straight(-750, Stop.BRAKE, True)
-    br.WaitForButton(Button.LEFT)
-    br.GyroDrive(500)
-    br.GyroDrive(-500)
+    # br.WaitForButton(Button.LEFT)
+    # br.GyroDrive(500)
+    # br.GyroDrive(-500)
 
 
 if __name__ == "__main__":
