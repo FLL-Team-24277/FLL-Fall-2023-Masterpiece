@@ -45,7 +45,7 @@ while True:
     if col == Color.SENSOR_RED:
         # If detected color is Red, then run RJ's mission
         ClevelandAudience.Run(br)
-    if col == Color.SENSOR_BLUE:
+    if col == Color.SENSOR_ORANGE:
         # If detected color is Brown, then run Jonas' mission
         jonas_test.Run(br)
     if col == Color.SENSOR_WHITE:
