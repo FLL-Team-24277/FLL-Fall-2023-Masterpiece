@@ -1,10 +1,19 @@
 from base_robot import *
-import clev_test
+# Import missions
+import jonas_test
+import sadie_test
+import giovanni-test
+import rj_test
+import cadence_sample_mission
+import zack_missions
 
 br = BaseRobot()
 
 pressed = []
 col = br.colorSensor.color()
+# Definition of custom Colors
+Color.MAGENTA = Color(h=348, s=96, v=40)
+Color.BROWN = Color(h=17, s=78, v=15)
 
 while True:
     while True:
@@ -25,6 +34,8 @@ while True:
         if Button.LEFT in pressed:
             break
         if Button.BLUETOOTH in pressed:
+        # If the Bluetooth button is pressed, it will run the motors fast for
+        # cleaning
             if br.leftDriveMotor.speed() == 0:
                 br.leftDriveMotor.run(5000)
                 br.rightDriveMotor.run(5000)
@@ -33,8 +44,21 @@ while True:
                 br.rightDriveMotor.run(0)
 
     # It will now launch the mission coresponding to the color
-    if col == Color.SENSOR_GREEN:
-        clev_test.Run(br)
-
+    if col == Color.SENSOR_RED:
+        # If detected color is Red, then run RJ's mission
+        rj_test.Run(br)
+    if col == Color.BROWN:
+        # If detected color is Brown, then run Jonas' mission
+        jonas_test.Run(br)
     if col == Color.SENSOR_BLUE:
-        print("Launching the Blue mission")
+        # If detected color is Blue, then run Zack's mission
+        zack_missions.Run(br)
+    if col == Color.SENSOR_MAGENTA:
+        # If detected color is Magenta, then run Sadie's mission
+        sadie_test.Run(br)
+    if col == Color.SENSOR_GREEN:
+        # If detected color is Green, then run Cadence's mission
+        cadence_sample_mission.Run(br)
+    if col == Color.SENSOR_YELLOW:
+        # If detected color is Yellow, then run Giovanni's mission
+        giovanni-test.Run(br)

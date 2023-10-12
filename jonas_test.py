@@ -4,6 +4,12 @@ from base_robot import *
 def Run(br: BaseRobot):
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(350, 600)
+    br.GyroDrive(90, 50)
+    wait(5)
+    br.GyroDrive(-450, 600)
+
+    br.WaitForButton(Button.LEFT)
+    br.GyroDrive(350, 600)
     br.GyroTurn(180)
     br.GyroDrive(400, -600)
     br.WaitForButton(Button.LEFT)
