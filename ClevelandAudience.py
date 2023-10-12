@@ -4,22 +4,29 @@ from base_robot import *
 def Run(br: BaseRobot):
     #   Your mission code goes here, step-by-step
     # It MUST be indented just like the lines below
-
-    br.GyroDrive(725)
+    # for our testing
+    br.WaitForButton(Button.LEFT)
+    #  for master program
+    br.GyroDrive(295.5)
+    br.GyroTurn(90)
+    br.GyroDrive(725 - 180)
     br.GyroTurn(40)
-
     br.GyroDrive(120)
     br.GyroDrive(-120)
     br.GyroTurn(-75)
-    br.GyroDrive(50)
+    br.GyroDrive(60)
     br.GyroDrive(-60)
     br.GyroTurn(-50)
     br.GyroDrive(200)
     br.GyroTurn(-35)
     br.GyroDrive(400)
-    br.GyroTurn(-110)
+    br.GyroTurn(-105)
     br.GyroDrive(310)
-    br.GyroTurn(80)
+    br.GyroTurn(72)
+    br.GyroDrive(150)
+    br.GyroDrive(-150)
+    br.GyroTurn(-72)
+    br.GyroDrive(500)
 
     # design two
     # turn 45 at hot dog
