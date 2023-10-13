@@ -78,9 +78,9 @@ class BaseRobot:
             Color.SENSOR_YELLOW,
             Color.SENSOR_GREEN,
             Color.SENSOR_BLUE,
-            # Color.SENSOR_MAGENTA,
-            # Color.SENSOR_ORANGE,
-            # Color.SENSOR_DARKGRAY,
+            Color.SENSOR_MAGENTA,
+            Color.SENSOR_ORANGE,
+            Color.SENSOR_DARKGRAY,
             Color.SENSOR_NONE,  # must have SENSOR_NONE. Do not comment
         ]
 
