@@ -17,7 +17,7 @@ def Run(br: BaseRobot):
     # Theater Scene Change
     br.GyroDrive(-150,700)
     br.GyroTurn(-40)
-    br.GyroDrive(485,700)
+    br.GyroDrive(510,700)
     br.GyroTurn(-40)
     br.GyroDrive(-125,500)
     br.GyroDrive(250,700)
