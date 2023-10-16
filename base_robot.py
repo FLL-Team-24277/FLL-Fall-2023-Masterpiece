@@ -209,7 +209,7 @@ class BaseRobot:
             pressed = self.hub.buttons.pressed()
             if button in pressed:
                 break
-            wait(250)
+            wait(50)
 
     def Curve(self, radius, angle, then=Stop.HOLD, wait=True):
         """
