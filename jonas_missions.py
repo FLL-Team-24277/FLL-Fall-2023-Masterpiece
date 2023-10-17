@@ -6,9 +6,9 @@ def Run(br: BaseRobot):
     # Drive to Chicken
     br.GyroDrive(350, 600)
     # Release Mechanism
-    br.GyroDrive(75, 50)
+    br.GyroDrive(55, 50)
     # Wait 10 Seconds
-    br.WaitForMillis(10000)
+    br.WaitForMillis(4000)
     # Drive Back
     br.GyroDrive(-450, 600)
     # PICK UP PERSON NOT IN USE
