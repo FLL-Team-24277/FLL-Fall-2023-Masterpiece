@@ -151,16 +151,16 @@ class BaseRobot:
         continuing with more instructions. \
         Parameters:
         -------------
-        distance: How far the robot should go. \
-            Positive values go forward and negative values go backwards.
-        type: float
-        values: Any.
-        default: No default value
-        -------------
         speed: How fast the robot should go. \
             Positive values go forward and negative values go backwards.
         type: float
         values: More than -978, but less than 978.
+        default: No default value
+        -------------
+        distance: How far the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: Any.
         default: No default value
         -------------
         then: What should happen after robot turning. \
@@ -264,7 +264,7 @@ class BaseRobot:
         values: Any.
         default: No default value
         -------------
-        turnrate: How long the robot should drive for in miliseconds. \
+        time: How long the robot should drive for in miliseconds. \
         type: float
         values: Any.
         default: No default value
