@@ -1,11 +1,11 @@
 from base_robot import *
 
 # Import missions
-import jonas_test
+import jonas_missions
 import sadie_test
-import giovanni_test
+import giovanni_missions
 import ClevelandAudience
-import cadence_sample_mission
+import carter_tests
 import zack_missions
 
 br = BaseRobot()
