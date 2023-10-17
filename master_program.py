@@ -26,7 +26,7 @@ while True:
             br.hub.display.icon(Icon.HAPPY)
             br.hub.light.on(br.myColor2DefaultColorDict[col])
 
-        wait(250)
+        wait(50)
         pressed = br.hub.buttons.pressed()
         #  When the left button is pressed, it will break out of the loop
         if Button.LEFT in pressed:
@@ -47,7 +47,7 @@ while True:
         ClevelandAudience.Run(br)
     if col == Color.SENSOR_ORANGE:
         # If detected color is Brown, then run Jonas' mission
-        jonas_test.Run(br)
+        jonas_missions.Run(br)
     if col == Color.SENSOR_WHITE:
         # If detected color is Blue, then run Zack's mission
         sadie_test.Run(br)
@@ -56,7 +56,7 @@ while True:
         zack_missions.Run(br)
     if col == Color.SENSOR_GREEN:
         # If detected color is Green, then run Cadence's mission
-        cadence_sample_mission.Run(br)
+        carter_test.Run(br)
     if col == Color.SENSOR_YELLOW:
         # If detected color is Yellow, then run Giovanni's mission
-        giovanni_test.Run(br)
+        giovanni_missions.Run(br)
