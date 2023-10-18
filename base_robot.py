@@ -181,7 +181,7 @@ class BaseRobot:
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.robot.straight(distance, then, wait)
 
-    def GyroDrive(self, millis, speed=STRAIGHT_SPEED):
+    def GyroDriveForMillis(self, millis, speed=STRAIGHT_SPEED):
         """
         Makes the robot drive for a certain time. \
         Positive speeds make the robot go forward, and negative \
