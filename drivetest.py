@@ -8,7 +8,7 @@ from pybricks.robotics import GyroDriveBase
 from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
 
-# All constents will be defined here
+
 TIRE_DIAMETER = 56  # mm
 AXLE_TRACK = 103  # distance between the wheels, mm
 
@@ -26,7 +26,6 @@ robot = GyroDriveBase(
     TIRE_DIAMETER,
     AXLE_TRACK,
 )
-# default speeds were determined by testing
 robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
 
 robot.use_gyro(False)
