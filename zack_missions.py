@@ -36,19 +36,19 @@ def Run(br: BaseRobot):
     br.GyroDrive(-130,500)
     br.GyroDrive(170,500)
     for i in range(pushes):
-        br.GyroDrive(75,175)
+        br.GyroDrive(80,175)
         br.GyroDrive(-60,200)
         br.WaitForMillis(775)
     # Wall Squaring 
-    br.GyroDrive(-53,900)
+    br.GyroDrive(-54,900)
     br.GyroTurn(-135)
     br.DriveAndSteer(-215,0,1750)
 
     # Immersive Experience
 
-    br.GyroDrive(165,900)
+    br.GyroDrive(170,900)
     br.GyroTurn(-90)
-    br.GyroDrive(260,900)
+    br.GyroDrive(230,900)
     br.leftAttachmentMotor.run_until_stalled(900)
 
     
