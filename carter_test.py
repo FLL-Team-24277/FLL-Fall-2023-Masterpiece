@@ -8,6 +8,7 @@ from base_robot import *
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
+    br.WaitForButton(Button.LEFT)
     br.GyroDrive(420)  # drive 420 mm
     br.GyroTurn(-50)  # turn -50 degrees
     br.GyroDrive(700)  # drive 700 mm
@@ -18,15 +19,20 @@ def Run(br: BaseRobot):
     br.GyroDrive(440)  # drive 440 mm
     br.GyroTurn(35)  # turn 435 degrees
     br.GyroDrive(200)  # drive 200 mm
-    br.GyroTurn(18)  # turn 18 degrees
+    br.GyroTurn(20)  # turn 20 degrees
     br.rightAttachmentMotor.run_angle(1000, 300)
     br.GyroDrive(-250)  # drive -250 mm
     br.GyroTurn(-15)  # turn -15 degrees
-    br.GyroDrive(50)  # drive 50 mm
+    br.GyroDrive(200)  # drive 200 mm
+    br.GyroTurn(-50)  # turn -50 degrees
+    br.GyroDrive(150, 150)  # drive 150, 150 mm
+    br.leftAttachmentMotor.run_angle(-1000, 300)
+    br.GyroDrive(-40)  # drive -40,  150 mm
+
     # br.GyroTurn(80)  # turn 80 degrees
     # br.GyroDrive()
-    br.leftAttachmentMotor.run_angle(1000, 300)
-    br.GyroDrive(-50)  # drive -50 mm
+    # br.leftAttachmentMotor.run_angle(1000, 300)
+    # br.GyroDrive(-50)  # drive -50 mm
 
 
 # If running this program directly (not from the master program), this is
