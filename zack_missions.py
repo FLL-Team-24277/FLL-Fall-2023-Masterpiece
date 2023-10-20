@@ -37,21 +37,26 @@ def Run(br: BaseRobot):
     br.GyroDrive(-130, 500)
     br.GyroDrive(170, 500)
     for i in range(pushes):
-        br.GyroDrive(90, 175)
+        br.GyroDrive(95, 175)
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
     # Wall Squaring
-    br.GyroDrive(-52, 900)
+    br.GyroDrive(-51, 900)
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
     # Immersive Experience
 
-    br.GyroDrive(255, 900)
+    br.GyroDrive(270, 900)
+    # br.GyroDrive(185,900)
     br.GyroTurn(-90)
     br.GyroDrive(400, 900)
+    # br.GyroDrive(177,900)
     br.GyroTurn(-90)
-    br.leftAttachmentMotor.run_angle(900, 200)
+    br.GyroDrive(50, 500)
+    br.leftAttachmentMotor.run_angle(900, 400)
+    br.leftAttachmentMotor.run_until_stalled(900)
+    br.GyroDrive(50, 900)
 
 
 if __name__ == "__main__":
