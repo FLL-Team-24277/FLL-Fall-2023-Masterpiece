@@ -58,10 +58,12 @@ def Run(br: BaseRobot):
     br.GyroDrive(-50, 900)
 
     # Augmented Reality
-    br.leftAttachmentMotor.run_until_stalled(700)
+
     br.GyroTurn(45)
-    br.GyroDrive(210,700)
-    # br.Curve(radius=265,angle=55)
+    br.leftAttachmentMotor.run_until_stalled(700)
+    br.GyroDrive(190, 700)
+    br.Curve(radius=350, angle=27)
+    br.GyroTurn(45)
 
 
 if __name__ == "__main__":
