@@ -151,16 +151,16 @@ class BaseRobot:
         continuing with more instructions. \
         Parameters:
         -------------
-        distance: How far the robot should go. \
-            Positive values go forward and negative values go backwards.
-        type: float
-        values: Any.
-        default: No default value
-        -------------
         speed: How fast the robot should go. \
             Positive values go forward and negative values go backwards.
         type: float
         values: More than -978, but less than 978.
+        default: No default value
+        -------------
+        distance: How far the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: Any.
         default: No default value
         -------------
         then: What should happen after robot turning. \
@@ -180,6 +180,37 @@ class BaseRobot:
             speed = -977
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.robot.straight(distance, then, wait)
+
+    def GyroDriveForMillis(self, millis, speed=STRAIGHT_SPEED):
+        """
+        Makes the robot drive for a certain time. \
+        Positive speeds make the robot go forward, and negative \
+        numbers make the robot go backwards. The speed has to be \
+        more than -978, but less than 978. The wait time is in \
+        milliseconds, meaning it is seconds times 1000. \
+        Just to make sure the robot has stopped moving before \
+        continuing with more instructions. \
+        Parameters:
+        -------------
+        speed: How far the robot should go. \
+            Positive values go forward and negative values go backwards.
+        type: float
+        values: Any.
+        default: No default value
+        -------------
+        Millis: How long the robot should drive for. \
+        type: float
+        values: Any.
+        default: None
+        """
+        if speed > 977:
+            speed = 977
+        if speed < -977:
+            speed = -977
+        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        self.robot.drive(speed, 0)
+        wait(millis)
+        self.robot.stop()
 
     # wait for miliseconds. 1000 is one second and 500 is half a second
     def WaitForMillis(self, millis):
@@ -209,7 +240,7 @@ class BaseRobot:
             pressed = self.hub.buttons.pressed()
             if button in pressed:
                 break
-            wait(250)
+            wait(50)
 
     def Curve(self, radius, angle, then=Stop.HOLD, wait=True):
         """
@@ -264,7 +295,7 @@ class BaseRobot:
         values: Any.
         default: No default value
         -------------
-        turnrate: How long the robot should drive for in miliseconds. \
+        time: How long the robot should drive for in miliseconds. \
         type: float
         values: Any.
         default: No default value

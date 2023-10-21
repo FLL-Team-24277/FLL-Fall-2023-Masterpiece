@@ -1,11 +1,11 @@
 from base_robot import *
 
 # Import missions
-import jonas_test
+import jonas_missions
 import sadie_test
-import giovanni_test
+import giovanni_missions
 import ClevelandAudience
-import cadence_sample_mission
+import carter_test
 import zack_missions
 
 br = BaseRobot()
@@ -26,7 +26,7 @@ while True:
             br.hub.display.icon(Icon.HAPPY)
             br.hub.light.on(br.myColor2DefaultColorDict[col])
 
-        wait(250)
+        wait(50)
         pressed = br.hub.buttons.pressed()
         #  When the left button is pressed, it will break out of the loop
         if Button.LEFT in pressed:
@@ -45,18 +45,18 @@ while True:
     if col == Color.SENSOR_RED:
         # If detected color is Red, then run RJ's mission
         ClevelandAudience.Run(br)
-    if col == Color.SENSOR_BLUE:
-        # If detected color is Brown, then run Jonas' mission
-        jonas_test.Run(br)
+    if col == Color.SENSOR_ORANGE:
+        # If detected color is Orange, then run Jonas' mission
+        jonas_missions.Run(br)
     if col == Color.SENSOR_WHITE:
-        # If detected color is Blue, then run Zack's mission
+        # If detected color is White, then run Sadie's mission
         sadie_test.Run(br)
     if col == Color.SENSOR_MAGENTA:
-        # If detected color is Magenta, then run Sadie's mission
+        # If detected color is Magenta, then run Cadence's & Carter's mission
+        carter_test.Run(br)
+    if col == Color.SENSOR_DARKGRAY:
+        # If detected color is Dark Gray, then run Zack's mission
         zack_missions.Run(br)
-    if col == Color.SENSOR_GREEN:
-        # If detected color is Green, then run Cadence's mission
-        cadence_sample_mission.Run(br)
     if col == Color.SENSOR_YELLOW:
         # If detected color is Yellow, then run Giovanni's mission
-        giovanni_test.Run(br)
+        giovanni_missions.Run(br)
