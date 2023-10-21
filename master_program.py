@@ -46,17 +46,17 @@ while True:
         # If detected color is Red, then run RJ's mission
         ClevelandAudience.Run(br)
     if col == Color.SENSOR_ORANGE:
-        # If detected color is Brown, then run Jonas' mission
+        # If detected color is Orange, then run Jonas' mission
         jonas_missions.Run(br)
     if col == Color.SENSOR_WHITE:
-        # If detected color is Blue, then run Zack's mission
+        # If detected color is White, then run Sadie's mission
         sadie_test.Run(br)
     if col == Color.SENSOR_MAGENTA:
-        # If detected color is Magenta, then run Sadie's mission
-        zack_missions.Run(br)
-    if col == Color.SENSOR_GREEN:
-        # If detected color is Green, then run Cadence's mission
+        # If detected color is Magenta, then run Cadence's & Carter's mission
         carter_test.Run(br)
+    if col == Color.SENSOR_DARKGRAY:
+        # If detected color is Dark Gray, then run Zack's mission
+        zack_missions.Run(br)
     if col == Color.SENSOR_YELLOW:
         # If detected color is Yellow, then run Giovanni's mission
         giovanni_missions.Run(br)
