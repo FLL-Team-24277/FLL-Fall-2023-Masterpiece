@@ -54,7 +54,7 @@ while True:
     if col == Color.SENSOR_MAGENTA:
         # If detected color is Magenta, then run Cadence's & Carter's mission
         carter_test.Run(br)
-    if col == Color.SENSOR_Dark_GRAY:
+    if col == Color.SENSOR_DARKGRAY:
         # If detected color is Dark Gray, then run Zack's mission
         zack_missions.Run(br)
     if col == Color.SENSOR_YELLOW:
