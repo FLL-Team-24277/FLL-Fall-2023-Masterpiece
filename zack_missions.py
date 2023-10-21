@@ -10,7 +10,7 @@ def Run(br: BaseRobot):
     br.leftAttachmentMotor.run_until_stalled(700)
     br.GyroDrive(-300, 700)
 
-    # # Sound Mixer
+    # Sound Mixer
 
     while True:
         pressed = br.hub.buttons.pressed()
@@ -41,22 +41,27 @@ def Run(br: BaseRobot):
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
     # Wall Squaring
-    br.GyroDrive(-51, 900)
+
+    br.GyroDrive(-50, 900)
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
     # Immersive Experience
 
-    br.GyroDrive(270, 900)
-    # br.GyroDrive(185,900)
+    br.GyroDrive(269, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(400, 900)
-    # br.GyroDrive(177,900)
+    br.GyroDrive(425, 900)
     br.GyroTurn(-90)
     br.GyroDrive(50, 500)
-    br.leftAttachmentMotor.run_angle(900, 400)
-    br.leftAttachmentMotor.run_until_stalled(900)
-    br.GyroDrive(50, 900)
+    br.leftAttachmentMotor.run_angle(900, 350)
+    br.leftAttachmentMotor.run_time(-900, 1000)
+    br.GyroDrive(-50, 900)
+
+    # Augmented Reality
+    br.leftAttachmentMotor.run_until_stalled(700)
+    br.GyroTurn(45)
+    br.GyroDrive(210,700)
+    # br.Curve(radius=265,angle=55)
 
 
 if __name__ == "__main__":
