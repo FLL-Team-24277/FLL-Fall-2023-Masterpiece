@@ -4,9 +4,9 @@ from base_robot import *
 import jonas_missions
 import sadie_test
 import giovanni_missions
-import ClevelandAudience
+import rj_cleve_mission
 import cad_car_mission
-import zack_missions
+import zack_mission
 
 br = BaseRobot()
 
@@ -44,7 +44,7 @@ while True:
     # It will now launch the mission coresponding to the color
     # If detected color is Red, then run RJ's mission
     if col == Color.SENSOR_RED:
-        ClevelandAudience.Run(br)
+        rj_cleve_mission.Run(br)
         # If detected color is Orange, then run Jonas' mission
     if col == Color.SENSOR_ORANGE:
         jonas_missions.Run(br)
@@ -56,7 +56,7 @@ while True:
         cad_car_mission.Run(br)
         # If detected color is Dark Gray, then run Zack's mission
     if col == Color.SENSOR_DARKGRAY:
-        zack_missions.Run(br)
+        zack_mission.Run(br)
     # If detected color is Yellow, then run Giovanni's mission
     if col == Color.SENSOR_YELLOW:
         giovanni_missions.Run(br)
