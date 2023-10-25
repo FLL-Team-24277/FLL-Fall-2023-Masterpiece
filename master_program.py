@@ -42,21 +42,21 @@ while True:
                 br.rightDriveMotor.run(0)
 
     # It will now launch the mission coresponding to the color
+    # If detected color is Red, then run RJ's mission
     if col == Color.SENSOR_RED:
-        # If detected color is Red, then run RJ's mission
         ClevelandAudience.Run(br)
-    if col == Color.SENSOR_ORANGE:
         # If detected color is Orange, then run Jonas' mission
+    if col == Color.SENSOR_ORANGE:
         jonas_missions.Run(br)
-    if col == Color.SENSOR_WHITE:
         # If detected color is White, then run Sadie's mission
+    if col == Color.SENSOR_WHITE:
         sadie_test.Run(br)
-    if col == Color.SENSOR_MAGENTA:
         # If detected color is Magenta, then run Cadence's & Carter's mission
+    if col == Color.SENSOR_MAGENTA:
         carter_test.Run(br)
-    if col == Color.SENSOR_DARKGRAY:
         # If detected color is Dark Gray, then run Zack's mission
+    if col == Color.SENSOR_DARKGRAY:
         zack_missions.Run(br)
+    # If detected color is Yellow, then run Giovanni's mission
     if col == Color.SENSOR_YELLOW:
-        # If detected color is Yellow, then run Giovanni's mission
         giovanni_missions.Run(br)
