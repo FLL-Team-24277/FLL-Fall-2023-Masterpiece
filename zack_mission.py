@@ -69,7 +69,7 @@ def Run(br: BaseRobot):
     # Back To Base
 
     br.GyroDrive(100,500)
-    br.GyroTurn(-25)
+    br.GyroTurn(-30)
     br.GyroDrive(600, 900)
 
     
