@@ -11,7 +11,7 @@ def Run(br: BaseRobot):
      br.GyroDrive(420)  # drive 420 mm
      br.GyroTurn(-50)  # turn -50 degrees
      br.GyroDrive(700)  # drive 700 mm
-     br.GyroTurn(20)  # turn 20 degrees
+     br.GyroTurn(20)  # turn 20 degrees 
 
      # enter the museum
      br.GyroDrive(65)  # drive 700 mm
@@ -19,7 +19,7 @@ def Run(br: BaseRobot):
 
      # Drive to skateboard
      br.GyroTurn(-37)  # turn -37 degrees
-     br.GyroDrive(480)  # drive 480 mm
+     br.GyroDrive(540)  # drive 480 mm
      br.GyroTurn(40)  # drive 40 mm
 
      # enter the skateboard
@@ -35,13 +35,7 @@ def Run(br: BaseRobot):
 #     br.GyroDrive(50) # drive 50 mm
 
 
-#     Design one(skateboard to popcorn)
-#     br.GyroDrive(-250)  # drive -250 mm
-#     br.GyroTurn(-15)  # turn -15 degrees
-#     br.GyroDrive(200)  # drive 200 mm
-#     br.GyroTurn(-50)  # turn -50 degrees
-#     br.GyroDrive(300 , 150)  # drive 150, 150 mm
-#     br.leftAttachmentMotor.run_angle(-1000, 300)
+#         br.leftAttachmentMotor.run_angle(-1000, 300)
 #     br.GyroDrive(-100)  # drive150 mm
 
 # br.GyroTurn(80)  # turn 80 degrees
