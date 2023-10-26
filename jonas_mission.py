@@ -2,15 +2,15 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
-    br.WaitForButton(Button.LEFT)
-    # Drive to Chicken
-    br.GyroDrive(350, 600)
-    # Release Mechanism
-    br.GyroDrive(55, 50)
-    # Wait 10 Seconds
-    br.WaitForMillis(4000)
-    # Drive Back
-    br.GyroDrive(-450, 600)
+    # br.WaitForButton(Button.LEFT)
+    # # Drive to Chicken
+    # br.GyroDrive(350, 600)
+    # # Release Mechanism
+    # br.GyroDrive(55, 50)
+    # # Wait 10 Seconds
+    # br.WaitForMillis(4000)
+    # # Drive Back
+    # br.GyroDrive(-450, 600)
     # PICK UP PERSON NOT IN USE
     # br.WaitForButton(Button.LEFT)
     # br.GyroDrive(350, 600)

@@ -1,12 +1,13 @@
 from base_robot import *
 
 # Import missions
-import jonas_missions
-import sadie_test
-import giovanni_missions
-import ClevelandAudience
+import jonas_mission
+import sadie_mission
+import giovanni_mission
+import rj_cleve_mission
 import cad_car_mission
-import zack_missions
+import zack_mission
+import sadie_mission_2
 
 br = BaseRobot()
 
@@ -42,21 +43,24 @@ while True:
                 br.rightDriveMotor.run(0)
 
     # It will now launch the mission coresponding to the color
-    # If detected color is Red, then run RJ's mission
+    # If detected color is Red, then run RJ's & Cleveland's mission
     if col == Color.SENSOR_RED:
-        ClevelandAudience.Run(br)
+        rj_cleve_mission.Run(br)
         # If detected color is Orange, then run Jonas' mission
     if col == Color.SENSOR_ORANGE:
-        jonas_missions.Run(br)
+        jonas_mission.Run(br)
         # If detected color is White, then run Sadie's mission
     if col == Color.SENSOR_WHITE:
-        sadie_test.Run(br)
+        sadie_mission.Run(br)
         # If detected color is Magenta, then run Cadence's & Carter's mission
     if col == Color.SENSOR_MAGENTA:
         cad_car_mission.Run(br)
         # If detected color is Dark Gray, then run Zack's mission
     if col == Color.SENSOR_DARKGRAY:
-        zack_missions.Run(br)
+        zack_mission.Run(br)
     # If detected color is Yellow, then run Giovanni's mission
     if col == Color.SENSOR_YELLOW:
-        giovanni_missions.Run(br)
+        giovanni_mission.Run(br)
+    # If detected color is Green, then run Chicken Mission
+    if col == Color.SENSOR_GREEN:
+        sadie_mission_2.Run(br)

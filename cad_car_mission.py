@@ -8,40 +8,35 @@ from base_robot import *
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
-     br.GyroDrive(420)  # drive 420 mm
-     br.GyroTurn(-50)  # turn -50 degrees
-     br.GyroDrive(700)  # drive 700 mm
-     br.GyroTurn(20)  # turn 20 degrees 
+    br.GyroDrive(420)  # drive 420 mm
+    br.GyroTurn(-50)  # turn -50 degrees
+    br.GyroDrive(700)  # drive 700 mm
+    br.GyroTurn(20)  # turn 20 degrees
 
-     # enter the museum
-     br.GyroDrive(65)  # drive 700 mm
-     br.GyroDrive(-255)  # drive -240 mm
+    # enter the museum
+    br.GyroDrive(65)  # drive 65 mm
+    br.GyroDrive(-255)  # drive -255 mm
 
-     # Drive to skateboard
-     br.GyroTurn(-37)  # turn -37 degrees
-     br.GyroDrive(540)  # drive 480 mm
-     br.GyroTurn(40)  # drive 40 mm
+    # drive to skateboard
+    br.GyroTurn(-37)  # turn -37 degrees
+    br.GyroDrive(490)  # drive 490 mm
+    br.GyroTurn(40)  # turn 40 degrees
 
-     # enter the skateboard
-     br.GyroDrive(170)
-     br.rightAttachmentMotor.run_angle(1000, 300)
-     br.GyroDrive(-200)
-     br.GyroTurn(45) 
-     br.Curve(radius=-350, angle=-100)
-     br.GyroDrive(-500, -977)
+    # enter the skateboard
+    br.GyroDrive(170)  # drive 170 mm
+    br.rightAttachmentMotor.run_angle(1000, 300)
+    br.GyroDrive(-230)  # drive -230 mm
+    br.GyroTurn(55)  # turn 55 degrees
+    br.Curve(radius=-360, angle=-60)
+    br.GyroDrive(-600, -977)
 
-#     base to popcorn
-#     br.WaitForButton(Button.LEFT)
-#     br.GyroDrive(50) # drive 50 mm
-
-
-#         br.leftAttachmentMotor.run_angle(-1000, 300)
-#     br.GyroDrive(-100)  # drive150 mm
-
-# br.GyroTurn(80)  # turn 80 degrees
-# br.GyroDrive()
-# br.leftAttachmentMotor.run_angle(1000, 300)
-# br.GyroDrive(-50)  # drive -50 mm
+    # base to popcorn
+    br.WaitForButton(Button.LEFT)
+    br.GyroDrive(340)  # drive 340 mm
+    br.GyroTurn(10)
+    br.GyroDrive(55)
+    br.leftAttachmentMotor.run_angle(-1000, 300)
+    br.GyroDrive(-200)  # drive -200 mm
 
 
 # If running this program directly (not from the master program), this is
