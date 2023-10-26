@@ -8,21 +8,23 @@ def Run(br: BaseRobot):
     # br.WaitForButton(Button.LEFT)
     #  for master program
     br.GyroDrive(295.5, 800)
-    br.GyroTurn(90)
+    br.GyroTurn(92)
     br.GyroDrive(725 - 180, 800)
     br.GyroTurn(50)
     br.GyroDrive(120, 800)
     br.GyroDrive(-110, 800)
     br.GyroTurn(-90)
     br.GyroDrive(60, 800)
-    br.leftAttachmentMotor.run_angle(977, -2320)
+    br.leftAttachmentMotor.run_angle(977, -2220)
     br.GyroDrive(-65, 800)
     br.GyroTurn(-30)
 
-    br.Curve(260, -150)
-    br.GyroTurn(70)
-    br.GyroDrive(125)
-    br.GyroDrive(-125)
+    br.Curve(radius=260, angle=-145)
+    br.GyroTurn(50)
+    br.GyroDrive(90)
+    br.GyroTurn(20)
+    # br.GyroDrive(125)
+    # br.GyroDrive(-125)
 
 
 # Design Three

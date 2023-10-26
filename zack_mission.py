@@ -50,7 +50,7 @@ def Run(br: BaseRobot):
 
     br.GyroDrive(269, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(425, 900)
+    br.GyroDrive(427, 900)
     br.GyroTurn(-90)
     br.GyroDrive(50, 500)
     br.leftAttachmentMotor.run_angle(900, 350)
@@ -61,11 +61,17 @@ def Run(br: BaseRobot):
 
     br.GyroTurn(45)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.GyroDrive(190, 700)
-    br.Curve(radius=350, angle=27)
-    br.GyroTurn(65)
+    br.GyroDrive(200, 700)
+    br.Curve(radius=410, angle=32)
+    br.GyroDrive(-45, 500)
+    br.GyroTurn(75)
 
     # Back To Base
+
+    br.GyroDrive(100, 500)
+    br.GyroTurn(-35)
+    br.GyroDrive(400, 900)
+    br.Curve(275, 60)
 
 
 if __name__ == "__main__":
