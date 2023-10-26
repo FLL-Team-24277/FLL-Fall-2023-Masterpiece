@@ -72,6 +72,7 @@ def Run(br: BaseRobot):
     br.GyroTurn(-35)
     br.GyroDrive(400, 900)
     br.Curve(275, 60)
+    br.GyroDrive(250, 900)
 
 
 if __name__ == "__main__":
