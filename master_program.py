@@ -7,6 +7,7 @@ import giovanni_mission
 import rj_cleve_mission
 import cad_car_mission
 import zack_mission
+import sadie_mission_2
 
 br = BaseRobot()
 
@@ -60,3 +61,6 @@ while True:
     # If detected color is Yellow, then run Giovanni's mission
     if col == Color.SENSOR_YELLOW:
         giovanni_mission.Run(br)
+    # If detected color is Green, then run Chicken Mission
+    if col == Color.SENSOR_GREEN:
+        sadie_mission_2.Run(br)
