@@ -8,7 +8,7 @@ def Run(br: BaseRobot):
 
     br.GyroDrive(315, 950)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.GyroDrive(-300, 950)
+    br.GyroDrive(-225, 950)
 
     # Sound Mixer
 
@@ -22,10 +22,10 @@ def Run(br: BaseRobot):
             break
         wait(50)
 
-    br.GyroDrive(370, 950)
-    br.GyroDrive(50, 75)
-    br.GyroDrive(-25, 75)
-    br.leftAttachmentMotor.run_angle(195, -300, wait=False)
+    br.GyroDrive(415, 950)
+    br.WaitForMillis(300)
+    br.GyroDrive(-50, 75)
+    br.leftAttachmentMotor.run_angle(125, -300, wait=False)
     br.GyroDrive(55, 60)
 
     # Theater Scene Change
@@ -63,7 +63,7 @@ def Run(br: BaseRobot):
     br.leftAttachmentMotor.run_until_stalled(700)
     br.GyroDrive(200, 900)
     br.Curve(radius=410, angle=32)
-    br.GyroDrive(-45, 900)
+    br.GyroDrive(-55, 900)
     br.GyroTurn(75)
 
     # Back To Base
@@ -72,7 +72,7 @@ def Run(br: BaseRobot):
     br.GyroTurn(-35)
     br.GyroDrive(400, 900)
     br.Curve(275, 60)
-    br.GyroDrive(250, 900)
+    br.GyroDrive(275, 900)
 
 
 if __name__ == "__main__":
