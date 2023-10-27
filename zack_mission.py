@@ -22,7 +22,7 @@ def Run(br: BaseRobot):
             break
         wait(50)
 
-    br.GyroDrive(370, 950)
+    br.GyroDrive(400, 950)
     br.GyroDrive(50, 75)
     br.GyroDrive(-25, 75)
     br.WaitForMillis(100)
