@@ -28,8 +28,8 @@ robot = GyroDriveBase(
 )
 robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
 
-robot.use_gyro(False)
-robot.drive(speed=400, turn_rate=30)
-wait(4000)
-robot.stop()
 robot.use_gyro(True)
+robot.turn(90)
+#wait(4000)
+#robot.stop()
+#robot.use_gyro(True)
