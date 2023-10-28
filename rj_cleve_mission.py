@@ -13,11 +13,11 @@ def Run(br: BaseRobot):
     br.GyroTurn(35)
     br.GyroDrive(120, 800)
     br.GyroDrive(-110, 800)
-    br.GyroTurn(-95)
+    br.GyroTurn(-85)
     # drive farther
-    br.GyroDrive(65, 800)
+    br.GyroDriveForMillis(500, 800)
     br.leftAttachmentMotor.run_angle(977, -2400)
-    br.GyroDrive(-70, 800)
+    br.GyroDrive(-68, 800)
     br.GyroTurn(-30)
 
     br.Curve(radius=420, angle=-80)
