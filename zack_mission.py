@@ -37,7 +37,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(-130, 900)
     br.GyroDrive(170, 900)
     for i in range(pushes):
-        br.GyroDrive(100, 200)
+        br.GyroDrive(100, 250)
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
     # Wall Squaring
@@ -53,26 +53,35 @@ def Run(br: BaseRobot):
     br.GyroDrive(428, 900)
     br.GyroTurn(-90)
     br.GyroDrive(50, 900)
-    br.leftAttachmentMotor.run_angle(900, 350)
+    br.leftAttachmentMotor.run_until_stalled(500)
     br.leftAttachmentMotor.run_time(-900, 1000)
     br.GyroDrive(-50, 900)
 
     # Augmented Reality
-
+# Testing different Approch
     br.GyroTurn(45)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.GyroDrive(200, 900)
-    br.Curve(radius=410, angle=32)
-    br.GyroDrive(-57, 900)
-    br.GyroTurn(75)
+    br.GyroDrive(350)
 
-    # Back To Base
+    # br.GyroDrive(200, 900)
+    # br.Curve(radius=400, angle=20)
+    # br.GyroDrive(-57, 900)
+    # br.GyroTurn(75)
 
-    br.GyroDrive(100, 900)
-    br.GyroTurn(-45)
-    br.GyroDrive(400, 900)
-    br.Curve(275, 60)
-    br.GyroDrive(275, 900)
+    # # Back To Base
+
+    # br.GyroDrive(100, 900)
+    # br.GyroTurn(-45)
+    # br.GyroDrive(400, 900)
+    # br.Curve(275, 60)
+    # br.GyroDrive(275, 900)
+
+    # Testing wall square
+    # br.GyroDrive(-65,500)
+    # br.GyroTurn(75) 
+    # br.GyroDrive(100,500)
+    # br.GyroTurn(-38)
+    # br.GyroDrive(75,500)
 
 
 if __name__ == "__main__":
