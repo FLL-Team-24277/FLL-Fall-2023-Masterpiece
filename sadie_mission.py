@@ -21,8 +21,8 @@ def Run(br: BaseRobot):
     br.GyroDrive(-330, 900)
 
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(-120, 990)
-    br.GyroTurn(-50)
+    br.GyroDrive(-100, 990)
+    br.GyroTurn(-55)
     br.GyroDrive(-345, 990)
     br.WaitForMillis(300)
     br.GyroDrive(800, 990)
