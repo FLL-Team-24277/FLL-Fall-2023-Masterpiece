@@ -26,7 +26,7 @@ def Run(br: BaseRobot):
     br.WaitForMillis(300)
     br.GyroDrive(-30, 75)
     br.leftAttachmentMotor.run_angle(175, -300, wait=False)
-    br.GyroDrive(55, 60)
+    br.GyroDrive(75, 60)
 
     # Theater Scene Change
 
@@ -42,7 +42,7 @@ def Run(br: BaseRobot):
         br.WaitForMillis(775)
     # Wall Squaring
 
-    br.GyroDrive(-38, 900)
+    br.GyroDrive(-33, 900)
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
@@ -59,9 +59,8 @@ def Run(br: BaseRobot):
 
     # Augmented Reality
 
-    br.GyroTurn(45)
+    br.GyroTurn(35)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.GyroDrive(200, 900)
     br.Curve(radius=410, angle=32)
     br.GyroDrive(-55, 900)
     br.GyroTurn(75)
@@ -71,7 +70,6 @@ def Run(br: BaseRobot):
     br.GyroDrive(100, 900)
     br.GyroTurn(-45)
     br.GyroDrive(400, 900)
-    br.GyroDrive(-300,900)
     br.Curve(275, 60)
     br.GyroDrive(300, 900)
 
