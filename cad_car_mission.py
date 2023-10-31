@@ -8,22 +8,22 @@ from base_robot import *
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
-    br.GyroDrive(140, 977)  # drive 60 mm
-    br.GyroTurn(-12)  # turn -12 degrees
+    br.GyroDrive(120, 977)  # drive 60 mm
+    br.GyroTurn(-16)  # turn -12 degrees
     br.GyroDrive(420, 977)  # drive 420 mm
-    br.GyroTurn(-50)  # turn -50 degrees
+    br.GyroTurn(-49.5)  # turn -50 degrees
     br.GyroDrive(700, 977)  # drive 700 mm
 
-    #     # enter the museum
+        # enter the museum
     br.GyroDrive(65, 977)  # drive 65 mm
     br.GyroDrive(-255, 977)  # drive -255 mm
 
-    #     # drive to skateboard
+         # drive to skateboard
     br.GyroTurn(-37)  # turn -37 degrees
     br.GyroDrive(490, 977)  # drive 490 mm
-    br.GyroTurn(40)  # turn 40 degrees
+    br.GyroTurn(60)  # turn 60 degrees
 
-    #     # enter the skateboard
+         # enter the skateboard
     br.GyroDrive(170, 977)  # drive 170 mm
     br.rightAttachmentMotor.run_angle(1000, 300)
     br.GyroDrive(-230, 977)  # drive -230 mm
@@ -31,7 +31,7 @@ def Run(br: BaseRobot):
     br.Curve(radius=-360, angle=-60)
     br.GyroDrive(-600, -977)
 
-    #     # base to popcorn
+         # base to popcorn
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(340, 977)  # drive 340 mm
     br.GyroTurn(10)

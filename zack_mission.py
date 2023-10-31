@@ -6,7 +6,7 @@ def Run(br: BaseRobot):
     # Positive makes the robot go forward/ Negative makes the robot go backward
     # 3D Cinema
 
-    br.GyroDrive(315, 950)
+    br.GyroDrive(325, 950)
     br.leftAttachmentMotor.run_until_stalled(700)
     br.GyroDrive(-225, 950)
 
@@ -24,9 +24,9 @@ def Run(br: BaseRobot):
 
     br.GyroDrive(415, 950)
     br.WaitForMillis(300)
-    br.GyroDrive(-50, 75)
-    br.leftAttachmentMotor.run_angle(125, -300, wait=False)
-    br.GyroDrive(55, 60)
+    br.GyroDrive(-30, 75)
+    br.leftAttachmentMotor.run_angle(175, -300, wait=False)
+    br.GyroDrive(75, 60)
 
     # Theater Scene Change
 
@@ -37,12 +37,12 @@ def Run(br: BaseRobot):
     br.GyroDrive(-130, 900)
     br.GyroDrive(170, 900)
     for i in range(pushes):
-        br.GyroDrive(95, 175)
+        br.GyroDrive(100, 200)
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
     # Wall Squaring
 
-    br.GyroDrive(-50, 900)
+    br.GyroDrive(-33, 900)
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
@@ -50,7 +50,7 @@ def Run(br: BaseRobot):
 
     br.GyroDrive(269, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(427, 900)
+    br.GyroDrive(428, 900)
     br.GyroTurn(-90)
     br.GyroDrive(50, 900)
     br.leftAttachmentMotor.run_angle(900, 350)
@@ -59,9 +59,8 @@ def Run(br: BaseRobot):
 
     # Augmented Reality
 
-    br.GyroTurn(45)
+    br.GyroTurn(35)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.GyroDrive(200, 900)
     br.Curve(radius=410, angle=32)
     br.GyroDrive(-55, 900)
     br.GyroTurn(75)
@@ -69,10 +68,10 @@ def Run(br: BaseRobot):
     # Back To Base
 
     br.GyroDrive(100, 900)
-    br.GyroTurn(-35)
+    br.GyroTurn(-45)
     br.GyroDrive(400, 900)
     br.Curve(275, 60)
-    br.GyroDrive(275, 900)
+    br.GyroDrive(300, 900)
 
 
 if __name__ == "__main__":

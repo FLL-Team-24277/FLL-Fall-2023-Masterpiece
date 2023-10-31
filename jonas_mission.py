@@ -25,13 +25,13 @@ def Run(br: BaseRobot):
     # Missions 5+6
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(750, then=Stop.BRAKE)
-    br.GyroTurn(90, then=Stop.BRAKE)
+    br.GyroTurn(90)
     br.GyroDrive(250, then=Stop.BRAKE)
-    br.leftAttachmentMotor.run_time(500, 500)
+    br.leftAttachmentMotor.run_time(500, 1000)
     br.rightAttachmentMotor.run_time(1000, 1500)
-    wait(250)
+    wait(250)#s
     br.GyroDrive(-200, then=Stop.BRAKE)
-    br.GyroTurn(-90, then=Stop.BRAKE)
+    br.GyroTurn(-90)
     br.robot.straight(-750, Stop.BRAKE, True)
     # br.WaitForButton(Button.LEFT)
     # br.GyroDrive(500)
