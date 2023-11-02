@@ -62,7 +62,7 @@ def Run(br: BaseRobot):
     br.GyroTurn(34)
     br.GyroDrive(324, 900)
     br.GyroTurn(-34)
-    br.GyroDriveForMillis(700,800)
+    br.GyroDriveForMillis(700, 800)
     # br.GyroDrive(-5,500)
     # br.GyroTurn(90)
     # br.GyroDrive(-185,900)
@@ -70,15 +70,14 @@ def Run(br: BaseRobot):
     # br.DriveAndSteer(500,-20,1000)
     # br.GyroDrive(-10,300)
     # br.GyroTurn(45)
-    
-    
+
     # Back To Base
 
-    br.GyroDrive(100, 900)
-    br.GyroTurn(-45)
-    br.GyroDrive(400, 900)
-    br.Curve(275, 60)
-    br.GyroDrive(300, 900)
+    # br.GyroDrive(100, 900)
+    # br.GyroTurn(-45)
+    # br.GyroDrive(400, 900)
+    # br.Curve(275, 60)
+    # br.GyroDrive(300, 900)
 
 
 if __name__ == "__main__":
