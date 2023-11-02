@@ -8,26 +8,26 @@ def Run(br: BaseRobot):
     # br.WaitForButton(Button.LEFT)
     #  for master program
     br.GyroDrive(295.5, 800)
-    br.GyroTurn(92)
+    br.GyroTurn(90)
     br.GyroDrive(725 - 180, 800)
-    br.GyroTurn(35)
+    br.GyroTurn(40)
     br.GyroDrive(120, 800)
     br.GyroDrive(-110, 800)
     br.GyroTurn(-85)
     # drive farther
     br.GyroDriveForMillis(409, 800)
     # br.GyroDrive(-1, 800)
-    br.leftAttachmentMotor.run_angle(977, -2325)
+    br.leftAttachmentMotor.run_angle(977, -2325)  # -2325
     br.GyroDrive(-68, 800)
     br.GyroTurn(-30)
 
     br.Curve(radius=420, angle=-80)
     br.GyroTurn(-60)
     # Drive farther after testing
-    br.GyroDrive(120, 800)
-    br.GyroTurn(60)
     br.GyroDrive(150, 800)
-    br.GyroDrive(-150, 800)
+    br.GyroTurn(60)
+    # br.GyroDrive(150, 800)
+    # br.GyroDrive(-150, 800)
 
 
 # Design Three
