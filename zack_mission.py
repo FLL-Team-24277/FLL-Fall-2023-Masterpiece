@@ -37,7 +37,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(-130, 900)
     br.GyroDrive(170, 900)
     for i in range(pushes):
-        br.GyroDrive(100, 200)
+        br.GyroDrive(115, 200)
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
     # Wall Squaring
@@ -48,23 +48,27 @@ def Run(br: BaseRobot):
 
     # Immersive Experience
 
-    br.GyroDrive(245, 900)
+    br.GyroDrive(240, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(428, 900)
+    br.GyroDrive(430, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(58, 900)
+    br.GyroDrive(40, 900)
     br.leftAttachmentMotor.run_time(speed=900, time=1000)
     br.leftAttachmentMotor.run_until_stalled(-900)
     br.GyroDrive(-75, 900)
 
     # Augmented Reality
 
-    br.GyroTurn(34)
+    br.GyroTurn(38)
     br.GyroDrive(324, 900)
-    br.GyroTurn(-214)
-    br.GyroDriveForMillis(-1000, 700)
-    br.GyroDrive(25, 500)
-    br.GyroTurn(-90)
+    br.GyroTurn(45)
+    br.WaitForMillis(250)
+    br.GyroDriveForMillis(-750, 500)
+    br.leftAttachmentMotor.run_until_stalled(700)
+    br.DriveAndSteer(350, -33, 650)
+    br.WaitForMillis(250)
+    br.GyroDrive(-65, 500)
+    br.GyroTurn(90)
 
     # Back To Base
 
