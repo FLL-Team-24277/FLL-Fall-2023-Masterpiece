@@ -4,28 +4,16 @@ from base_robot import *
 # how to align the robot in home, any initial starting instructions,
 # such as how it should be loaded with anything, arm positions, etc.
 
-# Weird spacing is intentional. Should be auto-corrected by Black formatter after saving
-
 
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
-    #   Your mission code goes here, step-by-step
-    # It MUST be indented just like the lines below
-    # br.leftAttachmentMotor.run_until_stalled(-990, Stop.COAST, 40)
-    # br.GyroDrive(325, 990)
-    # br.WaitForMillis(100)
-    # br.leftAttachmentMotor.run_angle(990, 90, wait=True)
-    # br.rightAttachmentMotor.run_angle(990, -120)
-    # br.WaitForMillis(100)
-    # br.GyroDrive(-330, 900)
-
-    br.WaitForButton(Button.RIGHT)
-    br.GyroDrive(-100, 990)
-    br.GyroTurn(-60)
-    br.GyroDrive(-360, 990)
-    br.WaitForMillis(300)
-    br.GyroDrive(800, 990)
+    br.GyroDrive(25)
+    br.rightAttachmentMotor.run_angle(200, -180)  # speed 200, 180 degrees
+    br.GyroTurn(90)
+    br.rightAttachmentMotor.run_angle(200, 180)  # speed 200, 180 degrees
+    br.GyroDrive(-25)
+    br.GyroTurn(-90)
 
 
 # If running this program directly (not from the master program), this is

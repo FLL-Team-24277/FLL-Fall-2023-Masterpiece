@@ -104,9 +104,7 @@ class BaseRobot:
 
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
-    def GyroTurn(
-        self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED
-    ):
+    def GyroTurn(self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED):
         """
         Turns the robot to the specified `angle`. \
         Positive numbers turn to the right, negative numbers turn the \
@@ -143,11 +141,7 @@ class BaseRobot:
         default: No default value
         """
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
-        self.robot.turn(
-            angle,
-            then,
-            wait,
-        )
+        self.robot.turn(angle, then, wait,)
 
     # Requires distance but speed is optional because of default. Positive
     # goes forward and negative goes backward
@@ -255,9 +249,7 @@ class BaseRobot:
                 break
             wait(50)
 
-    def Curve(
-        self, radius, angle, then=Stop.HOLD, wait=True, speed=STRAIGHT_SPEED
-    ):
+    def Curve(self, radius, angle, then=Stop.HOLD, wait=True, speed=STRAIGHT_SPEED):
         """
         Drives the robot in a curve\
         Parameters:
@@ -292,7 +284,7 @@ class BaseRobot:
         default: No default value
         """
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
-
+        
         self.robot.curve(radius, angle, then, wait)
 
     def DriveAndSteer(self, speed, turnrate, time):
@@ -331,3 +323,8 @@ class BaseRobot:
         self.WaitForMillis(time)
         self.robot.stop()
         self.robot.use_gyro(True)
+
+    # Coach Morrow:
+    # There is an undocumented feature that can turn the gyro off.
+    # Would we ever want to do that?
+    # self.robot.use_gyro(false)
