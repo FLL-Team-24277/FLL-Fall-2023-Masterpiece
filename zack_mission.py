@@ -48,24 +48,25 @@ def Run(br: BaseRobot):
 
     # Immersive Experience
 
-    br.GyroDrive(269, 900)
+    br.GyroDrive(245, 900)
     br.GyroTurn(-90)
     br.GyroDrive(428, 900)
     br.GyroTurn(-90)
     br.GyroDrive(58, 900)
-    br.leftAttachmentMotor.run_angle(900, 350)
-    br.leftAttachmentMotor.run_time(-900, 1000)
+    br.leftAttachmentMotor.run_time(speed=900, time=1000)
+    br.leftAttachmentMotor.run_until_stalled(-900)
     br.GyroDrive(-75, 900)
 
     # Augmented Reality
 
-    br.GyroTurn(35)
-    br.GyroDrive(375, 900)
-    br.GyroDrive(-25, 500)
-    # br.Curve(40,50)
-    # br.leftAttachmentMotor.run_until_stalled(900)
+    br.GyroTurn(34)
+    br.GyroDrive(324, 900)
+    br.GyroTurn(-214)
+    br.GyroDriveForMillis(-1000, 700)
+    br.GyroDrive(25, 500)
+    br.GyroTurn(-90)
 
-    # # Back To Base
+    # Back To Base
 
     # br.GyroDrive(100, 900)
     # br.GyroTurn(-45)
