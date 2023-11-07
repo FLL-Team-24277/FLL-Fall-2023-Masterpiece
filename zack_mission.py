@@ -52,7 +52,7 @@ def Run(br: BaseRobot):
     br.GyroTurn(-90)
     br.GyroDrive(430, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(40, 900)
+    br.GyroDrive(33, 900)
     br.leftAttachmentMotor.run_time(speed=900, time=1000)
     br.leftAttachmentMotor.run_until_stalled(-900)
     br.GyroDrive(-75, 900)
@@ -61,22 +61,25 @@ def Run(br: BaseRobot):
 
     br.GyroTurn(38)
     br.GyroDrive(324, 900)
-    br.GyroTurn(45)
+    br.GyroTurn(25)
     br.WaitForMillis(250)
-    br.GyroDriveForMillis(-750, 500)
+    br.GyroDriveForMillis(-1150, 500)
+    br.GyroTurn(15)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.DriveAndSteer(350, -33, 650)
+    br.DriveAndSteer(350, -35, 650)
     br.WaitForMillis(250)
     br.GyroDrive(-65, 500)
-    br.GyroTurn(90)
+    br.GyroTurn(70)
 
-    # Back To Base
-
-    # br.GyroDrive(100, 900)
-    # br.GyroTurn(-45)
-    # br.GyroDrive(400, 900)
-    # br.Curve(275, 60)
-    # br.GyroDrive(300, 900)
+    br.GyroDrive(50, 900)
+    br.WaitForMillis(250)
+    br.Curve(radius=225, angle=-90)
+    br.GyroDrive(-40, 900)
+    br.GyroTurn(60)
+    br.GyroDrive(100, 900)
+    br.GyroTurn(30)
+    br.GyroDrive(-200, 900)
+    br.GyroDriveForMillis(1000, 900)
 
 
 if __name__ == "__main__":
