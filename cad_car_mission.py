@@ -21,8 +21,8 @@ def Run(br: BaseRobot):
 
     # drive to skateboard
     br.GyroTurn(-37)  # turn -37 degrees
-    br.GyroDrive(600, 977)  # drive 490 mm
-    br.GyroTurn(30)  # turn 60 degrees
+    br.GyroDrive(590, 977)  # drive 490 mm
+    br.GyroTurn(40)  # turn 60 degrees
 
     # enter base from skateboard
     br.GyroDrive(130, 977)  # drive 170 mm
