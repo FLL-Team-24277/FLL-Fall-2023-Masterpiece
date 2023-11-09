@@ -6,6 +6,7 @@ def Run(br: BaseRobot):
     # Positive makes the robot go forward/ Negative makes the robot go backward
     # 3D Cinema
 
+    print(str(br.hub.battery.voltage()))
     br.GyroDrive(325, 950)
     br.leftAttachmentMotor.run_until_stalled(700)
     br.GyroDrive(-225, 950)
@@ -46,18 +47,21 @@ def Run(br: BaseRobot):
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
-    # Immersive Experience
+    # Driving to Immersive Experience-purple guy
 
     br.GyroDrive(240, 900)
     br.GyroTurn(-90)
     br.GyroDrive(430, 900)
     br.GyroTurn(-90)
+
+    # Doing Immersive Expeiriance-purple guy
+
     br.GyroDrive(33, 900)
     br.leftAttachmentMotor.run_time(speed=900, time=1000)
     br.leftAttachmentMotor.run_until_stalled(-900)
     br.GyroDrive(-75, 900)
 
-    # Augmented Reality
+    # Driving to Augmented Reality-blue flower
 
     br.GyroTurn(38)
     br.GyroDrive(324, 900)
@@ -65,21 +69,27 @@ def Run(br: BaseRobot):
     br.WaitForMillis(250)
     br.GyroDriveForMillis(-1150, 500)
     br.GyroTurn(15)
+
+    # Driving to next  mission
+
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.DriveAndSteer(350, -35, 650)
+    br.DriveAndSteer(350, -35, 665)
     br.WaitForMillis(250)
     br.GyroDrive(-65, 500)
-    br.GyroTurn(70)
 
-    br.GyroDrive(50, 900)
+    # Doing Augmented Reality-blue flower
+
+    br.GyroTurn(70)
+    br.GyroDrive(45, 900)
     br.WaitForMillis(250)
-    br.Curve(radius=225, angle=-90)
+    br.Curve(radius=223, angle=-95)
     br.GyroDrive(-40, 900)
-    br.GyroTurn(60)
+    br.GyroTurn(65)
     br.GyroDrive(100, 900)
-    br.GyroTurn(30)
+    br.GyroTurn(27)
     br.GyroDrive(-200, 900)
-    br.GyroDriveForMillis(1000, 900)
+    br.GyroTurn(-10)
+    br.GyroDriveForMillis(2250, 900)
 
 
 if __name__ == "__main__":
