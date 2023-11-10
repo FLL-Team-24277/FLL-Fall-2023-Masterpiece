@@ -11,11 +11,11 @@ def Run(br: BaseRobot):
     br.GyroDrive(120, 977)  # drive 60 mm
     br.GyroTurn(-17)  # turn -12 degrees
     br.GyroDrive(425, 977)  # drive 420 mm
-    br.GyroTurn(-49.5)  # turn -50 degrees
-    br.GyroDrive(700, 977)  # drive 700 mm
+    br.GyroTurn(-60)  # turn -50 degrees
+    br.GyroDrive(690, 977)  # drive 700 mm
 
     # enter the museum
-    br.GyroTurn(20)  # turn 15 degrees
+    br.GyroTurn(30)  # turn 15 degrees
     br.GyroDrive(68, 977)  # drive 65 mm
     br.GyroDrive(-255, 977)  # drive -255 mm
 
@@ -34,9 +34,7 @@ def Run(br: BaseRobot):
 
     # base to popcorn
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(290, 977)  # drive 340 mm
-    # br.GyroTurn(23)
-    br.GyroDrive(85, 977)
+    br.GyroDrive(380, 977)  # drive 340 mm
     br.GyroDriveForMillis(1000, -990)
 
 
