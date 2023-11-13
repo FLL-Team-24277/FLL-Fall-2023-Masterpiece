@@ -17,7 +17,7 @@ def Run(br: BaseRobot):
     # enter the museum
     br.GyroTurn(30)  # turn 15 degrees
     br.GyroDrive(68, 977)  # drive 65 mm
-    br.GyroDrive(-255, 977)  # drive -255 mm
+    br.GyroDrive(-265, 977)  # drive -255 mm
 
     # drive to skateboard
     br.GyroTurn(-37)  # turn -37 degrees
