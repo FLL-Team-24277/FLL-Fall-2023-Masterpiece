@@ -65,7 +65,7 @@ class BaseRobot:
         Color.SENSOR_YELLOW = Color(h=60, s=50, v=100)  # h=60,s=100,v=100
         Color.SENSOR_GREEN = Color(h=156, s=66, v=66)  # h=120,s=100,v=100
         Color.SENSOR_BLUE = Color(h=216, s=84, v=83)  # h=240,s=100,v=100
-        Color.SENSOR_MAGENTA = Color(h=339, s=71, v=81)  # h=300,s=100,v=100
+        Color.SENSOR_MAGENTA = Color(h=333, s=75, v=78)  # h=300,s=100,v=100
         Color.SENSOR_ORANGE = Color(h=13, s=73, v=100)  # h=30,s=100,v=100
         Color.SENSOR_DARKGRAY = Color(h=192, s=21, v=64)  # h=0,s=0,v=50
         Color.SENSOR_NONE = Color(h=170, s=26, v=15)  # h=0,s=0,v=0
