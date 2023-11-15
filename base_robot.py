@@ -66,9 +66,10 @@ class BaseRobot:
         Color.SENSOR_GREEN = Color(h=156, s=66, v=66)  # h=120,s=100,v=100
         Color.SENSOR_BLUE = Color(h=216, s=84, v=83)  # h=240,s=100,v=100
         Color.SENSOR_MAGENTA = Color(h=333, s=75, v=78)  # h=300,s=100,v=100
-        Color.SENSOR_ORANGE = Color(h=13, s=73, v=100)  # h=30,s=100,v=100
+        Color.SENSOR_ORANGE = Color(h=8, s=75, v=100)  # h=30,s=100,v=100
         Color.SENSOR_DARKGRAY = Color(h=192, s=21, v=64)  # h=0,s=0,v=50
         Color.SENSOR_NONE = Color(h=170, s=26, v=15)  # h=0,s=0,v=0
+        Color.SENSOR_LIME = Color(h=92, s=57, v=93)  # h=92, s=57, v=93
 
         # Put the custom colors in a list. Best practice is to only use
         # colors that we are using for actual missions.
@@ -82,6 +83,7 @@ class BaseRobot:
             Color.SENSOR_ORANGE,
             Color.SENSOR_DARKGRAY,
             Color.SENSOR_NONE,  # must have SENSOR_NONE. Do not comment
+            Color.SENSOR_LIME,
         ]
 
         # Set the detectable colors usisng our list
@@ -100,6 +102,7 @@ class BaseRobot:
             Color.SENSOR_ORANGE: Color.ORANGE,
             Color.SENSOR_DARKGRAY: Color.GRAY,
             Color.SENSOR_NONE: Color.NONE,
+            Color.SENSOR_LIME: Color.CYAN,
         }
 
     # Angle is required. Positive angles make the robot turn right and
