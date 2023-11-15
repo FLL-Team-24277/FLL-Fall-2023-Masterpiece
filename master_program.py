@@ -58,8 +58,8 @@ while True:
         # If detected color is Dark Gray, then run Zack's mission
     if col == Color.SENSOR_DARKGRAY:
         zack_mission.Run(br)
-    # If detected color is Yellow, then run Giovanni's mission
-    if col == Color.SENSOR_YELLOW:
+    # If detected color is Blue, then run Giovanni's mission
+    if col == Color.SENSOR_BLUE:
         giovanni_mission.Run(br)
     # If detected color is Green, then run Chicken Mission
     if col == Color.SENSOR_GREEN:

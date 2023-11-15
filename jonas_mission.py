@@ -27,9 +27,9 @@ def Run(br: BaseRobot):
     br.GyroDrive(750, then=Stop.BRAKE)
     br.GyroTurn(90)
     br.GyroDrive(250, then=Stop.BRAKE)
-    br.leftAttachmentMotor.run_time(500, 1000)
-    br.rightAttachmentMotor.run_time(1000, 1500)
-    wait(250)#s
+    br.leftAttachmentMotor.run_time(1000, 1000, wait=False)
+    br.rightAttachmentMotor.run_time(1000, 1500, wait=True)
+    # wait(250)  # s
     br.GyroDrive(-200, then=Stop.BRAKE)
     br.GyroTurn(-90)
     br.robot.straight(-750, Stop.BRAKE, True)

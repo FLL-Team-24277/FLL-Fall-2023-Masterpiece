@@ -6,6 +6,7 @@ def Run(br: BaseRobot):
     # Positive makes the robot go forward/ Negative makes the robot go backward
     # 3D Cinema
 
+    print(str(br.hub.battery.voltage()))
     br.GyroDrive(325, 950)
     br.leftAttachmentMotor.run_until_stalled(700)
     br.GyroDrive(-225, 950)
@@ -37,7 +38,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(-130, 900)
     br.GyroDrive(170, 900)
     for i in range(pushes):
-        br.GyroDrive(100, 200)
+        br.GyroDrive(115, 200)
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
     # Wall Squaring
@@ -46,33 +47,49 @@ def Run(br: BaseRobot):
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
-    # Immersive Experience
+    # Driving to Immersive Experience-purple guy
 
-    br.GyroDrive(245, 900)
+    br.GyroDrive(240, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(428, 900)
+    br.GyroDrive(430, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(58, 900)
-    br.leftAttachmentMotor.run_time(speed=900, time=1000)
+
+    # Doing Immersive Expeiriance-purple guy
+
+    br.GyroDrive(35, 900)
+    br.leftAttachmentMotor.run_time(speed=1000, time=1400)
     br.leftAttachmentMotor.run_until_stalled(-900)
     br.GyroDrive(-75, 900)
 
-    # Augmented Reality
+    # Driving to Augmented Reality-blue flower
 
-    br.GyroTurn(34)
+    br.GyroTurn(38)
     br.GyroDrive(324, 900)
-    br.GyroTurn(-214)
-    br.GyroDriveForMillis(-1000, 700)
-    br.GyroDrive(25, 500)
-    br.GyroTurn(-90)
+    br.GyroTurn(25)
+    br.WaitForMillis(250)
+    br.GyroDriveForMillis(-1150, 500)
+    br.GyroTurn(15)
 
-    # Back To Base
+    # Driving to next  mission
 
-    # br.GyroDrive(100, 900)
-    # br.GyroTurn(-45)
-    # br.GyroDrive(400, 900)
-    # br.Curve(275, 60)
-    # br.GyroDrive(300, 900)
+    br.leftAttachmentMotor.run_until_stalled(700)
+    br.DriveAndSteer(350, -35, 665)
+    br.WaitForMillis(250)
+    br.GyroDrive(-65, 500)
+
+    # Doing Augmented Reality-blue flower
+
+    br.GyroTurn(70)
+    br.GyroDrive(45, 900)
+    br.WaitForMillis(250)
+    br.Curve(radius=223, angle=-95)
+    br.GyroDrive(-40, 900)
+    br.GyroTurn(65)
+    br.GyroDrive(100, 900)
+    br.GyroTurn(27)
+    br.GyroDrive(-200, 900)
+    br.GyroTurn(-10)
+    br.GyroDriveForMillis(2250, 900)
 
 
 if __name__ == "__main__":

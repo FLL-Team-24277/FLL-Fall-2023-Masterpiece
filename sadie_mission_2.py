@@ -12,11 +12,10 @@ from base_robot import *
 def Run(br: BaseRobot):
     #   Your mission code goes here, step-by-step
     # It MUST be indented just like the lines below
-    br.leftAttachmentMotor.run_angle(1500,5000,wait=False)
-    br.GyroDrive(500,990)
+    br.leftAttachmentMotor.run_angle(1500, 5000, wait=False)
+    br.GyroDrive(550, 990)
     br.WaitForMillis(5000)
-    
-    
+
 
 # If running this program directly (not from the master program), this is
 # how we know it is running directly. In which case, this method will
