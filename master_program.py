@@ -1,7 +1,7 @@
 from base_robot import *
 
 # Import missions
-import jonas_mission2
+import jonas_mission
 import sadie_mission
 import giovanni_mission
 import rj_cleve_mission
@@ -48,7 +48,7 @@ while True:
         rj_cleve_mission.Run(br)
         # If detected color is Orange, then run Jonas' mission
     if col == Color.SENSOR_LIME:
-        jonas_mission2.Run(br)
+        jonas_mission.Run(br)
         # If detected color is White, then run Sadie's mission
     if col == Color.SENSOR_WHITE:
         sadie_mission.Run(br)
