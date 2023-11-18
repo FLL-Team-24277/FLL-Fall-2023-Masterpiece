@@ -9,9 +9,8 @@ import sample_mission4
 br = BaseRobot()
 
 pressed = []
-col = br.colorSensor.color()
-
 while True:
+    
     while True:
         col = br.colorSensor.color()
         # The first thing this program does is it detects what color is
