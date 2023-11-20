@@ -34,7 +34,7 @@ def Run(br: BaseRobot):
 
     # base to popcorn
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(525, 977)  # drive 340 mm
+    br.GyroDrive(515, 977)  # drive 340 mm
     br.GyroDriveForMillis(1250, -990)
 
 
