@@ -2,16 +2,31 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
+    # The batttery amount
+    print(str(br.hub.battery.voltage()))
+
     # Positive numbers lower the arm; negative raises
     # Positive makes the robot go forward/ Negative makes the robot go backward
+
     # 3D Cinema
 
-    print(str(br.hub.battery.voltage()))
-    br.GyroDrive(325, 950)
+    br.GyroDrive(325, 600)
     br.leftAttachmentMotor.run_until_stalled(700)
-    br.GyroDrive(-225, 950)
+    br.GyroDrive(-225, 500)
 
     # Sound Mixer
+
+    br.WaitForButton(Button.LEFT)
+    br.GyroDrive(415, 950)
+    br.WaitForMillis(300)
+    br.GyroDrive(-30, 75)
+    br.leftAttachmentMotor.run_angle(150, -300, wait=False)
+    br.GyroDrive(22, 30)
+    br.WaitForMillis(500)
+    br.GyroTurn(angle=25, speed=25)
+    br.GyroDrive(-500, 700)
+
+    # Theater Scene Change
 
     while True:
         pressed = br.hub.buttons.pressed()
@@ -21,29 +36,21 @@ def Run(br: BaseRobot):
         if Button.RIGHT in pressed:
             pushes = 2
             break
-        wait(50)
 
-    br.GyroDrive(415, 950)
-    br.WaitForMillis(300)
-    br.GyroDrive(-30, 75)
-    br.leftAttachmentMotor.run_angle(175, -300, wait=False)
-    br.GyroDrive(75, 60)
-
-    # Theater Scene Change
-
-    br.GyroDrive(-150, 900)
+    br.GyroDrive(725, 500)
+    # br.GyroTurn(-40)
+    # br.GyroDrive(500, 900)
     br.GyroTurn(-40)
-    br.GyroDrive(500, 900)
-    br.GyroTurn(-40)
-    br.GyroDrive(-130, 900)
-    br.GyroDrive(170, 900)
+    br.GyroDrive(-130, 700)
+    br.GyroDrive(170, 700)
     for i in range(pushes):
         br.GyroDrive(115, 200)
         br.GyroDrive(-60, 200)
         br.WaitForMillis(775)
+
     # Wall Squaring
 
-    br.GyroDrive(-33, 900)
+    br.GyroDrive(-33, 500)
     br.GyroTurn(-135)
     br.DriveAndSteer(-215, 0, 1750)
 
@@ -56,10 +63,10 @@ def Run(br: BaseRobot):
 
     # Doing Immersive Expeiriance-purple guy
 
-    br.GyroDrive(35, 900)
+    br.GyroDrive(35, 500)
     br.leftAttachmentMotor.run_time(speed=1000, time=1400)
     br.leftAttachmentMotor.run_until_stalled(-900)
-    br.GyroDrive(-75, 900)
+    br.GyroDrive(-75, 500)
 
     # Driving to Augmented Reality-blue flower
 
@@ -80,14 +87,14 @@ def Run(br: BaseRobot):
     # Doing Augmented Reality-blue flower
 
     br.GyroTurn(70)
-    br.GyroDrive(45, 900)
+    br.GyroDrive(45, 500)
     br.WaitForMillis(250)
     br.Curve(radius=223, angle=-95)
-    br.GyroDrive(-40, 900)
+    br.GyroDrive(-40, 500)
     br.GyroTurn(65)
-    br.GyroDrive(100, 900)
+    br.GyroDrive(100, 500)
     br.GyroTurn(27)
-    br.GyroDrive(-200, 900)
+    br.GyroDrive(-200, 700)
     br.GyroTurn(-10)
     br.GyroDriveForMillis(2250, 900)
 
