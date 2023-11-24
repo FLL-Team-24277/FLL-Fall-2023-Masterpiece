@@ -361,7 +361,6 @@ class BaseRobot:
         # )
         stallSpeed = int(targetSpeed * stallSpeedPct / 100)
         self.robot.distance_control.stall_tolerances(
-            # speed=int(targetSpeed * (1 - stallTorque / 100)), time=100
             speed=stallSpeed,
             time=100,
         )
