@@ -24,6 +24,7 @@ TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
 
 MAX_LARGE_MOTOR_VOLTAGE = 9000  # mV
 MIN_LARGE_MOTOR_VOLTAGE = 3000  # mV
+MAX_LARGE_MOTOR_TORQUE = 560
 
 
 class BaseRobot:
@@ -51,9 +52,9 @@ class BaseRobot:
             AXLE_TRACK,
         )
         # default speeds were determined by testing
-        self.robot.settings(
-            STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL
-        )
+        # self.robot.settings(
+        #     STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL
+        # )
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
 
@@ -342,6 +343,38 @@ class BaseRobot:
         self, angle, speed=STRAIGHT_SPEED, then=Stop.HOLD, wait=True
     ):
         self.rightAttachmentMotor.run_angle(speed, angle, then, wait)
+
+    def DriveUntilStalled2(
+        self,
+        targetSpeed=STRAIGHT_SPEED,
+        turn_rate=0,
+        stallSpeedPct=99,
+        useGyro=True,
+    ):
+        # print(self.robot.distance_control.limits())
+        if stallSpeedPct > 99:
+            stallSpeedPct = 99
+        if stallSpeedPct < 0:
+            stallSpeedPct = 0
+        # self.robot.distance_control.limits(
+        #     speed=488, acceleration=733, torque=stallTorque
+        # )
+        stallSpeed = int(targetSpeed * stallSpeedPct / 100)
+        self.robot.distance_control.stall_tolerances(
+            # speed=int(targetSpeed * (1 - stallTorque / 100)), time=100
+            speed=stallSpeed,
+            time=100,
+        )
+        print(self.robot.distance_control.limits())
+        print(self.robot.distance_control.stall_tolerances())
+        self.robot.use_gyro(useGyro)
+        self.robot.drive(targetSpeed, turn_rate)
+        while not self.robot.stalled():
+            print(self.robot.state())
+            wait(500)
+        self.robot.drive(0, 0)
+        wait(100)
+        self.robot.use_gyro(True)
 
     def DriveUntilStalled(
         self,

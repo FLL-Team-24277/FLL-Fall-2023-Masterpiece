@@ -18,12 +18,14 @@ def Run(br: BaseRobot):
     # br.WaitForMillis(10000)
     # br.robot.drive(speed=0, turn_rate=0)
     # br.WaitForMillis(500)
-    br.DriveUntilStalled(speed=600, turn_rate=20, stall=75, useGyro=True)
+    # br.DriveUntilStalled(speed=700, turn_rate=0, stall=100, useGyro=False)
+    br.DriveUntilStalled2(
+        targetSpeed=460, turn_rate=0, stallSpeedPct=1, useGyro=False
+    )
     # br.UseGyro(True)
     # br.DriveAndSteerDist(distance=1650, speed=150, turn_rate=20)
     # br.UseGyro(True)
     # br.MoveRightAttachmentMotor(angle=3000)
-
 
     # br.GyroDrive(distance=680, speed=500)
     # br.WaitForMillis(500)  # half second
