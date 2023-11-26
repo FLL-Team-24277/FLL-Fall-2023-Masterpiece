@@ -20,7 +20,11 @@ def Run(br: BaseRobot):
     # br.WaitForMillis(500)
     # br.DriveUntilStalled(speed=700, turn_rate=0, stall=100, useGyro=False)
     br.DriveUntilStalled2(
-        targetSpeed=460, turn_rate=0, stallSpeedPct=1, useGyro=False
+        targetSpeed=460,
+        turn_rate=0,
+        stallSpeedPct=95,
+        useGyro=False,
+        maxTorque=1,
     )
     # br.UseGyro(True)
     # br.DriveAndSteerDist(distance=1650, speed=150, turn_rate=20)

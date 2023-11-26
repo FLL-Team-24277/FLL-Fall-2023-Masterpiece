@@ -349,28 +349,48 @@ class BaseRobot:
         targetSpeed=STRAIGHT_SPEED,
         turn_rate=0,
         stallSpeedPct=99,
+        maxTorque=MAX_LARGE_MOTOR_TORQUE,
         useGyro=True,
     ):
-        # print(self.robot.distance_control.limits())
+        print(self.robot.distance_control.limits())
         if stallSpeedPct > 99:
             stallSpeedPct = 99
         if stallSpeedPct < 0:
             stallSpeedPct = 0
-        # self.robot.distance_control.limits(
-        #     speed=488, acceleration=733, torque=stallTorque
+        self.robot.distance_control.limits(
+            speed=targetSpeed, acceleration=733, torque=maxTorque
+        )
+        # self.leftDriveMotor.control.limits(
+        #     speed=targetSpeed, acceleration=733, torque=maxTorque
+        # )
+        # self.rightDriveMotor.control.limits(
+        #     speed=targetSpeed, acceleration=733, torque=maxTorque
         # )
         stallSpeed = int(targetSpeed * stallSpeedPct / 100)
-        self.robot.distance_control.stall_tolerances(
-            speed=stallSpeed,
-            time=100,
+        # self.robot.distance_control.stall_tolerances(
+        #     speed=stallSpeed,
+        #     time=100,
+        # )
+        self.leftDriveMotor.control.stall_tolerances(
+            speed=stallSpeed, time=100
         )
-        print(self.robot.distance_control.limits())
-        print(self.robot.distance_control.stall_tolerances())
+        self.rightDriveMotor.control.stall_tolerances(
+            speed=stallSpeed, time=100
+        )
+        # print(self.robot.distance_control.limits())
+        # print(self.robot.distance_control.stall_tolerances())
         self.robot.use_gyro(useGyro)
         self.robot.drive(targetSpeed, turn_rate)
-        while not self.robot.stalled():
-            print(self.robot.state())
-            wait(500)
+        # while not self.robot.stalled():
+        while self.leftDriveMotor.model.state()[3] == False:
+            wait(100)
+            print(
+                str(self.robot.state())
+                + "; "
+                + str(self.leftDriveMotor.model.state())
+                + "; "
+                + str(self.rightDriveMotor.model.state())
+            )
         self.robot.drive(0, 0)
         wait(100)
         self.robot.use_gyro(True)
