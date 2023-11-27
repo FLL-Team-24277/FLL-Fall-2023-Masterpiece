@@ -8,6 +8,7 @@ from base_robot import *
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
+    br.rightAttachmentMotor.run_until_stalled(-500)
     br.GyroDrive(120, 977)  # drive 60 mm
     br.GyroTurn(-17)  # turn -12 degrees
     br.GyroDrive(425, 977)  # drive 420 mm
