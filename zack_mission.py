@@ -24,7 +24,7 @@ def Run(br: BaseRobot):
     br.leftAttachmentMotor.run_angle(150, -300, wait=False)
     br.GyroDrive(22, 30)
     br.WaitForMillis(500)
-    br.GyroTurn(angle=25, speed=25)
+    br.GyroTurn(angle=25, speed=20)
     br.GyroDrive(-375, 700)
 
     # Theater Scene Change
@@ -76,7 +76,7 @@ def Run(br: BaseRobot):
     br.GyroDriveForMillis(-1150, 500)
     br.GyroTurn(15)
 
-    # Driving to next mission
+
 
     br.leftAttachmentMotor.run_until_stalled(700)
     br.DriveAndSteer(350, -35, 665)
