@@ -2,8 +2,8 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
-    # The batttery amount
-    print(str(br.hub.battery.voltage()))
+    # Resetting for Expert
+    br.rightAttachmentMotor.run_time(speed=300, time=500, wait=False)
 
     # Positive numbers lower the arm; negative raises
     # Positive makes the robot go forward; Negative makes the robot go backward
@@ -17,11 +17,12 @@ def Run(br: BaseRobot):
 
     # Sound Mixer
 
+    br.rightAttachmentMotor.run_time(speed=300, time=500, wait=False)
     br.WaitForButton(Button.LEFT)
     br.GyroDrive(415, 950)
     br.WaitForMillis(300)
     br.GyroDrive(-30, 75)
-    br.leftAttachmentMotor.run_angle(150, -300, wait=False)
+    br.leftAttachmentMotor.run_angle(150, -500, wait=False)
     br.GyroDrive(22, 30)
     br.WaitForMillis(500)
     br.GyroTurn(angle=25, speed=20)
@@ -38,10 +39,13 @@ def Run(br: BaseRobot):
             pushes = 2
             break
 
+
     br.GyroDrive(720, 500)
     br.GyroTurn(-40)
     br.GyroDrive(-130, 700)
+    br.rightAttachmentMotor.run_angle(speed=300, rotation_angle=-260)
     br.GyroDrive(170, 700)
+    br.rightAttachmentMotor.run_time(speed=300, time=750, wait=False)
     for i in range(pushes):
         br.GyroDrive(115, 200)
         br.GyroDrive(-60, 200)
