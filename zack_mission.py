@@ -51,11 +51,11 @@ def Run(br: BaseRobot):
 
     br.GyroDrive(-33, 500)
     br.GyroTurn(-135)
-    br.DriveAndSteer(-215, 0, 1750)
+    br.DriveAndSteer(-215, 0, 1765)
 
     # Driving to Immersive Experience-purple guy
 
-    br.GyroDrive(240, 900)
+    br.GyroDrive(250, 900)
     br.GyroTurn(-90)
     br.GyroDrive(430, 900)
     br.GyroTurn(-90)

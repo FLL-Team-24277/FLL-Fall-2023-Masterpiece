@@ -22,7 +22,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(850, speed=977, then=Stop.BRAKE)
     # Drive back
     br.GyroDrive(-150, speed=977, then=Stop.BRAKE)
-    br.GyroTurn(60)
+    br.GyroTurn(80)
     br.GyroDrive(-200, speed=977, then=Stop.BRAKE)
     # Missions 5+6
     # br.GyroDrive(250, then=Stop.BRAKE)

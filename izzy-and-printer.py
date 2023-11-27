@@ -12,14 +12,12 @@ from base_robot import *
 
 # For the new attachment that should grab Izzy and do the printer
 
+
 def Run(br: BaseRobot):
-    br.GyroDrive(80, 990)
-    br.GyroTurn(60)
-    br.GyroDrive(370, 400)
+    br.GyroDrive(600, 990)
+    br.leftAttachmentMotor.run_time(-500, 1000)
     br.WaitForMillis(300)
-    br.GyroDrive(-370, 400)
-    br.GyroTurn(-60)
-    br.GyroDrive(-80, 400)
+    br.GyroDrive(-750, 400)
 
 
 # If running this program directly (not from the master program), this is
