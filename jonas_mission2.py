@@ -18,17 +18,19 @@ def Run(br: BaseRobot):
     # br.GyroDrive(400, -600)
     # Deliver People
     br.WaitForButton(Button.LEFT)
+    # br.robot.distance_control.limits(speed=977, acceleration=733, torque=560)
+    br.robot.use_gyro(True)
     # Drive up
     br.GyroDrive(850, speed=977, then=Stop.BRAKE)
     # Drive back
     br.GyroDrive(-150, speed=977, then=Stop.BRAKE)
-    br.GyroTurn(80)
-    br.GyroDrive(-200, speed=977, then=Stop.BRAKE)
+    br.GyroTurn(85)
+    br.GyroDrive(-300, speed=977, then=Stop.BRAKE)
     # Missions 5+6
     # br.GyroDrive(250, then=Stop.BRAKE)
     # br.GyroTurn(90)
     br.GyroDrive(300, speed=977, then=Stop.BRAKE)
-    br.leftAttachmentMotor.run_time(1000, 1000, wait=True)
+    br.rightAttachmentMotor.run_time(1000, 1000, wait=True)
     # wait(250)  #
     br.GyroDrive(-100, 977)
     # br.Curve(-200, 60)

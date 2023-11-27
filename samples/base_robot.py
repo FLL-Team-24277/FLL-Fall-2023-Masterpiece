@@ -22,6 +22,10 @@ STRAIGHT_ACCEL = 600  # normal acceleration, mm/sec^2
 TURN_RATE = 150  # normal turning rate, deg/sec
 TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
 
+MAX_LARGE_MOTOR_VOLTAGE = 9000  # mV
+MIN_LARGE_MOTOR_VOLTAGE = 3000  # mV
+MAX_LARGE_MOTOR_TORQUE = 560
+
 
 class BaseRobot:
     """
@@ -104,7 +108,9 @@ class BaseRobot:
 
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
-    def GyroTurn(self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED):
+    def GyroTurn(
+        self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED
+    ):
         """
         Turns the robot to the specified `angle`. \
         Positive numbers turn to the right, negative numbers turn the \
@@ -141,7 +147,11 @@ class BaseRobot:
         default: No default value
         """
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
-        self.robot.turn(angle, then, wait,)
+        self.robot.turn(
+            angle,
+            then,
+            wait,
+        )
 
     # Requires distance but speed is optional because of default. Positive
     # goes forward and negative goes backward
@@ -249,7 +259,9 @@ class BaseRobot:
                 break
             wait(50)
 
-    def Curve(self, radius, angle, then=Stop.HOLD, wait=True, speed=STRAIGHT_SPEED):
+    def Curve(
+        self, radius, angle, then=Stop.HOLD, wait=True, speed=STRAIGHT_SPEED
+    ):
         """
         Drives the robot in a curve\
         Parameters:
@@ -284,8 +296,32 @@ class BaseRobot:
         default: No default value
         """
         self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
-        
+
         self.robot.curve(radius, angle, then, wait)
+
+    def DriveUntilStalled(
+        self, speed=STRAIGHT_SPEED, turn_rate=0, stall=100, useGyro=True
+    ):
+        if stall > 100:
+            stall = 100
+        if stall < 0:
+            stall = 0
+
+        # convert the percentage to a value between 3000 & 9000
+        stallValue = MIN_LARGE_MOTOR_VOLTAGE + stall / 100 * (
+            MAX_LARGE_MOTOR_VOLTAGE - MIN_LARGE_MOTOR_VOLTAGE
+        )
+        self.robot.use_gyro(useGyro)
+        self.leftDriveMotor.settings(stallValue)
+        self.rightDriveMotor.settings(stallValue)
+        self.robot.drive(speed, turn_rate)
+        while not self.robot.stalled():
+            wait(100)
+        self.robot.drive(0, 0)
+        wait(100)
+        self.leftDriveMotor.settings(MAX_LARGE_MOTOR_VOLTAGE)
+        self.rightDriveMotor.settings(MAX_LARGE_MOTOR_VOLTAGE)
+        self.robot.use_gyro(True)
 
     def DriveAndSteer(self, speed, turnrate, time):
         """
@@ -323,8 +359,3 @@ class BaseRobot:
         self.WaitForMillis(time)
         self.robot.stop()
         self.robot.use_gyro(True)
-
-    # Coach Morrow:
-    # There is an undocumented feature that can turn the gyro off.
-    # Would we ever want to do that?
-    # self.robot.use_gyro(false)
