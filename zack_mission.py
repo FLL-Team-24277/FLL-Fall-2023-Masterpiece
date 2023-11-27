@@ -6,7 +6,8 @@ def Run(br: BaseRobot):
     print(str(br.hub.battery.voltage()))
 
     # Positive numbers lower the arm; negative raises
-    # Positive makes the robot go forward/ Negative makes the robot go backward
+    # Positive makes the robot go forward; Negative makes the robot go backward
+    # Positive makes turn right; Negative makes turn left
 
     # 3D Cinema
 
@@ -24,7 +25,7 @@ def Run(br: BaseRobot):
     br.GyroDrive(22, 30)
     br.WaitForMillis(500)
     br.GyroTurn(angle=25, speed=25)
-    br.GyroDrive(-500, 700)
+    br.GyroDrive(-375, 700)
 
     # Theater Scene Change
 
@@ -37,9 +38,7 @@ def Run(br: BaseRobot):
             pushes = 2
             break
 
-    br.GyroDrive(725, 500)
-    # br.GyroTurn(-40)
-    # br.GyroDrive(500, 900)
+    br.GyroDrive(720, 500)
     br.GyroTurn(-40)
     br.GyroDrive(-130, 700)
     br.GyroDrive(170, 700)
@@ -77,12 +76,12 @@ def Run(br: BaseRobot):
     br.GyroDriveForMillis(-1150, 500)
     br.GyroTurn(15)
 
-    # Driving to next  mission
+    # Driving to next mission
 
     br.leftAttachmentMotor.run_until_stalled(700)
     br.DriveAndSteer(350, -35, 665)
     br.WaitForMillis(250)
-    br.GyroDrive(-65, 500)
+    br.GyroDrive(-75, 500)
 
     # Doing Augmented Reality-blue flower
 
