@@ -19,13 +19,48 @@ def Run(br: BaseRobot):
     # br.robot.drive(speed=0, turn_rate=0)
     # br.WaitForMillis(500)
     # br.DriveUntilStalled(speed=700, turn_rate=0, stall=100, useGyro=False)
-    br.DriveUntilStalled2(
-        targetSpeed=460,
-        turn_rate=0,
-        stallSpeedPct=95,
-        useGyro=False,
-        maxTorque=1,
-    )
+    # br.rightDriveMotor.run(speed=1500)
+    # br.leftDriveMotor.run(speed=1500)
+    # br.WaitForMillis(4000)
+    # br.leftDriveMotor.run(speed=0)
+    # br.rightDriveMotor.run(speed=0)
+    # br.WaitForMillis(500)
+    # br.GyroDrive(distance=2000, speed=977)
+    # br.WaitForMillis(1000)
+    # br.DriveAndSteer(speed=977, turnrate=0, time=4000)
+    # br.WaitForMillis(1000)
+    # br.UseGyro(True)
+    # br.robot.reset()
+    # br.robot.drive(speed=1000, turn_rate=0)
+    # while br.robot.distance() < 2000:
+    #     wait(50)
+
+    # br.robot.drive(speed=0, turn_rate=0)
+
+    # br.WaitForMillis(1000)
+
+    # br.UseGyro(False)
+    # br.robot.reset()
+    br.robot.distance_control.limits(speed=977, acceleration=733, torque=560)
+    br.GyroDrive(speed=977, distance=1500)
+    br.WaitForMillis(100)
+
+    # br.robot.drive(speed=1000, turn_rate=0)
+    # while br.robot.distance() < 2000:
+    #     wait(50)
+
+    # br.robot.drive(speed=0, turn_rate=0)
+
+    # br.WaitForMillis(1000)
+
+    # br.DriveUntilStalled2(
+    #     targetSpeed=977,
+    #     turn_rate=0,
+    #     stallSpeedPct=95,
+    #     useGyro=False,
+    #     maxTorque=1,
+    # )
+    # br.WaitForMillis(1000)
     # br.UseGyro(True)
     # br.DriveAndSteerDist(distance=1650, speed=150, turn_rate=20)
     # br.UseGyro(True)

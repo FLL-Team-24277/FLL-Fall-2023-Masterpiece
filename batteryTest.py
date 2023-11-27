@@ -7,4 +7,4 @@ br = BaseRobot()
 
 print("current: " + str(br.hub.battery.current()))
 print("voltage: " + str(br.hub.battery.voltage()))
-print("Normal fully charged voltage is around 8200")
+print("Normal fully charged voltage is around 8000")
