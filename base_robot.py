@@ -145,12 +145,20 @@ class BaseRobot:
         values: More than -978, but less than 978.
         default: No default value
         """
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        # self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.robot.turn(
             angle,
             then,
             wait,
         )
+
+    def GyroTurn2(self, angle, tolerance=5):
+        angle = -angle
+        angle = (-angle) + self.hub.imu.heading()
+        delta = angle - self.hub.imu.heading()
+        while round(delta) not in range(-tolerance, tolerance):
+            self.robot.turn(delta)
+            delta = angle - self.hub.imu.heading()
 
     # Requires distance but speed is optional because of default. Positive
     # goes forward and negative goes backward
@@ -194,7 +202,7 @@ class BaseRobot:
             speed = 977
         if speed < -977:
             speed = -977
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        # self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.robot.straight(distance, then, wait)
 
     def GyroDriveForMillis(self, millis, speed=STRAIGHT_SPEED):

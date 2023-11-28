@@ -1,37 +1,39 @@
 from base_robot import *
 
 
-def GyroTurn(angle):
-    angle = -angle
-    angle = (-angle) + br.hub.imu.heading()
-    delta = angle - br.hub.imu.heading()
-    while round(delta) not in range(-1, 1):
-        br.robot.turn(delta)
-        delta = angle - br.hub.imu.heading()
-
-
 def Run(br: BaseRobot):
+    ACCEL = 350
+    br.robot.settings(
+        straight_speed=400,
+        straight_acceleration=ACCEL,
+        turn_rate=150,
+        turn_acceleration=360,
+    )
     br.rightAttachmentMotor.run_time(-500, 1000)
     br.robot.use_gyro(True)
     br.GyroDrive(500, 700)
-    br.GyroTurn(-38)
+    br.GyroTurn2(-38)
     br.GyroDrive(100, 700)
-    br.GyroTurn(-32)
+    br.GyroTurn(-25)
     br.GyroDrive(600, 700)
+    br.GyroTurn(25)
     br.GyroDrive(-100, 700)
-    br.GyroTurn(-42)
-    br.GyroDrive(450, 700)
-    br.robot.settings(600, 500, 50, 360)
-    br.robot.turn(50)
-    br.robot.settings(600, 500, 150, 360)
-    br.GyroDrive(200, 700)
+    br.robot.settings(600, ACCEL, 50, 360)
+    br.GyroTurn(-52)
+    br.GyroDrive(400, 700)
+    br.robot.turn(40)
+    br.robot.settings(600, ACCEL, 150, 360)
+    br.GyroDrive(225, 700)
     br.rightAttachmentMotor.run_time(500, 500, wait=False)
-    br.GyroDrive(-200, 700)
+    br.GyroDrive(-225, 700)
     br.robot.use_gyro(True)
-    GyroTurn(-50)
-    br.GyroDrive(-200, 700)
+    br.GyroTurn(-47)
+    br.GyroDrive(-150, 700)
     br.GyroTurn(-40)
-    br.GyroDrive(750, 700)
+    br.GyroDrive(1250, 977)
+    br.WaitForButton(Button.LEFT)
+    br.GyroDrive(515, 977)  # drive 340 mm
+    br.GyroDrive(-600, 977)
 
     # br.GyroDrive(-100, 700)
     # br.GyroTurn(-50)
