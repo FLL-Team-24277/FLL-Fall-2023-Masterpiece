@@ -50,7 +50,7 @@ while True:
     if col == Color.SENSOR_LIME:
         jonas_mission2.Run(br)
         # If detected color is White, then run Sadie's mission
-    if col == Color.SENSOR_WHITE:
+    if col == Color.SENSOR_YELLOW or col == Color.SENSOR_ORANGE:
         testytestmissionjonasnow.Run(br)
         # If detected color is Magenta, then run Cadence's & Carter's mission
     if col == Color.SENSOR_MAGENTA:
