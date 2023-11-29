@@ -26,6 +26,9 @@ def Run(br: BaseRobot):
     br.leftAttachmentMotor.run_angle(
         speed=100, rotation_angle=-100, wait=True
     )
+    br.leftAttachmentMotor.run_angle(
+        speed=100, rotation_angle=-100, wait=True
+    )
     br.WaitForMillis(500)
     br.leftAttachmentMotor.run_angle(
         speed=100, rotation_angle=-435, wait=False

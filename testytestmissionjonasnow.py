@@ -9,9 +9,10 @@ from base_robot_testing import *
 # "Run(br)" method.
 def Run(br: BaseRobot):
     br.robot.distance_control.limits(speed=977, acceleration=733, torque=560)
-    br.GyroDrive(500, 977)
-    br.leftAttachmentMotor.run_time(-977, 1000, wait=True)
+    br.robot.drive(977, -5)
     br.WaitForMillis(1000)
+    br.rightAttachmentMotor.run_time(-977, 1000, wait=True)
+    br.WaitForMillis(100)
     br.GyroDrive(distance=-400, speed=977)
     # br.GyroDriveForMillis(800, speed=-977)
     br.WaitForMillis(800)

@@ -107,9 +107,7 @@ class BaseRobot:
 
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
-    def GyroTurn(
-        self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED
-    ):
+    def GyroTurn(self, angle, then=Stop.BRAKE, wait=True, speed=TURN_RATE):
         """
         Turns the robot to the specified `angle`. \
         Positive numbers turn to the right, negative numbers turn the \
@@ -145,11 +143,14 @@ class BaseRobot:
         values: More than -978, but less than 978.
         default: No default value
         """
-        # self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        self.robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, speed, TURN_ACCEL)
         self.robot.turn(
             angle,
             then,
             wait,
+        )
+        self.robot.settings(
+            STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL
         )
 
     def GyroTurn2(self, angle, tolerance=5):
