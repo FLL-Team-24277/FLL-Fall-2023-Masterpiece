@@ -4,7 +4,7 @@ from base_robot import *
 def Run(br: BaseRobot):
     # Resetting for Expert
     br.rightAttachmentMotor.run_time(
-        speed=300, time=10002, wait=False, then=Stop.COAST
+        speed=300, time=1000, wait=False, then=Stop.COAST
     )
 
     # Positive numbers lower the arm; negative raises
@@ -23,9 +23,9 @@ def Run(br: BaseRobot):
     br.GyroDrive(415, 950)
     br.WaitForMillis(300)
     br.GyroDrive(-30, 75)
-    br.leftAttachmentMotor.run_angle(
-        speed=100, rotation_angle=-100, wait=True
-    )
+    # br.leftAttachmentMotor.run_angle(
+    #     speed=100, rotation_angle=-100, wait=True
+    # )
     br.leftAttachmentMotor.run_angle(
         speed=100, rotation_angle=-100, wait=True
     )
@@ -90,7 +90,7 @@ def Run(br: BaseRobot):
 
     br.GyroTurn(38)
     br.GyroDrive(324, 900)
-    br.GyroTurn(20)
+    br.GyroTurn(23)
     br.WaitForMillis(250)
     br.GyroDriveForMillis(-1100, 500)
     br.GyroTurn(5)
