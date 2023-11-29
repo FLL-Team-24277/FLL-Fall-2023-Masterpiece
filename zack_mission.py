@@ -26,17 +26,21 @@ def Run(br: BaseRobot):
     br.leftAttachmentMotor.run_angle(
         speed=100, rotation_angle=-100, wait=True
     )
+    br.leftAttachmentMotor.run_angle(
+        speed=100, rotation_angle=-100, wait=True
+    )
     br.WaitForMillis(500)
     br.leftAttachmentMotor.run_angle(
         speed=100, rotation_angle=-435, wait=False
     )
-    # br.GyroDrive(23, 25)
     br.robot.drive(speed=100, turn_rate=0)
     br.WaitForMillis(500)
     br.robot.drive(speed=0, turn_rate=0)
-    br.WaitForMillis(100)
+    br.WaitForMillis(250)
+    br.robot.settings(400, 600, 30, 360)
     br.GyroTurn(angle=27, speed=10)
-    br.GyroDrive(-375, 700)
+    br.robot.settings(400, 600, 150, 360)
+    br.GyroDrive(-400, 700)
 
     # Theater Scene Change
 
@@ -49,8 +53,10 @@ def Run(br: BaseRobot):
             pushes = 2
             break
 
-    br.GyroDrive(720, 500)
+    br.GyroDrive(715, 500)
+    br.robot.settings(400, 600, 500, 360)
     br.GyroTurn(-50)
+    br.robot.settings(400, 600, 150, 360)
     br.GyroDrive(-130, 700)
     br.rightAttachmentMotor.run_angle(speed=300, rotation_angle=-230)
     br.GyroDrive(170, 700)
@@ -84,11 +90,10 @@ def Run(br: BaseRobot):
 
     br.GyroTurn(38)
     br.GyroDrive(324, 900)
-    br.GyroTurn(25)
+    br.GyroTurn(20)
     br.WaitForMillis(250)
-    br.GyroDriveForMillis(-1150, 500)
-    br.GyroTurn(15)
-
+    br.GyroDriveForMillis(-1100, 500)
+    br.GyroTurn(5)
     br.leftAttachmentMotor.run_until_stalled(700)
     br.DriveAndSteer(350, -35, 665)
     br.WaitForMillis(250)
@@ -105,7 +110,10 @@ def Run(br: BaseRobot):
     br.GyroDrive(100, 500)
     br.GyroTurn(27)
     br.GyroDrive(-200, 700)
-    br.GyroTurn(-10)
+
+    # Going Home
+
+    br.GyroTurn(-15)
     br.GyroDriveForMillis(2250, 900)
 
 
