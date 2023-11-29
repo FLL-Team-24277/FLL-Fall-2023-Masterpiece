@@ -8,11 +8,17 @@ from base_robot_testing import *
 # When we run this program from the master program, we will call this
 # "Run(br)" method.
 def Run(br: BaseRobot):
+    # br.rightAttachmentMotor.run_until_stalled(300, duty_limit=50)
+    br.rightAttachmentMotor.run_time(speed=300, time=250)
     br.robot.distance_control.limits(speed=977, acceleration=733, torque=560)
     br.robot.drive(977, -5)
     br.WaitForMillis(1000)
+    br.robot.drive(speed=0, turn_rate=0)
     br.rightAttachmentMotor.run_time(-977, 1000, wait=True)
     br.WaitForMillis(100)
+    br.robot.drive(speed=-500, turn_rate=10)
+    br.WaitForMillis(1000)
+    br.robot.drive(speed=0, turn_rate=0)
     br.GyroDrive(distance=-400, speed=977)
     # br.GyroDriveForMillis(800, speed=-977)
     br.WaitForMillis(800)

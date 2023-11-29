@@ -12,11 +12,18 @@ from base_robot import *
 def Run(br: BaseRobot):
     #   Your mission code goes here, step-by-step
     # It MUST be indented just like the lines below
+    ACCEL = 250
+    br.robot.settings(
+        straight_speed=400,
+        straight_acceleration=ACCEL,
+        turn_rate=150,
+        turn_acceleration=360,
+    )
     br.leftAttachmentMotor.run_angle(1500, 5000, wait=False)
-    br.GyroDrive(350, 990)
+    br.GyroDrive(310, 990)
     br.rightAttachmentMotor.run_angle(1500, 250, wait=True)
-    br.GyroDrive(300, 990)
-    br.WaitForMillis(1000)
+    br.GyroDrive(200, 990)
+    br.WaitForMillis(70)
     br.GyroDrive(-600, 990)
 
 

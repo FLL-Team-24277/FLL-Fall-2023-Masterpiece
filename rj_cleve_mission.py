@@ -22,6 +22,8 @@ def Run(br: BaseRobot):
     # br.GyroDrive(-1, 800)
     br.leftAttachmentMotor.run_angle(977, -2235)  # -2325
     br.GyroDrive(-68, 800)
+    br.GyroDrive(60)
+    br.GyroDrive(600, 977)
     # br.GyroTurn(-30)
 
     # br.Curve(radius=420, angle=-80)
