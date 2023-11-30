@@ -57,9 +57,9 @@ def Run(br: BaseRobot):
     br.robot.settings(400, 600, 500, 360)
     br.GyroTurn(-50)
     br.robot.settings(400, 600, 150, 360)
-    br.GyroDrive(-130, 700)
+    br.GyroDrive(-135, 700)
     br.rightAttachmentMotor.run_angle(speed=300, rotation_angle=-230)
-    br.GyroDrive(170, 700)
+    br.GyroDrive(175, 700)
     br.rightAttachmentMotor.run_time(speed=300, time=750, wait=False)
     for i in range(pushes):
         br.GyroDrive(115, 200)
@@ -76,7 +76,7 @@ def Run(br: BaseRobot):
 
     br.GyroDrive(250, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(430, 900)
+    br.GyroDrive(450, 900)
     br.GyroTurn(-90)
 
     # Doing Immersive Expeiriance-purple guy
