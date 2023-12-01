@@ -90,10 +90,10 @@ def Run(br: BaseRobot):
 
     br.GyroTurn(38)
     br.GyroDrive(324, 900)
-    br.GyroTurn(23)
+    br.GyroTurn(30)
     br.WaitForMillis(250)
     br.GyroDriveForMillis(-1100, 500)
-    br.GyroTurn(5)
+    br.GyroTurn(10)
     br.leftAttachmentMotor.run_until_stalled(700)
     br.DriveAndSteer(350, -35, 665)
     br.WaitForMillis(250)
