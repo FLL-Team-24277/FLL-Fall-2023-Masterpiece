@@ -5,7 +5,7 @@ import jonas_mission2
 import testytestmissionjonasnow
 import giovanni_mission
 import rj_cleve_mission
-import cad_car_2_idea_test
+import cad_car_3_idea_test
 import zack_mission
 import sadie_mission_2
 
@@ -54,7 +54,7 @@ while True:
         testytestmissionjonasnow.Run(br)
         # If detected color is Magenta, then run Cadence's & Carter's mission
     if col == Color.SENSOR_MAGENTA:
-        cad_car_2_idea_test.Run(br)
+        cad_car_3_idea_test.Run(br)
         # If detected color is Dark wGray, then run Zack's mission
     if col == Color.SENSOR_DARKGRAY:
         zack_mission.Run(br)
