@@ -9,9 +9,10 @@ def Run(br: BaseRobot):
     # turn_rate=150,
     # turn_acceleration=360,
     # )
+    br.robot.reset()
     br.rightAttachmentMotor.run_time(-500, 1000, wait=False)
-    br.GyroDrive(280, 977, then=Stop.NONE)
-    br.Curve(radius=370, angle=-70, speed=977, then=Stop.NONE)
+    br.GyroDrive(280, 977, then=Stop.BRAKE)
+    br.Curve(radius=370, angle=-70, speed=977, then=Stop.BRAKE)
     br.GyroDrive(375, 750)
     br.GyroTurn(35)
     br.GyroDrive(-100, 700)
