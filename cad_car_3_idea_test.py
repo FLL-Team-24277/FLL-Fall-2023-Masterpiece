@@ -12,18 +12,18 @@ def Run(br: BaseRobot):
     br.rightAttachmentMotor.run_time(-500, 1000, wait=False)
     br.GyroDrive(280, 977, then=Stop.NONE)
     br.Curve(radius=370, angle=-70, speed=977, then=Stop.NONE)
-    br.GyroDrive(375, 750, then=Stop.NONE)
+    br.GyroDrive(375, 750)
     br.GyroTurn(35)
-    br.GyroDrive(-100, 700, then=Stop.NONE)
+    br.GyroDrive(-100, 700)
     br.GyroTurn(-45)
-    br.GyroDrive(400, 977, then=Stop.NONE)
+    br.GyroDrive(395, 977)
     br.GyroTurn(45)
-    br.GyroDrive(150)
+    br.GyroDrive(225)
     br.rightAttachmentMotor.run_time(500, 1000)
-    br.GyroDrive(-400, 977, then=Stop.NONE)
-    # br.WaitForButton(Button.LEFT, then=Stop.NONE)
-    # br.GyroDrive(515, 977, then=Stop.NONE)  # drive 340 mm
-    # br.GyroDrive(-600, 977, then=Stop.NONE)
+    br.GyroDrive(-250, 977)
+    br.WaitForButton(Button.LEFT)
+    br.GyroDrive(515, 977, then=Stop.NONE)  # drive 340 mm
+    br.GyroDrive(-600, 977, then=Stop.NONE)
 
 
 if __name__ == "__main__":
