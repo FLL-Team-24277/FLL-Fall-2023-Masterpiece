@@ -10,7 +10,7 @@ from base_robot_testing import *
 def Run(br: BaseRobot):
     # br.rightAttachmentMotor.run_until_stalled(300, duty_limit=50)
     br.rightAttachmentMotor.run_time(speed=300, time=250)
-    br.robot.distance_control.limits(speed=977, acceleration=733, torque=560)
+    # br.robot.distance_control.limits(speed=977, acceleration=733, torque=560)
     br.robot.drive(977, -5)
     br.WaitForMillis(1000)
     br.robot.drive(speed=0, turn_rate=0)
