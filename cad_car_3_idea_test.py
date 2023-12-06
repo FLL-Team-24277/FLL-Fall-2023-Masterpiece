@@ -23,8 +23,8 @@ def Run(br: BaseRobot):
     br.rightAttachmentMotor.run_time(500, 1000)
     br.GyroDrive(-250, 977)
     br.WaitForButton(Button.LEFT)
-    br.GyroDrive(515, 977, then=Stop.NONE)  # drive 340 mm
-    br.GyroDrive(-600, 977, then=Stop.NONE)
+    br.GyroDrive(400, 977, then=Stop.NONE)  # drive 340 mm
+    br.GyroDrive(-500, 977, then=Stop.NONE)
 
 
 if __name__ == "__main__":
