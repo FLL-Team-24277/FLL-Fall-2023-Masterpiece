@@ -3,6 +3,7 @@ from pybricks.parameters import (
     Port,
     Direction,
     Axis,
+    Stop,
 )
 from pybricks.robotics import GyroDriveBase
 from pybricks.hubs import PrimeHub
@@ -29,7 +30,11 @@ robot = GyroDriveBase(
 robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
 
 robot.use_gyro(True)
-robot.turn(90)
+robot.drive(speed=300, turn_rate=0)
+wait(500)
+robot.stop()
+wait(250)
+robot.straight(distance=-20)
 #wait(4000)
 #robot.stop()
 #robot.use_gyro(True)
