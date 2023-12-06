@@ -10,9 +10,9 @@ from base_robot import *
 def Run(br: BaseRobot):
     # Your mission code goes here, step-by-step
     # It MUST be indented just like the lines below
-    br.GyroDriveForMillis(speed=300, millis=500)
-    br.WaitForMillis(250)
-    br.GyroDrive(distance=-5, speed=300)
+    br.GyroDrive(distance=1000, speed=400, then=Stop.NONE)
+    # br.WaitForMillis(500)
+    br.GyroDrive(distance=1000, speed=200)
 
 
 # If running this program directly (not from the master program), this is
