@@ -62,14 +62,14 @@ class BaseRobot:
         # Use the colorTest.py program to get the color sensor values
         Color.SENSOR_WHITE = Color(h=0, s=0, v=100)  # h=0,s=0,v=100
         Color.SENSOR_RED = Color(h=353, s=82, v=92)  # h=0,s=100,v=100
-        Color.SENSOR_YELLOW = Color(h=60, s=50, v=100)  # h=60,s=100,v=100
+        Color.SENSOR_YELLOW = Color(h=60, s=60, v=100)  # h=60,s=100,v=100
         Color.SENSOR_GREEN = Color(h=156, s=66, v=66)  # h=120,s=100,v=100
         Color.SENSOR_BLUE = Color(h=216, s=84, v=83)  # h=240,s=100,v=100
         Color.SENSOR_MAGENTA = Color(h=333, s=75, v=78)  # h=300,s=100,v=100
         Color.SENSOR_ORANGE = Color(h=8, s=75, v=100)  # h=30,s=100,v=100
         Color.SENSOR_DARKGRAY = Color(h=192, s=21, v=64)  # h=0,s=0,v=50
         Color.SENSOR_NONE = Color(h=170, s=26, v=15)  # h=0,s=0,v=0
-        Color.SENSOR_LIME = Color(h=92, s=57, v=93)  # h=92, s=57, v=93
+        Color.SENSOR_LIME = Color(h=92, s=55, v=93)  # h=92, s=57, v=93
 
         # Put the custom colors in a list. Best practice is to only use
         # colors that we are using for actual missions.
@@ -107,9 +107,7 @@ class BaseRobot:
 
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
-    def GyroTurn(
-        self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED
-    ):
+    def GyroTurn(self, angle, then=Stop.BRAKE, wait=True, speed=TURN_RATE):
         """
         Turns the robot to the specified `angle`. \
         Positive numbers turn to the right, negative numbers turn the \
@@ -145,12 +143,23 @@ class BaseRobot:
         values: More than -978, but less than 978.
         default: No default value
         """
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        self.robot.settings(STRAIGHT_SPEED, STRAIGHT_ACCEL, speed, TURN_ACCEL)
         self.robot.turn(
             angle,
             then,
             wait,
         )
+        self.robot.settings(
+            STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL
+        )
+
+    def GyroTurn2(self, angle, tolerance=5):
+        angle = -angle
+        angle = (-angle) + self.hub.imu.heading()
+        delta = angle - self.hub.imu.heading()
+        while round(delta) not in range(-tolerance, tolerance):
+            self.robot.turn(delta)
+            delta = angle - self.hub.imu.heading()
 
     # Requires distance but speed is optional because of default. Positive
     # goes forward and negative goes backward
@@ -194,7 +203,7 @@ class BaseRobot:
             speed = 977
         if speed < -977:
             speed = -977
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        # self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
         self.robot.straight(distance, then, wait)
 
     def GyroDriveForMillis(self, millis, speed=STRAIGHT_SPEED):

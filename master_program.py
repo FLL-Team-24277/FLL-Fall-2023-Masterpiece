@@ -2,10 +2,10 @@ from base_robot import *
 
 # Import missions
 import jonas_mission2
-import sadie_mission
+import testytestmissionjonasnow
 import giovanni_mission
 import rj_cleve_mission
-import cad_car_mission
+import cad_car_3_idea_test
 import zack_mission
 import sadie_mission_2
 
@@ -50,12 +50,12 @@ while True:
     if col == Color.SENSOR_LIME:
         jonas_mission2.Run(br)
         # If detected color is White, then run Sadie's mission
-    if col == Color.SENSOR_WHITE:
-        sadie_mission.Run(br)
+    if col == Color.SENSOR_YELLOW or col == Color.SENSOR_ORANGE:
+        testytestmissionjonasnow.Run(br)
         # If detected color is Magenta, then run Cadence's & Carter's mission
     if col == Color.SENSOR_MAGENTA:
-        cad_car_mission.Run(br)
-        # If detected color is Dark Gray, then run Zack's mission
+        cad_car_3_idea_test.Run(br)
+        # If detected color is Dark wGray, then run Zack's mission
     if col == Color.SENSOR_DARKGRAY:
         zack_mission.Run(br)
     # If detected color is Blue, then run Giovanni's mission
