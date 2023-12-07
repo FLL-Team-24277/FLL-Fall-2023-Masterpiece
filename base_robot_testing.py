@@ -26,6 +26,18 @@ MAX_LARGE_MOTOR_VOLTAGE = 9000  # mV
 MIN_LARGE_MOTOR_VOLTAGE = 3000  # mV
 MAX_LARGE_MOTOR_TORQUE = 560
 
+# Max Drivebase parameters
+DB_MAX_SPEED = 977
+DB_MAX_ACCEL = 9775
+DB_MAX_TORQUE = 1000
+
+# Max Medium Motor parameters
+MM_MAX_SPEED = 2000
+MM_MAX_ACCEL = 20000
+MM_MIN_ACCEL = 50
+MM_MAX_TORQUE = 1000
+MM_MIN_TORQUE = 15
+
 
 class BaseRobot:
     """
@@ -51,14 +63,37 @@ class BaseRobot:
             TIRE_DIAMETER,
             AXLE_TRACK,
         )
-        # default speeds were determined by testing
-        # self.robot.settings(
-        #     STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL
-        # )
+
         self.leftAttachmentMotor = Motor(Port.B)
         self.rightAttachmentMotor = Motor(Port.D)
 
         self.colorSensor = ColorSensor(Port.F)
+
+        # default speeds were determined by testing
+        self.robot.settings(
+            STRAIGHT_SPEED, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL
+        )
+
+        # Set the drivebase maximum speed, acceleration and torque
+        # Default values are 488, 600, 560
+        self.robot.distance_control.limits(
+            speed=DB_MAX_SPEED,
+            acceleration=DB_MAX_ACCEL,
+            torque=DB_MAX_TORQUE,
+        )
+
+        # Set the attachment motor maximum speed, acceleration and torque
+        # Default values are 1000, 2000, 199
+        self.leftAttachmentMotor.control.limits(
+            speed=MM_MAX_SPEED,
+            acceleration=MM_MAX_ACCEL,
+            torque=MM_MAX_TORQUE,
+        )
+        self.rightAttachmentMotor.control.limits(
+            speed=MM_MAX_SPEED,
+            acceleration=MM_MAX_ACCEL,
+            torque=MM_MAX_TORQUE,
+        )
 
         # HSV values were found by testing. Default hsv-values are provided
         # in comments. Theoretically, the farther apart the hsv-values are,
@@ -108,6 +143,15 @@ class BaseRobot:
             Color.SENSOR_NONE: Color.NONE,
             Color.SENSOR_LIME: Color.CYAN,
         }
+
+    def Rescale(self, val, in_min, in_max, out_min, out_max):
+        if val < in_min:
+            val = in_min
+        if val > in_max:
+            val = in_max
+        return out_min + (val - in_min) * (
+            (out_max - out_min) / (in_max - in_min)
+        )
 
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
@@ -339,10 +383,134 @@ class BaseRobot:
         self.robot.stop()
         self.robot.use_gyro(True)
 
-    def MoveRightAttachmentMotor(
-        self, angle, speed=STRAIGHT_SPEED, then=Stop.HOLD, wait=True
+    def MoveRightAttachmentMotorDegrees(
+        self,
+        angle,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
     ):
+        speed = self.Rescale(speedPct, -100, 100, -MM_MAX_SPEED, MM_MAX_SPEED)
+        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        try:
+            self.rightAttachmentMotor.control.limits(speed, accel, torque)
+        except:
+            print("Could not set control limits for the motor")
+            print("speed = " + str(speed))
+            print("accel = " + str(accel))
+            print("torque = " + str(torque))
+
         self.rightAttachmentMotor.run_angle(speed, angle, then, wait)
+        self.rightAttachmentMotor.control.limits(
+            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+        )
+
+    def MoveRightAttachmentMotorMillis(
+        self,
+        millis,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
+    ):
+        speed = self.Rescale(speedPct, -100, 100, -MM_MAX_SPEED, MM_MAX_SPEED)
+        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        try:
+            self.rightAttachmentMotor.control.limits(speed, accel, torque)
+        except:
+            print("Could not set control limits for the motor")
+            print("speed = " + str(speed))
+            print("accel = " + str(accel))
+            print("torque = " + str(torque))
+
+        self.rightAttachmentMotor.run_time(speed, millis, then, wait)
+        self.rightAttachmentMotor.control.limits(
+            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+        )
+
+    def MoveRightAttachmentMotorUntilStalled(
+        self,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
+    ):
+        speed = self.Rescale(speedPct, -100, 100, -MM_MAX_SPEED, MM_MAX_SPEED)
+        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        try:
+            self.rightAttachmentMotor.control.limits(speed, accel, torque)
+        except:
+            print("Could not set control limits for the motor")
+            print("speed = " + str(speed))
+            print("accel = " + str(accel))
+            print("torque = " + str(torque))
+
+        duty_limit = int(torque / MM_MAX_TORQUE * 100)
+        self.rightAttachmentMotor.run_until_stalled(speed, then, duty_limit)
+        self.rightAttachmentMotor.control.limits(
+            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+        )
+
+    def MoveLeftAttachmentMotorDegrees(
+        self,
+        angle,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
+    ):
+        speed = self.Rescale(speedPct, -100, 100, -MM_MAX_SPEED, MM_MAX_SPEED)
+        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        self.LeftAttachmentMotor.control.limits(speed, accel, torque)
+        self.leftAttachmentMotor.run_angle(speed, angle, then, wait)
+        self.leftAttachmentMotor.control.limits(
+            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+        )
+
+    def MoveLeftAttachmentMotorMillis(
+        self,
+        millis,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
+    ):
+        speed = self.Rescale(speedPct, -100, 100, -MM_MAX_SPEED, MM_MAX_SPEED)
+        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        self.leftAttachmentMotor.control.limits(speed, accel, torque)
+        self.leftAttachmentMotor.run_time(speed, millis, then, wait)
+        self.leftAttachmentMotor.control.limits(
+            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+        )
+
+    def MoveLeftAttachmentMotorUntilStalled(
+        self,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
+    ):
+        speed = self.Rescale(speedPct, -100, 100, -MM_MAX_SPEED, MM_MAX_SPEED)
+        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        duty_limit = int(torque / MM_MAX_TORQUE * 100)
+        self.leftAttachmentMotor.control.limits(speed, accel, torque)
+        self.leftAttachmentMotor.run_until_stalled(speed, then, duty_limit)
+        self.leftAttachmentMotor.control.limits(
+            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+        )
 
     def DriveUntilStalled2(
         self,
