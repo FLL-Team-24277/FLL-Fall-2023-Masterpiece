@@ -26,10 +26,13 @@ MAX_LARGE_MOTOR_VOLTAGE = 9000  # mV
 MIN_LARGE_MOTOR_VOLTAGE = 3000  # mV
 MAX_LARGE_MOTOR_TORQUE = 560
 
-# Max Drivebase parameters
+# Max/min Drivebase parameters
 DB_MAX_SPEED = 977
 DB_MAX_ACCEL = 9775
 DB_MAX_TORQUE = 1000
+DB_MIN_SPEED = 977
+DB_MIN_ACCEL = 9775
+DB_MIN_TORQUE = 1000
 
 # Max Medium Motor parameters
 MM_MAX_SPEED = 2000
@@ -145,6 +148,8 @@ class BaseRobot:
         }
 
     def Rescale(self, val, in_min, in_max, out_min, out_max):
+        if in_max == in_min:
+            return 0
         if val < in_min:
             val = in_min
         if val > in_max:
@@ -601,3 +606,15 @@ class BaseRobot:
 
     def UseGyro(self, useGyro):
         self.robot.use_gyro(useGyro)
+
+    def GyroDriveImproved(
+        self,
+        speedPct=100,
+        accelPct=100,
+        torquePct=100,
+        then=Stop.HOLD,
+        wait=True,
+    ):
+        self.robot.drive(5, 0)
+        wait(5000)
+        self.robot.drive(0, 0)
