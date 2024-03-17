@@ -17,41 +17,57 @@ from pybricks.tools import wait
 TIRE_DIAMETER = 56  # mm
 AXLE_TRACK = 103  # distance between the wheels, mm
 
-DEF_STRAIGHT_SPEED_PCT = 65
-STRAIGHT_SPEED = 400  # normal straight speed for driving, mm/sec
-DEF_STRAIGHT_ACCEL_PCT = 35  # normal acceleration, mm/sec^2
-STRAIGHT_ACCEL = 175
-DEF_TURN_RATE = 150  # normal turning rate, deg/sec
-DEF_TURN_ACCEL = 360  # normal turning acceleration, deg/sec^2
+# These are the default parameters to be passed into the different
+# movement methods. They are all percents and need to be passed through
+# the Rescale() method before passing to pybricks
+DEF_STRAIGHT_SPEED_PCT = 65  # Normal driving speed
+DEF_STRAIGHT_ACCEL_PCT = 65  # normal acceleration, rarely changed
+DEF_TURN_RATE_PCT = 65  # normal turning rate
+DEF_TURN_ACCEL_PCT = 65  # normal turning acceleration, rarely changed
 
-MAX_LARGE_MOTOR_VOLTAGE = 9000  # mV
-MIN_LARGE_MOTOR_VOLTAGE = 3000  # mV
-MAX_LARGE_MOTOR_TORQUE = 560
+
+# Drivebase parameters. None of these should ever be changed by users
 
 # Max/min Drivebase parameters (absolute values)
-# DB_MAX_SPEED = 977
 # The maximum number that can be used for speed is 977, but there is no speed
 # difference above 600
-DB_MAX_SPEED = 600
-# DB_MAX_ACCEL = 9775
-# The max acceleration number that can be entered is 9775, but realistically
-# there is no difference above 500, so we are going to use that as the max
-DB_MAX_ACCEL = 500
+DB_MAX_SPEED_MMSEC = 600
 
-DB_MAX_TORQUE = 1000
 # The drivebase can accept speeds down to zero, but is not very efficient and
 # quite erratic. Realistically, 30 is a good minimum speed
-DB_MIN_SPEED = 30
-DB_MIN_ACCEL = 5
-DB_MIN_TORQUE = 1000
+DB_MIN_SPEED_MMSEC = 30
 
-# Max Medium Motor parameters (absolute values)
-MM_MAX_SPEED = 1100
-MM_MAX_ACCEL = 20000
-MM_MIN_ACCEL = 50
-MM_MIN_SPEED = 100
-MM_MAX_TORQUE = 1000
-MM_MIN_TORQUE = 15
+# The max acceleration number that can be entered is 9775, but realistically
+# there is no difference above 500, so we are going to use that as the max
+DB_MAX_ACCEL_MMSEC2 = 500
+
+# Lowest usable accelleration, determined by testing
+DB_MIN_ACCEL_MMSEC2 = 5
+
+# Max and min turning speeds, determined by testing
+# These have not been validated yet!!!!
+# TODO Validate these turning speeds
+DB_MAX_TURN_RATE_DEGSEC = 2000
+DB_MIN_TURN_RATE_DEGSEC = 30
+DB_MAX_TURN_ACCEL_DEGSEC2 = 1000
+DB_MIN_TURN_ACCEL_DEGSEC2 = 10
+
+# Not sure how these are used
+DB_MAX_TORQUE_MNM = 1000  # milli-newton-meters
+DB_MIN_TORQUE_MNM = 1000
+
+# Large Motor usable parameters
+LG_MOT_MAX_VOLTAGE = 9000  # mV
+LG_MOT_MIN_VOLTAGE = 3000  # mV
+LG_MOT_MAX_TORQUE = 560
+
+# Medium Motor usable parameters
+MED_MOT_MAX_SPEED_DEGSEC = 1100
+MED_MOT_MAX_ACCEL_DEGSEC2 = 20000
+MED_MOT_MIN_ACCEL_DEGSEC2 = 50
+MED_MOT_MIN_SPEED_DEGSEC = 100
+MED_MOT_MAX_TORQUE = 1000
+MED_MOT_MIN_TORQUE = 15
 
 
 class BaseRobot:
@@ -84,30 +100,57 @@ class BaseRobot:
 
         self.colorSensor = ColorSensor(Port.F)
 
-        # default speeds were determined by testing
+        # these are the default values to be used when no other values
+        # are given.
+        # default values were determined by testing
         self.robot.settings(
-            STRAIGHT_SPEED, STRAIGHT_ACCEL, DEF_TURN_RATE, DEF_TURN_ACCEL
+            straight_speed=self.Rescale(
+                DEF_STRAIGHT_SPEED_PCT,
+                1,
+                100,
+                DB_MIN_SPEED_MMSEC,
+                DB_MAX_SPEED_MMSEC,
+            ),
+            straight_acceleration=self.Rescale(
+                DEF_STRAIGHT_ACCEL_PCT,
+                1,
+                100,
+                DB_MIN_ACCEL_MMSEC2,
+                DB_MAX_ACCEL_MMSEC2,
+            ),
+            turn_rate=self.Rescale(
+                DEF_TURN_RATE_PCT,
+                1,
+                100,
+                DB_MIN_TURN_RATE_DEGSEC,
+                DB_MAX_TURN_RATE_DEGSEC,
+            ),
+            turn_acceleration=self.Rescale(
+                DEF_TURN_ACCEL_PCT,
+                1,
+                100,
+                DB_MIN_TURN_ACCEL_DEGSEC2,
+                DB_MAX_TURN_ACCEL_DEGSEC2,
+            ),
         )
 
         # Set the drivebase maximum speed, acceleration and torque
-        # Default values are 488, 600, 560
         self.robot.distance_control.limits(
-            speed=DB_MAX_SPEED,
-            acceleration=DB_MAX_ACCEL,
-            torque=DB_MAX_TORQUE,
+            speed=DB_MAX_SPEED_MMSEC,
+            acceleration=DB_MAX_ACCEL_MMSEC2,
+            torque=DB_MAX_TORQUE_MNM,
         )
 
         # Set the attachment motor maximum speed, acceleration and torque
-        # Default values are 1000, 2000, 199
         self.leftAttachmentMotor.control.limits(
-            speed=MM_MAX_SPEED,
-            acceleration=MM_MAX_ACCEL,
-            torque=MM_MAX_TORQUE,
+            speed=MED_MOT_MAX_SPEED_DEGSEC,
+            acceleration=MED_MOT_MAX_ACCEL_DEGSEC2,
+            torque=MED_MOT_MAX_TORQUE,
         )
         self.rightAttachmentMotor.control.limits(
-            speed=MM_MAX_SPEED,
-            acceleration=MM_MAX_ACCEL,
-            torque=MM_MAX_TORQUE,
+            speed=MED_MOT_MAX_SPEED_DEGSEC,
+            acceleration=MED_MOT_MAX_ACCEL_DEGSEC2,
+            torque=MED_MOT_MAX_TORQUE,
         )
 
         # HSV values were found by testing. Default hsv-values are provided
@@ -182,7 +225,12 @@ class BaseRobot:
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
     def GyroTurn(
-        self, angle, then=Stop.BRAKE, wait=True, speed=STRAIGHT_SPEED
+        self,
+        angle,
+        then=Stop.BRAKE,
+        wait=True,
+        turnspeed=DEF_TURN_RATE_PCT,
+        turnaccel=DEF_TURN_ACCEL_PCT,
     ):
         """
         Turns the robot to the specified `angle`. \
@@ -219,7 +267,36 @@ class BaseRobot:
         values: More than -978, but less than 978.
         default: No default value
         """
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        self.robot.settings(
+            self.Rescale(
+                DEF_STRAIGHT_SPEED_PCT,
+                1,
+                100,
+                DB_MIN_SPEED_MMSEC,
+                DB_MAX_SPEED_MMSEC,
+            ),
+            self.Rescale(
+                DEF_STRAIGHT_ACCEL_PCT,
+                1,
+                100,
+                DB_MIN_ACCEL_MMSEC2,
+                DB_MAX_ACCEL_MMSEC2,
+            ),
+            self.Rescale(
+                turnspeed,
+                1,
+                100,
+                DB_MIN_TURN_RATE_DEGSEC,
+                DB_MAX_TURN_RATE_DEGSEC,
+            ),
+            self.Rescale(
+                turnaccel,
+                1,
+                100,
+                DB_MIN_TURN_ACCEL_DEGSEC2,
+                DB_MAX_TURN_ACCEL_DEGSEC2,
+            ),
+        )
         self.robot.turn(
             angle,
             then,
@@ -228,8 +305,13 @@ class BaseRobot:
 
     # Requires distance but speed is optional because of default. Positive
     # goes forward and negative goes backward
-    def GyroDrive(
-        self, distance, speed=STRAIGHT_SPEED, then=Stop.BRAKE, wait=True
+    def GyroDriveForDistance(
+        self,
+        distance,
+        speedpct=DEF_STRAIGHT_SPEED_PCT,
+        accelpct=DEF_STRAIGHT_ACCEL_PCT,
+        then=Stop.BRAKE,
+        wait=True,
     ):
         """
         Makes the robot drive for a certain distance. \
@@ -264,14 +346,44 @@ class BaseRobot:
         values: true, false.
         default: true
         """
-        if speed > 977:
-            speed = 977
-        if speed < -977:
-            speed = -977
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        self.robot.settings(
+            self.Rescale(
+                speedpct,
+                1,
+                100,
+                DB_MIN_SPEED_MMSEC,
+                DB_MAX_SPEED_MMSEC,
+            ),
+            self.Rescale(
+                accelpct,
+                1,
+                100,
+                DB_MIN_ACCEL_MMSEC2,
+                DB_MAX_ACCEL_MMSEC2,
+            ),
+            self.Rescale(
+                DEF_TURN_RATE_PCT,
+                1,
+                100,
+                DB_MIN_TURN_RATE_DEGSEC,
+                DB_MAX_TURN_RATE_DEGSEC,
+            ),
+            self.Rescale(
+                DEF_TURN_ACCEL_PCT,
+                1,
+                100,
+                DB_MIN_TURN_ACCEL_DEGSEC2,
+                DB_MAX_TURN_ACCEL_DEGSEC2,
+            ),
+        )
         self.robot.straight(distance, then, wait)
 
-    def GyroDriveForMillis(self, millis, speed=STRAIGHT_SPEED):
+    def GyroDriveForMillis(
+        self,
+        millis,
+        speedpct=DEF_STRAIGHT_SPEED_PCT,
+        accelpct=DEF_STRAIGHT_ACCEL_PCT,
+    ):
         """
         Makes the robot drive for a certain time. \
         Positive speeds make the robot go forward, and negative \
@@ -293,12 +405,46 @@ class BaseRobot:
         values: Any.
         default: None
         """
-        if speed > 977:
-            speed = 977
-        if speed < -977:
-            speed = -977
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
-        self.robot.drive(speed, 0)
+        self.robot.settings(
+            self.Rescale(
+                speedpct,
+                1,
+                100,
+                DB_MIN_SPEED_MMSEC,
+                DB_MAX_SPEED_MMSEC,
+            ),
+            self.Rescale(
+                accelpct,
+                1,
+                100,
+                DB_MIN_ACCEL_MMSEC2,
+                DB_MAX_ACCEL_MMSEC2,
+            ),
+            self.Rescale(
+                DEF_TURN_RATE_PCT,
+                1,
+                100,
+                DB_MIN_TURN_RATE_DEGSEC,
+                DB_MAX_TURN_RATE_DEGSEC,
+            ),
+            self.Rescale(
+                DEF_TURN_ACCEL_PCT,
+                1,
+                100,
+                DB_MIN_TURN_ACCEL_DEGSEC2,
+                DB_MAX_TURN_ACCEL_DEGSEC2,
+            ),
+        )
+        self.robot.drive(
+            speed=self.Rescale(
+                speedpct,
+                1,
+                100,
+                DB_MIN_SPEED_MMSEC,
+                DB_MAX_SPEED_MMSEC,
+            ),
+            turn_rate=0,
+        )
         wait(millis)
         self.robot.stop()
 
@@ -333,7 +479,13 @@ class BaseRobot:
             wait(50)
 
     def Curve(
-        self, radius, angle, then=Stop.HOLD, wait=True, speed=STRAIGHT_SPEED
+        self,
+        radius,
+        angle,
+        speedpct=DEF_STRAIGHT_SPEED_PCT,
+        accelpct=DEF_STRAIGHT_ACCEL_PCT,
+        then=Stop.HOLD,
+        wait=True,
     ):
         """
         Drives the robot in a curve\
@@ -368,7 +520,36 @@ class BaseRobot:
         values: More than -978, but less than 978.
         default: No default value
         """
-        self.robot.settings(speed, STRAIGHT_ACCEL, TURN_RATE, TURN_ACCEL)
+        self.robot.settings(
+            self.Rescale(
+                speedpct,
+                1,
+                100,
+                DB_MIN_SPEED_MMSEC,
+                DB_MAX_SPEED_MMSEC,
+            ),
+            self.Rescale(
+                accelpct,
+                1,
+                100,
+                DB_MIN_ACCEL_MMSEC2,
+                DB_MAX_ACCEL_MMSEC2,
+            ),
+            self.Rescale(
+                DEF_TURN_RATE_PCT,
+                1,
+                100,
+                DB_MIN_TURN_RATE_DEGSEC,
+                DB_MAX_TURN_RATE_DEGSEC,
+            ),
+            self.Rescale(
+                DEF_TURN_ACCEL_PCT,
+                1,
+                100,
+                DB_MIN_TURN_ACCEL_DEGSEC2,
+                DB_MAX_TURN_ACCEL_DEGSEC2,
+            ),
+        )
 
         self.robot.curve(radius, angle, then, wait)
 
@@ -417,11 +598,23 @@ class BaseRobot:
         then=Stop.HOLD,
         wait=True,
     ):
-        speed = self.Rescale(speedPct, 1, 100, MM_MIN_SPEED, MM_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        speed = self.Rescale(
+            speedPct,
+            1,
+            100,
+            MED_MOT_MIN_SPEED_DEGSEC,
+            MED_MOT_MAX_SPEED_DEGSEC,
+        )
+        accel = self.Rescale(
+            accelPct,
+            1,
+            100,
+            MED_MOT_MIN_ACCEL_DEGSEC2,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+        )
         try:
             self.rightAttachmentMotor.control.limits(
-                speed, accel, MM_MAX_TORQUE
+                speed, accel, MED_MOT_MAX_TORQUE
             )
         except:
             print("Could not set control limits for the motor")
@@ -430,7 +623,9 @@ class BaseRobot:
 
         self.rightAttachmentMotor.run_angle(speed, angle, then, wait)
         self.rightAttachmentMotor.control.limits(
-            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+            MED_MOT_MAX_SPEED_DEGSEC,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+            MED_MOT_MAX_TORQUE,
         )
 
     def MoveRightAttachmentMotorMillis(
@@ -441,11 +636,23 @@ class BaseRobot:
         then=Stop.HOLD,
         wait=True,
     ):
-        speed = self.Rescale(speedPct, 1, 100, MM_MIN_SPEED, MM_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
+        speed = self.Rescale(
+            speedPct,
+            1,
+            100,
+            MED_MOT_MIN_SPEED_DEGSEC,
+            MED_MOT_MAX_SPEED_DEGSEC,
+        )
+        accel = self.Rescale(
+            accelPct,
+            1,
+            100,
+            MED_MOT_MIN_ACCEL_DEGSEC2,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+        )
         try:
             self.rightAttachmentMotor.control.limits(
-                speed, accel, MM_MAX_TORQUE
+                speed, accel, MED_MOT_MAX_TORQUE
             )
         except:
             print("Could not set control limits for the motor")
@@ -454,7 +661,9 @@ class BaseRobot:
 
         self.rightAttachmentMotor.run_time(speed, millis, then, wait)
         self.rightAttachmentMotor.control.limits(
-            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+            MED_MOT_MAX_SPEED_DEGSEC,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+            MED_MOT_MAX_TORQUE,
         )
 
     def MoveRightAttachmentMotorUntilStalled(
@@ -465,9 +674,23 @@ class BaseRobot:
         then=Stop.HOLD,
         wait=True,
     ):
-        speed = self.Rescale(speedPct, 1, 100, MM_MIN_SPEED, MM_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
-        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        speed = self.Rescale(
+            speedPct,
+            1,
+            100,
+            MED_MOT_MIN_SPEED_DEGSEC,
+            MED_MOT_MAX_SPEED_DEGSEC,
+        )
+        accel = self.Rescale(
+            accelPct,
+            1,
+            100,
+            MED_MOT_MIN_ACCEL_DEGSEC2,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+        )
+        torque = self.Rescale(
+            torquePct, 1, 100, MED_MOT_MIN_TORQUE, MED_MOT_MAX_TORQUE
+        )
         try:
             self.rightAttachmentMotor.control.limits(speed, accel, torque)
         except:
@@ -476,10 +699,12 @@ class BaseRobot:
             print("accel = " + str(accel))
             print("torque = " + str(torque))
 
-        duty_limit = int(torque / MM_MAX_TORQUE * 100)
+        duty_limit = int(torque / MED_MOT_MAX_TORQUE * 100)
         self.rightAttachmentMotor.run_until_stalled(speed, then, duty_limit)
         self.rightAttachmentMotor.control.limits(
-            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+            MED_MOT_MAX_SPEED_DEGSEC,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+            MED_MOT_MAX_TORQUE,
         )
 
     def MoveLeftAttachmentMotorDegrees(
@@ -491,13 +716,29 @@ class BaseRobot:
         then=Stop.HOLD,
         wait=True,
     ):
-        speed = self.Rescale(speedPct, 1, 100, MM_MIN_SPEED, MM_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
-        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        speed = self.Rescale(
+            speedPct,
+            1,
+            100,
+            MED_MOT_MIN_SPEED_DEGSEC,
+            MED_MOT_MAX_SPEED_DEGSEC,
+        )
+        accel = self.Rescale(
+            accelPct,
+            1,
+            100,
+            MED_MOT_MIN_ACCEL_DEGSEC2,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+        )
+        torque = self.Rescale(
+            torquePct, 1, 100, MED_MOT_MIN_TORQUE, MED_MOT_MAX_TORQUE
+        )
         self.LeftAttachmentMotor.control.limits(speed, accel, torque)
         self.leftAttachmentMotor.run_angle(speed, angle, then, wait)
         self.leftAttachmentMotor.control.limits(
-            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+            MED_MOT_MAX_SPEED_DEGSEC,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+            MED_MOT_MAX_TORQUE,
         )
 
     def MoveLeftAttachmentMotorMillis(
@@ -509,13 +750,29 @@ class BaseRobot:
         then=Stop.HOLD,
         wait=True,
     ):
-        speed = self.Rescale(speedPct, 1, 100, MM_MIN_SPEED, MM_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
-        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
+        speed = self.Rescale(
+            speedPct,
+            1,
+            100,
+            MED_MOT_MIN_SPEED_DEGSEC,
+            MED_MOT_MAX_SPEED_DEGSEC,
+        )
+        accel = self.Rescale(
+            accelPct,
+            1,
+            100,
+            MED_MOT_MIN_ACCEL_DEGSEC2,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+        )
+        torque = self.Rescale(
+            torquePct, 1, 100, MED_MOT_MIN_TORQUE, MED_MOT_MAX_TORQUE
+        )
         self.leftAttachmentMotor.control.limits(speed, accel, torque)
         self.leftAttachmentMotor.run_time(speed, millis, then, wait)
         self.leftAttachmentMotor.control.limits(
-            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+            MED_MOT_MAX_SPEED_DEGSEC,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+            MED_MOT_MAX_TORQUE,
         )
 
     def MoveLeftAttachmentMotorUntilStalled(
@@ -526,31 +783,49 @@ class BaseRobot:
         then=Stop.HOLD,
         wait=True,
     ):
-        speed = self.Rescale(speedPct, 1, 100, MM_MIN_SPEED, MM_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, MM_MIN_ACCEL, MM_MAX_ACCEL)
-        torque = self.Rescale(torquePct, 1, 100, MM_MIN_TORQUE, MM_MAX_TORQUE)
-        duty_limit = int(torque / MM_MAX_TORQUE * 100)
+        speed = self.Rescale(
+            speedPct,
+            1,
+            100,
+            MED_MOT_MIN_SPEED_DEGSEC,
+            MED_MOT_MAX_SPEED_DEGSEC,
+        )
+        accel = self.Rescale(
+            accelPct,
+            1,
+            100,
+            MED_MOT_MIN_ACCEL_DEGSEC2,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+        )
+        torque = self.Rescale(
+            torquePct, 1, 100, MED_MOT_MIN_TORQUE, MED_MOT_MAX_TORQUE
+        )
+        duty_limit = int(torque / MED_MOT_MAX_TORQUE * 100)
         self.leftAttachmentMotor.control.limits(speed, accel, torque)
         self.leftAttachmentMotor.run_until_stalled(speed, then, duty_limit)
         self.leftAttachmentMotor.control.limits(
-            MM_MAX_SPEED, MM_MAX_ACCEL, MM_MAX_TORQUE
+            MED_MOT_MAX_SPEED_DEGSEC,
+            MED_MOT_MAX_ACCEL_DEGSEC2,
+            MED_MOT_MAX_TORQUE,
         )
 
     def DriveUntilStalled2(
         self,
-        targetSpeed=STRAIGHT_SPEED,
-        accel=DB_MAX_ACCEL,
+        targetSpeed=DB_STRAIGHT_SPEED_MMSEC,
+        accel=DB_MAX_ACCEL_MMSEC2,
         turn_rate=0,
         stallSpeedPct=99,
-        maxTorque=MAX_LARGE_MOTOR_TORQUE,
+        maxTorque=LG_MOT_MAX_TORQUE,
         useGyro=True,
     ):
         print(self.robot.distance_control.limits())
         targetSpeed = self.Rescale(
-            targetSpeed, -100, 100, -DB_MAX_SPEED, DB_MAX_SPEED
+            targetSpeed, -100, 100, -DB_MAX_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
         )
         stallSpeedPct = self.Rescale(stallSpeedPct, 1, 99, 1, 99)
-        accel = self.Rescale(accel, 0, 100, DB_MIN_ACCEL, DB_MAX_ACCEL)
+        accel = self.Rescale(
+            accel, 0, 100, DB_MIN_ACCEL_MMSEC2, DB_MAX_ACCEL_MMSEC2
+        )
         self.robot.distance_control.limits(
             speed=targetSpeed, acceleration=accel, torque=maxTorque
         )
@@ -578,7 +853,7 @@ class BaseRobot:
 
     def DriveUntilStalled(
         self,
-        speed=STRAIGHT_SPEED,
+        speed=DB_STRAIGHT_SPEED_MMSEC,
         turn_rate=0,
         stall=100,
         useGyro=True,
@@ -589,8 +864,8 @@ class BaseRobot:
             stall = 0
 
         # convert the percentage to a value between 3000 & 9000
-        stallValue = MIN_LARGE_MOTOR_VOLTAGE + stall / 100 * (
-            MAX_LARGE_MOTOR_VOLTAGE - MIN_LARGE_MOTOR_VOLTAGE
+        stallValue = LG_MOT_MIN_VOLTAGE + stall / 100 * (
+            LG_MOT_MAX_VOLTAGE - LG_MOT_MIN_VOLTAGE
         )
         self.robot.use_gyro(useGyro)
         self.leftDriveMotor.settings(stallValue)
@@ -600,8 +875,8 @@ class BaseRobot:
             wait(100)
         self.robot.drive(0, 0)
         wait(100)
-        self.leftDriveMotor.settings(MAX_LARGE_MOTOR_VOLTAGE)
-        self.rightDriveMotor.settings(MAX_LARGE_MOTOR_VOLTAGE)
+        self.leftDriveMotor.settings(LG_MOT_MAX_VOLTAGE)
+        self.rightDriveMotor.settings(LG_MOT_MAX_VOLTAGE)
         self.robot.use_gyro(True)
 
     def DriveAndSteerDist(
@@ -612,8 +887,12 @@ class BaseRobot:
         accelPct=DEF_STRAIGHT_ACCEL_PCT,
         useGyro=True,
     ):
-        spd = self.Rescale(speedPct, 1, 100, DB_MIN_SPEED, DB_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, DB_MIN_ACCEL, DB_MAX_ACCEL)
+        spd = self.Rescale(
+            speedPct, 1, 100, DB_MIN_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
+        )
+        accel = self.Rescale(
+            accelPct, 1, 100, DB_MIN_ACCEL_MMSEC2, DB_MAX_ACCEL_MMSEC2
+        )
         self.robot.use_gyro(useGyro)
         self.robot.settings(
             straight_speed=spd,
@@ -639,8 +918,12 @@ class BaseRobot:
         useGyro=True,
         waitUntilFinished=True,
     ):
-        spd = self.Rescale(speedPct, 1, 100, DB_MIN_SPEED, DB_MAX_SPEED)
-        accel = self.Rescale(accelPct, 1, 100, DB_MIN_ACCEL, DB_MAX_ACCEL)
+        spd = self.Rescale(
+            speedPct, 1, 100, DB_MIN_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
+        )
+        accel = self.Rescale(
+            accelPct, 1, 100, DB_MIN_ACCEL_MMSEC2, DB_MAX_ACCEL_MMSEC2
+        )
         self.robot.use_gyro(useGyro)
         self.robot.settings(
             straight_speed=spd,
