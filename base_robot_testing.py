@@ -104,34 +104,12 @@ class BaseRobot:
         # are given.
         # default values were determined by testing
         self.robot.settings(
-            straight_speed=self.Rescale(
-                DEF_STRAIGHT_SPEED_PCT,
-                1,
-                100,
-                DB_MIN_SPEED_MMSEC,
-                DB_MAX_SPEED_MMSEC,
+            straight_speed=self.RescaleStraightSpeed(DEF_STRAIGHT_SPEED_PCT),
+            straight_acceleration=self.RescaleStraghtAccel(
+                DEF_STRAIGHT_ACCEL_PCT
             ),
-            straight_acceleration=self.Rescale(
-                DEF_STRAIGHT_ACCEL_PCT,
-                1,
-                100,
-                DB_MIN_ACCEL_MMSEC2,
-                DB_MAX_ACCEL_MMSEC2,
-            ),
-            turn_rate=self.Rescale(
-                DEF_TURN_RATE_PCT,
-                1,
-                100,
-                DB_MIN_TURN_RATE_DEGSEC,
-                DB_MAX_TURN_RATE_DEGSEC,
-            ),
-            turn_acceleration=self.Rescale(
-                DEF_TURN_ACCEL_PCT,
-                1,
-                100,
-                DB_MIN_TURN_ACCEL_DEGSEC2,
-                DB_MAX_TURN_ACCEL_DEGSEC2,
-            ),
+            turn_rate=self.RescaleTurnSpeed(DEF_TURN_RATE_PCT),
+            turn_acceleration=self.RescaleTurnAccel(DEF_TURN_ACCEL_PCT),
         )
 
         # Set the drivebase maximum speed, acceleration and torque
@@ -222,6 +200,46 @@ class BaseRobot:
             retVal = out_min
         return retVal * neg
 
+    def RescaleStraightSpeed(self, speedpct):
+        return self.Rescale(
+            speedpct,
+            1,
+            100,
+            DB_MIN_SPEED_MMSEC,
+            DB_MAX_SPEED_MMSEC,
+        )
+
+    def RescaleStraghtAccel(self, accelpct):
+        return self.Rescale(
+            accelpct,
+            1,
+            100,
+            DB_MIN_ACCEL_MMSEC2,
+            DB_MAX_ACCEL_MMSEC2,
+        )
+
+    def RescaleTurnSpeed(self, turnspeedpct):
+        return (
+            self.Rescale(
+                turnspeedpct,
+                1,
+                100,
+                DB_MIN_TURN_RATE_DEGSEC,
+                DB_MAX_TURN_RATE_DEGSEC,
+            ),
+        )
+
+    def RescaleTurnAccel(self, turnaccelpct):
+        return (
+            self.Rescale(
+                turnaccelpct,
+                1,
+                100,
+                DB_MIN_TURN_ACCEL_DEGSEC2,
+                DB_MAX_TURN_ACCEL_DEGSEC2,
+            ),
+        )
+
     # Angle is required. Positive angles make the robot turn right and
     # negitive angles make it turn left
     def GyroTurn(
@@ -268,34 +286,12 @@ class BaseRobot:
         default: No default value
         """
         self.robot.settings(
-            self.Rescale(
-                DEF_STRAIGHT_SPEED_PCT,
-                1,
-                100,
-                DB_MIN_SPEED_MMSEC,
-                DB_MAX_SPEED_MMSEC,
+            straight_speed=self.RescaleStraightSpeed(DEF_STRAIGHT_SPEED_PCT),
+            straight_acceleration=self.RescaleStraghtAccel(
+                DEF_STRAIGHT_ACCEL_PCT
             ),
-            self.Rescale(
-                DEF_STRAIGHT_ACCEL_PCT,
-                1,
-                100,
-                DB_MIN_ACCEL_MMSEC2,
-                DB_MAX_ACCEL_MMSEC2,
-            ),
-            self.Rescale(
-                turnspeed,
-                1,
-                100,
-                DB_MIN_TURN_RATE_DEGSEC,
-                DB_MAX_TURN_RATE_DEGSEC,
-            ),
-            self.Rescale(
-                turnaccel,
-                1,
-                100,
-                DB_MIN_TURN_ACCEL_DEGSEC2,
-                DB_MAX_TURN_ACCEL_DEGSEC2,
-            ),
+            turn_rate=self.RescaleTurnSpeed(turnspeed),
+            turn_acceleration=self.RescaleTurnAccel(turnaccel),
         )
         self.robot.turn(
             angle,
@@ -347,34 +343,10 @@ class BaseRobot:
         default: true
         """
         self.robot.settings(
-            self.Rescale(
-                speedpct,
-                1,
-                100,
-                DB_MIN_SPEED_MMSEC,
-                DB_MAX_SPEED_MMSEC,
-            ),
-            self.Rescale(
-                accelpct,
-                1,
-                100,
-                DB_MIN_ACCEL_MMSEC2,
-                DB_MAX_ACCEL_MMSEC2,
-            ),
-            self.Rescale(
-                DEF_TURN_RATE_PCT,
-                1,
-                100,
-                DB_MIN_TURN_RATE_DEGSEC,
-                DB_MAX_TURN_RATE_DEGSEC,
-            ),
-            self.Rescale(
-                DEF_TURN_ACCEL_PCT,
-                1,
-                100,
-                DB_MIN_TURN_ACCEL_DEGSEC2,
-                DB_MAX_TURN_ACCEL_DEGSEC2,
-            ),
+            straight_speed=self.RescaleStraightSpeed(speedpct),
+            straight_acceleration=self.RescaleStraghtAccel(accelpct),
+            turn_rate=self.RescaleTurnSpeed(DEF_TURN_RATE_PCT),
+            turn_acceleration=self.RescaleTurnAccel(DEF_TURN_ACCEL_PCT),
         )
         self.robot.straight(distance, then, wait)
 
@@ -406,43 +378,13 @@ class BaseRobot:
         default: None
         """
         self.robot.settings(
-            self.Rescale(
-                speedpct,
-                1,
-                100,
-                DB_MIN_SPEED_MMSEC,
-                DB_MAX_SPEED_MMSEC,
-            ),
-            self.Rescale(
-                accelpct,
-                1,
-                100,
-                DB_MIN_ACCEL_MMSEC2,
-                DB_MAX_ACCEL_MMSEC2,
-            ),
-            self.Rescale(
-                DEF_TURN_RATE_PCT,
-                1,
-                100,
-                DB_MIN_TURN_RATE_DEGSEC,
-                DB_MAX_TURN_RATE_DEGSEC,
-            ),
-            self.Rescale(
-                DEF_TURN_ACCEL_PCT,
-                1,
-                100,
-                DB_MIN_TURN_ACCEL_DEGSEC2,
-                DB_MAX_TURN_ACCEL_DEGSEC2,
-            ),
+            straight_speed=self.RescaleStraightSpeed(speedpct),
+            straight_acceleration=self.RescaleStraghtAccel(accelpct),
+            turn_rate=self.RescaleTurnSpeed(DEF_TURN_RATE_PCT),
+            turn_acceleration=self.RescaleTurnAccel(DEF_TURN_ACCEL_PCT),
         )
         self.robot.drive(
-            speed=self.Rescale(
-                speedpct,
-                1,
-                100,
-                DB_MIN_SPEED_MMSEC,
-                DB_MAX_SPEED_MMSEC,
-            ),
+            speed=self.RescaleStraightSpeed(speedpct),
             turn_rate=0,
         )
         wait(millis)
@@ -521,39 +463,15 @@ class BaseRobot:
         default: No default value
         """
         self.robot.settings(
-            self.Rescale(
-                speedpct,
-                1,
-                100,
-                DB_MIN_SPEED_MMSEC,
-                DB_MAX_SPEED_MMSEC,
-            ),
-            self.Rescale(
-                accelpct,
-                1,
-                100,
-                DB_MIN_ACCEL_MMSEC2,
-                DB_MAX_ACCEL_MMSEC2,
-            ),
-            self.Rescale(
-                DEF_TURN_RATE_PCT,
-                1,
-                100,
-                DB_MIN_TURN_RATE_DEGSEC,
-                DB_MAX_TURN_RATE_DEGSEC,
-            ),
-            self.Rescale(
-                DEF_TURN_ACCEL_PCT,
-                1,
-                100,
-                DB_MIN_TURN_ACCEL_DEGSEC2,
-                DB_MAX_TURN_ACCEL_DEGSEC2,
-            ),
+            straight_speed=self.RescaleStraightSpeed(speedpct),
+            straight_acceleration=self.RescaleStraghtAccel(accelpct),
+            turn_rate=self.RescaleTurnSpeed(DEF_TURN_RATE_PCT),
+            turn_acceleration=self.RescaleTurnAccel(DEF_TURN_ACCEL_PCT),
         )
 
         self.robot.curve(radius, angle, then, wait)
 
-    def DriveAndSteer(self, speed, turnrate, time):
+    def DriveAndSteerForMillis(self, speedpct, turnrate_degsec, time):
         """
         Makes the robot drive at a certain turnrate. \
         Positive numbers make the robot go forward, and negative \
@@ -580,12 +498,11 @@ class BaseRobot:
         values: Any.
         default: No default value
         """
-        if speed > 977:
-            speed = 977
-        if speed < -977:
-            speed = -977
         self.robot.use_gyro(False)
-        self.robot.drive(speed, turnrate)
+        self.robot.drive(
+            speed=self.RescaleStraightSpeed(speedpct),
+            turnrate=turnrate_degsec,
+        )
         self.WaitForMillis(time)
         self.robot.stop()
         self.robot.use_gyro(True)
@@ -672,7 +589,6 @@ class BaseRobot:
         accelPct=100,
         torquePct=100,
         then=Stop.HOLD,
-        wait=True,
     ):
         speed = self.Rescale(
             speedPct,
@@ -781,7 +697,6 @@ class BaseRobot:
         accelPct=100,
         torquePct=100,
         then=Stop.HOLD,
-        wait=True,
     ):
         speed = self.Rescale(
             speedPct,
