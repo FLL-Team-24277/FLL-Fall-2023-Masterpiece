@@ -726,16 +726,15 @@ class BaseRobot:
 
     def DriveUntilStalled2(
         self,
-        targetSpeed=DB_STRAIGHT_SPEED_MMSEC,
-        accel=DB_MAX_ACCEL_MMSEC2,
-        turn_rate=0,
+        speedPct=DEF_STRAIGHT_SPEED_PCT,
+        turnRate=0,
         stallSpeedPct=99,
         maxTorque=LG_MOT_MAX_TORQUE,
         useGyro=True,
     ):
         print(self.robot.distance_control.limits())
         targetSpeed = self.Rescale(
-            targetSpeed, -100, 100, -DB_MAX_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
+            speedPct, 1, 100, DB_MIN_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
         )
         stallSpeedPct = self.Rescale(stallSpeedPct, 1, 99, 1, 99)
         accel = self.Rescale(
@@ -755,7 +754,7 @@ class BaseRobot:
         # print(self.robot.distance_control.limits())
         # print(self.robot.distance_control.stall_tolerances())
         self.robot.use_gyro(useGyro)
-        self.robot.drive(targetSpeed, turn_rate)
+        self.robot.drive(targetSpeed, turnRate)
         # while not self.robot.stalled():
         while (
             self.leftDriveMotor.model.state()[3] == False
@@ -768,24 +767,26 @@ class BaseRobot:
 
     def DriveUntilStalled(
         self,
-        speed=DB_STRAIGHT_SPEED_MMSEC,
-        turn_rate=0,
-        stall=100,
+        speedPct=DEF_STRAIGHT_SPEED_PCT,
+        turnRate=0,
+        stallPct=100,
         useGyro=True,
     ):
-        if stall > 100:
-            stall = 100
-        if stall < 0:
-            stall = 0
+        if stallPct > 100:
+            stallPct = 100
+        if stallPct < 0:
+            stallPct = 0
 
         # convert the percentage to a value between 3000 & 9000
-        stallValue = LG_MOT_MIN_VOLTAGE + stall / 100 * (
+        stallValue = LG_MOT_MIN_VOLTAGE + stallPct / 100 * (
             LG_MOT_MAX_VOLTAGE - LG_MOT_MIN_VOLTAGE
         )
         self.robot.use_gyro(useGyro)
         self.leftDriveMotor.settings(stallValue)
         self.rightDriveMotor.settings(stallValue)
-        self.robot.drive(speed, turn_rate)
+        self.robot.drive(
+            speed=self.RescaleStraightSpeed(speedPct), turn_rate=turnRate
+        )
         while not self.robot.stalled():
             wait(100)
         self.robot.drive(0, 0)
@@ -797,23 +798,18 @@ class BaseRobot:
     def DriveAndSteerDist(
         self,
         dist,
-        speedPct=DEF_STRAIGHT_SPEED_PCT,
         turnRate=0,
+        speedPct=DEF_STRAIGHT_SPEED_PCT,
         accelPct=DEF_STRAIGHT_ACCEL_PCT,
         useGyro=True,
     ):
-        spd = self.Rescale(
-            speedPct, 1, 100, DB_MIN_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
-        )
-        accel = self.Rescale(
-            accelPct, 1, 100, DB_MIN_ACCEL_MMSEC2, DB_MAX_ACCEL_MMSEC2
-        )
+        spd = self.RescaleStraightSpeed(speedPct)
+        accel = self.RescaleStraghtAccel(accelPct)
         self.robot.use_gyro(useGyro)
         self.robot.settings(
             straight_speed=spd,
             straight_acceleration=accel,
-            turn_rate=DEF_TURN_RATE,
-            turn_acceleration=DEF_TURN_ACCEL,
+            turn_rate=turnRate,
         )
         self.robot.reset()
         self.robot.drive(speed=spd, turn_rate=turnRate)
@@ -833,19 +829,10 @@ class BaseRobot:
         useGyro=True,
         waitUntilFinished=True,
     ):
-        spd = self.Rescale(
-            speedPct, 1, 100, DB_MIN_SPEED_MMSEC, DB_MAX_SPEED_MMSEC
-        )
-        accel = self.Rescale(
-            accelPct, 1, 100, DB_MIN_ACCEL_MMSEC2, DB_MAX_ACCEL_MMSEC2
-        )
+        spd = self.RescaleStraightSpeed(speedPct)
+        accel = self.RescaleStraghtAccel(accelPct)
         self.robot.use_gyro(useGyro)
-        self.robot.settings(
-            straight_speed=spd,
-            straight_acceleration=accel,
-            turn_rate=DEF_TURN_RATE,
-            turn_acceleration=DEF_TURN_ACCEL,
-        )
+        self.robot.settings(straight_speed=spd, straight_acceleration=accel)
         self.robot.straight(
             distance=dist, then=thenWhat, wait=waitUntilFinished
         )
