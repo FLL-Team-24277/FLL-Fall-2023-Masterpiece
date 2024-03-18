@@ -32,9 +32,9 @@ def Run(br: BaseRobot):
 
     # br.GyroDrive(225)
     # br.GyroDrive(-225, 977)
-    # br.WaitForButton(Button.LEFT)
-    # br.GyroDrive(400, 977, then=Stop.NONE)  # drive 340 mm
-    # br.GyroDrive(-500, 977, then=Stop.NONE)
+    br.WaitForButton(Button.LEFT)
+    br.GyroDrive(400, 977, then=Stop.NONE)  # drive 340 mm
+    br.GyroDrive(-400, 977, then=Stop.HOLD)
 
 
 if __name__ == "__main__":
