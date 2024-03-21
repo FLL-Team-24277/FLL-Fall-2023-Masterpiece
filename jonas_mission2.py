@@ -30,7 +30,8 @@ def Run(br: BaseRobot):
     # br.GyroDrive(250, then=Stop.BRAKE)
     # br.GyroTurn(90)
     br.GyroDrive(300, speed=977, then=Stop.BRAKE)
-    br.leftAttachmentMotor.run_time(1000, 1000, wait=True)
+    br.leftAttachmentMotor.run_time(speed=1000, time=1000, wait=True)
+    br.leftAttachmentMotor.run_time(speed=-1000, time=1000, wait=False)
     # wait(250)  #
     br.GyroDrive(-100, 977)
     # br.Curve(-200, 60)
