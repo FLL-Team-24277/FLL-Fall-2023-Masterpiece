@@ -74,14 +74,14 @@ def Run(br: BaseRobot):
 
     # Driving to Immersive Experience-purple guy
 
-    br.GyroDrive(245, 900)
+    br.GyroDrive(235, 900)
     br.GyroTurn(-90)
-    br.GyroDrive(445, 900)
+    br.GyroDrive(450, 900)
     br.GyroTurn(-90)
 
     # Doing Immersive Expeiriance-purple guy
 
-    br.GyroDrive(35, 500)
+    br.GyroDrive(20, 500)
     br.leftAttachmentMotor.run_time(speed=1000, time=1400)
     br.leftAttachmentMotor.run_until_stalled(-900)
     br.GyroDrive(-75, 500)
