@@ -232,7 +232,7 @@ class BaseRobot:
         self.robot.drive(speed=spd, turn_rate=turnRate)
         while self.robot.distance() < dist:
             wait(25)
-        self.robot.drive(0, 0)  # stop the robot
+        self.robot.brake()
 
     def Curve(
         self,
@@ -241,7 +241,7 @@ class BaseRobot:
         speedPct=DEF_STRAIGHT_SPEED_PCT,
         accelPct=DEF_STRAIGHT_ACCEL_PCT,
         useGyro=True,
-        then=Stop.HOLD,
+        then=Stop.BRAKE,
         waitUntilFinished=True,
     ):
         """
@@ -325,7 +325,7 @@ class BaseRobot:
             turn_rate=turnRate,
         )
         wait(millis)
-        self.robot.stop()
+        self.robot.brake()
 
     def DriveUntilStalled(
         self,
@@ -345,8 +345,7 @@ class BaseRobot:
         )
         while not self.robot.stalled():
             wait(100)
-        self.robot.drive(0, 0)  # stops the robot
-        wait(100)
+        self.robot.brake()
 
         # All done. Reset the default settings
         self.leftDriveMotor.settings(max_voltage=LG_MOT_MAX_VOLTAGE)
