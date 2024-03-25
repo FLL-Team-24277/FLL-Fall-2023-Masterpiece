@@ -415,5 +415,4 @@ class BaseRobot:
         then=Stop.HOLD,
     ):
         speed = RescaleMedMotSpeed(speedPct)
-
         motor.run_until_stalled(speed, then, torquePct)
