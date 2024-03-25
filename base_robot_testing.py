@@ -14,10 +14,8 @@ from pybricks.hubs import PrimeHub
 from pybricks.tools import wait
 from utils import *
 
-# All constents will be defined here
-TIRE_DIAMETER = 56  # mm
-AXLE_TRACK = 103  # distance between the wheels, mm
-
+# Other constants are defined in utils.py
+#
 # These are the default parameters to be passed into the different
 # movement methods. They are all percents and need to be passed through
 # the Rescale() method before passing to pybricks
@@ -25,6 +23,8 @@ DEF_STRAIGHT_SPEED_PCT = 65  # Normal driving speed
 DEF_STRAIGHT_ACCEL_PCT = 65  # normal acceleration, rarely changed
 DEF_TURN_RATE_PCT = 50  # normal turning rate
 DEF_TURN_ACCEL_PCT = 50  # normal turning acceleration, rarely changed
+DEF_MED_MOT_SPEED_PCT = 100  # Default max speed for attachments
+DEF_MED_MOT_TORQUE_PCT = 100  # Default max power for attachments
 
 
 class BaseRobot:
@@ -389,7 +389,7 @@ class BaseRobot:
         self,
         motor,
         angle,
-        speedPct=100,
+        speedPct=DEF_MED_MOT_SPEED_PCT,
         then=Stop.HOLD,
         waitUntilFinished=True,
     ):
@@ -400,7 +400,7 @@ class BaseRobot:
         self,
         motor,
         millis,
-        speedPct=100,
+        speedPct=DEF_MED_MOT_SPEED_PCT,
         then=Stop.HOLD,
         waitUntilFinished=True,
     ):
@@ -410,8 +410,8 @@ class BaseRobot:
     def MoveAttachmentMotorUntilStalled(
         self,
         motor,
-        speedPct=100,
-        torquePct=100,
+        speedPct=DEF_MED_MOT_SPEED_PCT,
+        torquePct=DEF_MED_MOT_TORQUE_PCT,
         then=Stop.HOLD,
     ):
         speed = RescaleMedMotSpeed(speedPct)

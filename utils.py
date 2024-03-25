@@ -1,5 +1,9 @@
 # Drivebase parameters. None of these should ever be changed by users
 
+# All constents will be defined here
+TIRE_DIAMETER = 56  # mm
+AXLE_TRACK = 103  # distance between the wheels, mm
+
 # Max/min Drivebase parameters (absolute values)
 # The maximum number that can be used for speed is 977, but there is no speed
 # difference above 600
