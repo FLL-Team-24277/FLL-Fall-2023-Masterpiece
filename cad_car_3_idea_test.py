@@ -2,13 +2,7 @@ from base_robot import *
 
 
 def Run(br: BaseRobot):
-    # ACCEL = 350
-    # br.robot.settings(
-    # straight_speed=400,
-    # straight_acceleration=ACCEL,
-    # turn_rate=150,
-    # turn_acceleration=360,
-    # )
+    # Reset Gyro
     br.robot.reset()
     br.rightAttachmentMotor.run_time(-500, 1000, wait=False)
     # br.GyroDrive(1000, 500)
@@ -19,15 +13,13 @@ def Run(br: BaseRobot):
     br.Curve(radius=200, angle=45, speed=977, then=Stop.HOLD)
     br.GyroDrive(-125, 750, then=Stop.HOLD)
     # # br.robot.use_gyro(True)
-    br.GyroTurn(-50)
-    br.rightAttachmentMotor.run_time(speed=500, time=1000, wait=False)
-    br.GyroDrive(distance=400, speed=977, then=Stop.NONE)
-    # br.GyroDrive(distance=140, speed=977)
-    # br.rightAttachmentMotor.run_time(500, 1000, wait=False)
-    br.Curve(radius=300, angle=50, speed=977)
-    # br.GyroDrive(110, speed=977, then=Stop.HOLD)
-    # br.GyroDrive(-31, 700)
-    br.GyroDrive(-355, 977)
+    br.GyroTurn(-45)
+    br.GyroDrive(100, speed=977, then=Stop.NONE)
+    br.rightAttachmentMotor.run_time(500, 1000, wait=False)
+    br.Curve(radius=750, angle=20, speed=977, then=Stop.NONE)
+    br.GyroDrive(100, speed=977, then=Stop.HOLD)
+    br.GyroDrive(-300, 700)
+    # br.GyroDrive(-395, 977)
     # br.GyroTurn(-45)
     # br.rightAttachmentMotor.run_time(500, 1000, wait=False)
     # br.Curve(radius=400, angle=45, speed=977, then=Stop.NONE)
