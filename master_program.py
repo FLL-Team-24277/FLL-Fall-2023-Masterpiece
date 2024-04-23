@@ -3,7 +3,7 @@ from base_robot import *
 # Import missions
 import jonas_mission2
 import testytestmissionjonasnow
-import giovanni_mission
+import Declan2
 import rj_2_mission
 import cad_car_3_idea_test
 import zack_mission
@@ -60,7 +60,7 @@ while True:
         zack_mission.Run(br)
     # If detected color is Blue, then run Giovanni's mission
     if col == Color.SENSOR_BLUE:
-        giovanni_mission.Run(br)
+        Declan2.Run(br)
     # If detected color is Green, then run Chicken Mission
     if col == Color.SENSOR_GREEN:
         sadie_mission_2.Run(br)
