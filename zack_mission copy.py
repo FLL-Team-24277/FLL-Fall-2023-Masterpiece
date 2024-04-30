@@ -26,9 +26,6 @@ def Run(br: BaseRobot):
     # br.leftAttachmentMotor.run_angle(
     #     speed=100, rotation_angle=-100, wait=True
     # )
-    br.rightAttachmentMotor.run_time(
-        speed=-300, time=1000, wait=False, then=Stop.COAST
-    )
     br.leftAttachmentMotor.run_angle(
         speed=100, rotation_angle=-100, wait=True
     )
@@ -40,14 +37,10 @@ def Run(br: BaseRobot):
     br.WaitForMillis(500)
     br.robot.drive(speed=0, turn_rate=0)
     br.WaitForMillis(250)
-    br.rightAttachmentMotor.run_time(
-        speed=-300, time=1000, wait=False, then=Stop.COAST
-    )
     br.robot.settings(400, 600, 30, 360)
     br.GyroTurn(angle=27, speed=10)
     br.robot.settings(400, 600, 150, 360)
-    br.GyroDrive(-550, 700)
-    br.rightAttachmentMotor.run_until_stalled(speed=300)
+    br.GyroDrive(-400, 700)
 
     # Theater Scene Change
 
@@ -121,7 +114,7 @@ def Run(br: BaseRobot):
     # Going Home
 
     br.GyroTurn(-15)
-    br.GyroDriveForMillis(2500, 900)
+    br.GyroDriveForMillis(2250, 900)
 
 
 if __name__ == "__main__":
