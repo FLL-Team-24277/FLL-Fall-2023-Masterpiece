@@ -1,21 +1,28 @@
 # Drivebase parameters. None of these should ever be changed by users
 
 # All constents will be defined here
-TIRE_DIAMETER = 56  # mm
+TIRE_DIAMETER = 88  # mm, probably either 56 or 88 for spike
 AXLE_TRACK = 103  # distance between the wheels, mm
 
 # Max/min Drivebase parameters (absolute values)
 # The maximum number that can be used for speed is 977, but there is no speed
-# difference above 600
-DB_MAX_SPEED_MMSEC = 600
+# difference above 600 (56mm wheels)
+# The maximimum speed for a drivebase with 88mm wheels is 1536 mm/sec
+# DB_MAX_SPEED_MMSEC = 600 #56mm
+DB_MAX_SPEED_MMSEC = 1536  # 88mm
 
 # The drivebase can accept speeds down to zero, but is not very efficient and
 # quite erratic. Realistically, 30 is a good minimum speed
 DB_MIN_SPEED_MMSEC = 30
 
+# 56mm wheels
 # The max acceleration number that can be entered is 9775, but realistically
 # there is no difference above 500, so we are going to use that as the max
-DB_MAX_ACCEL_MMSEC2 = 500
+# 88mm wheels
+# The max acceleration number that can be entered is around 12000, but realistically
+# there is no difference above 4000, so we are going to use that as the max
+# DB_MAX_ACCEL_MMSEC2 = 500 #56mm
+DB_MAX_ACCEL_MMSEC2 = 4000  # 88mm
 
 # Lowest usable accelleration, determined by testing
 DB_MIN_ACCEL_MMSEC2 = 5

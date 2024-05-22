@@ -43,8 +43,12 @@ class BaseRobot:
     def __init__(self):
         self.hub = PrimeHub(top_side=Axis.Z, front_side=-Axis.Y)
         self._version = "0.1 05/19/2023"
-        self.leftDriveMotor = Motor(Port.E, Direction.COUNTERCLOCKWISE)
-        self.rightDriveMotor = Motor(Port.A)
+        self.leftDriveMotor = Motor(
+            port=Port.E,
+            positive_direction=Direction.COUNTERCLOCKWISE,
+            profile=5,
+        )
+        self.rightDriveMotor = Motor(port=Port.A, profile=5)
         self.robot = DriveBase(
             self.leftDriveMotor,
             self.rightDriveMotor,
@@ -171,7 +175,7 @@ class BaseRobot:
         speedPct=DEF_STRAIGHT_SPEED_PCT,
         accelPct=DEF_STRAIGHT_ACCEL_PCT,
         useGyro=True,
-        then=Stop.BRAKE,
+        then=Stop.COAST,
         waitUntilFinished=True,
     ):
         """
