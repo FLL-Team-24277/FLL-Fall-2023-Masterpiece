@@ -20,7 +20,7 @@ from utils import *
 # movement methods. They are all percents and need to be passed through
 # the Rescale() method before passing to pybricks
 DEF_STRAIGHT_SPEED_PCT = 65  # Normal driving speed
-DEF_STRAIGHT_ACCEL_PCT = 65  # normal acceleration, rarely changed
+DEF_STRAIGHT_ACCEL_PCT = 20  # normal acceleration, rarely changed
 DEF_TURN_RATE_PCT = 50  # normal turning rate
 DEF_TURN_ACCEL_PCT = 50  # normal turning acceleration, rarely changed
 DEF_MED_MOT_SPEED_PCT = 100  # Default max speed for attachments
@@ -160,6 +160,7 @@ class BaseRobot:
             turn_rate=RescaleTurnSpeed(turnSpeedPct),
             turn_acceleration=RescaleTurnAccel(turnAccelPct),
         )
+        print("settings= " + str(self.robot.settings()))
         self.robot.use_gyro(useGyro)
         self.robot.turn(
             angle,
@@ -216,6 +217,7 @@ class BaseRobot:
             straight_speed=RescaleStraightSpeed(speedPct),
             straight_acceleration=RescaleStraightAccel(accelPct),
         )
+        print("settings= " + str(self.robot.settings()))
         self.robot.straight(distance, then, waitUntilFinished)
 
     def WallFollowDist(

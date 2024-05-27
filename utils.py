@@ -1,37 +1,40 @@
+TIRE_DIAMETER = 88  # mm; either 56 or 88
+
 # Drivebase parameters. None of these should ever be changed by users
+if TIRE_DIAMETER == 56:
+    DB_MAX_SPEED_MMSEC = 488
+if TIRE_DIAMETER == 88:
+    DB_MAX_SPEED_MMSEC = 768
 
-# All constents will be defined here
-TIRE_DIAMETER = 88  # mm, probably either 56 or 88 for spike
+# Straight Acceleration constants
+# Anything above 800 mm/sec^2 causes wheel slippage, regardless of the
+# tire size. The mass of the 56 and 88mm robots is about the same, so the
+# force to maintain that acceleration is the same
+# For 56mm, the maximum that can be set in the settings() command is 9775.
+# For 88mm, the maximum that can be set in the settings() command is 15360.
+DB_MAX_ACCEL_MMSEC2 = 800
+
+# For turn rates, the best speed and acceleration was determined by testing
+# It did not matter if it was on 56mm or 88mm tires, the values were the
+# same for both. 180 deg/sec for speed and 360 deg/sec^2 for acceleration
+# For 56mm, the maximum speed that can be set in the settings() command is 543
+# For 88mm, the maximum speed that can be set in the settings() command is 854.
+# For 88mm, the maximum accel that can be set in the settings() command is 17094.
+DB_MAX_TURN_RATE_DEGSEC = 180
+DB_MAX_TURN_ACCEL_DEGSEC2 = 360
+
 AXLE_TRACK = 103  # distance between the wheels, mm
-
-# Max/min Drivebase parameters (absolute values)
-# The maximum number that can be used for speed is 977, but there is no speed
-# difference above 600 (56mm wheels)
-# The maximimum speed for a drivebase with 88mm wheels is 1536 mm/sec
-# DB_MAX_SPEED_MMSEC = 600 #56mm
-DB_MAX_SPEED_MMSEC = 1536  # 88mm
 
 # The drivebase can accept speeds down to zero, but is not very efficient and
 # quite erratic. Realistically, 30 is a good minimum speed
 DB_MIN_SPEED_MMSEC = 30
 
-# 56mm wheels
-# The max acceleration number that can be entered is 9775, but realistically
-# there is no difference above 500, so we are going to use that as the max
-# 88mm wheels
-# The max acceleration number that can be entered is around 12000, but realistically
-# there is no difference above 4000, so we are going to use that as the max
-# DB_MAX_ACCEL_MMSEC2 = 500 #56mm
-DB_MAX_ACCEL_MMSEC2 = 4000  # 88mm
-
 # Lowest usable accelleration, determined by testing
 DB_MIN_ACCEL_MMSEC2 = 5
 
 # Max and min turning speeds, determined by testing
-# These have not been validated yet!!!!
-DB_MAX_TURN_RATE_DEGSEC = 360
+# These are not affected by the tire size
 DB_MIN_TURN_RATE_DEGSEC = 20
-DB_MAX_TURN_ACCEL_DEGSEC2 = 1200
 DB_MIN_TURN_ACCEL_DEGSEC2 = 10
 
 # Not sure how these are used

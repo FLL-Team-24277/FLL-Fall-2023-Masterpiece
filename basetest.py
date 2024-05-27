@@ -20,15 +20,38 @@ def Run(br: BaseRobot):
     # br.DriveDist(distance=60)
 
     # br.hub.display.number(2)
-    # br.WallFollowDist(dist=1160, speedPct=100, turnRate=15, useGyro=False)
-    # br.DriveDist(distance=2000, speedPct=100, accelPct=30)
+    # br.WallFollowDist(dist=1870, speedPct=100, turnRate=-5, useGyro=False)
+    # br.DriveDist(distance=1900, speedPct=100, accelPct=80)
     # br.WaitForButton(Button.RIGHT)
-    br.TurnInPlace(angle=90)
-    # br.robot.settings(
-    #         straight_speed=1536,
-    #         straight_acceleration=2000,
-    #     )
+    # br.TurnInPlace(angle=90, then=Stop.COAST, turnSpeedPct=20, turnAccelPct=100)
+    # br.WaitForButton(Button.RIGHT)
+    # br.DriveDist(distance=2400, speedPct=100, then=Stop.NONE)
+    percent = 20
+    while percent <= 100:
+        print(str(percent))
+        br.DriveDist(
+            distance=500,
+            speedPct=percent,
+            accelPct=percent,
+            then=Stop.COAST_SMART,
+        )
+        br.TurnInPlace(
+            angle=180,
+            turnSpeedPct=percent,
+            turnAccelPct=percent,
+            then=Stop.COAST_SMART,
+        )
+        percent += 20
     # br.robot.straight(distance=2000)
+    # br.DriveDist(distance=500, speedPct=90, then=Stop.NONE)
+    # br.Curve(radius=400, angle=135, speedPct=90, then=Stop.NONE, useGyro=True)
+    # br.DriveDist(distance=500, speedPct=90, then=Stop.COAST)
+    # br.robot.settings(
+    #     straight_speed=977,
+    #     straight_acceleration=500,
+    # )
+    # br.robot.straight(distance=2000)
+    # br.rightDriveMotor.run_time(speed=6000, time=4000)
 
     # br.hub.display.number(3)
     # br.WaitForButton(Button.RIGHT)
