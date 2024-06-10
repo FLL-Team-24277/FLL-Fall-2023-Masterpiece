@@ -6,10 +6,10 @@ State: First place robot performance, judge's award
 
 DMV Invitational: First place robot performance, Big Thinker award
 
-Volunteering/outreach
-Fall Fair
-Zoom with team from UK
-Lego Brick-by-Brick
-Met with teams in Yorktown
-Invited teams to practice with us
-Newport News Regional. Two team members volunteered, in addition to Coach Morrow. Won the Volunteer award.
+Volunteering/outreach  
+Fall Fair  
+Zoom with team from UK  
+Lego Brick-by-Brick  
+Met with teams in Yorktown  
+Invited teams to practice with us  
+Newport News Regional. Two team members volunteered, in addition to Coach Morrow. Won the Volunteer award.  
