@@ -9,6 +9,8 @@ Additionally, this is where all of the team code and master program will live fo
 
 Very helpful page here about how to use pybricks with VS Code: https://pybricks.com/projects/tutorials/dev/tools/vscode/
 
+[About our Robot](https://github.com/FLL-Team-24277/FLL-Fall-2023-Masterpiece/blob/main/help/robot.md)
+
 ## Instructions
 
 1. Install [necessary software](https://github.com/FLL-Team-24277/Master-Program-Fall-2023/blob/main/help/config/Software.md).
